@@ -1,0 +1,13 @@
+{
+  "name": "generate-game-data",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "tsx src/index.ts",
+    "fetch-locations": "tsx src/fetch-locations.ts"
+  },
+  "dependencies": {
+    "tsx": "^4.19.0"
+  }
+}

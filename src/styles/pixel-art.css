@@ -1,0 +1,332 @@
+/* Pixel Art Utilities */
+
+.pixel-sprite {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.pixel-font {
+  font-family: "Press Start 2P", monospace;
+  letter-spacing: -0.5px;
+}
+
+/* Pixel art border using box-shadow technique */
+.pixel-border {
+  box-shadow:
+    inset -4px -4px 0px 0px rgba(0, 0, 0, 0.2),
+    inset 4px 4px 0px 0px rgba(255, 255, 255, 0.2);
+}
+
+.pixel-border-dark {
+  box-shadow:
+    inset -4px -4px 0px 0px rgba(0, 0, 0, 0.4),
+    inset 4px 4px 0px 0px rgba(255, 255, 255, 0.1);
+}
+
+/* Pixel shadow */
+.pixel-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* Animations */
+@keyframes pixel-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pixel-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pokeball-wiggle {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  40% {
+    transform: rotate(15deg);
+  }
+  60% {
+    transform: rotate(-10deg);
+  }
+  80% {
+    transform: rotate(5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+@keyframes death-fade {
+  0% {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    filter: grayscale(1);
+  }
+  100% {
+    opacity: 0;
+    filter: grayscale(1);
+    transform: translateY(20px);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+}
+
+.animate-pixel-bounce {
+  animation: pixel-bounce 0.6s ease-in-out;
+}
+
+.animate-pixel-fade-in {
+  animation: pixel-fade-in 0.3s ease-out;
+}
+
+.animate-pokeball-wiggle {
+  animation: pokeball-wiggle 0.8s ease-in-out;
+}
+
+.animate-sparkle {
+  animation: sparkle 0.6s ease-out;
+}
+
+.animate-death-fade {
+  animation: death-fade 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-progress-fill {
+  animation: progress-fill 1s ease-out;
+}
+
+/* ── Rich UI Components ── */
+
+/* Pixel panel: a styled container for content sections */
+.pixel-panel {
+  background: var(--color-card, #fff);
+  border: 2px solid var(--color-border, #e5e7eb);
+  border-radius: 0.75rem;
+  box-shadow:
+    4px 4px 0px 0px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .pixel-panel {
+  box-shadow:
+    4px 4px 0px 0px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Decorative section header with gradient line */
+.pixel-section-header {
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.pixel-section-header::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-color, var(--theme-pokeball-fill, #c2410c)),
+    transparent
+  );
+  border-radius: 1px;
+}
+
+/* Subtle pokeball pattern background */
+.pixel-pattern-bg {
+  position: relative;
+}
+
+.pixel-pattern-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--theme-pattern-svg, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23000' stroke-width='1' opacity='0.03'/%3E%3Cline x1='18' y1='30' x2='42' y2='30' stroke='%23000' stroke-width='1' opacity='0.03'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23000' opacity='0.03'/%3E%3C/svg%3E"));
+  background-size: var(--theme-pattern-size, 60px 60px);
+  opacity: var(--theme-decoration-opacity, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow effect for highlighted elements */
+.pixel-glow {
+  box-shadow: 0 0 12px 2px var(--theme-glow-color, rgba(217, 119, 6, 0.35));
+}
+
+.pixel-glow-blue {
+  box-shadow: 0 0 12px 2px rgba(13, 148, 136, 0.3);
+}
+
+.pixel-glow-green {
+  box-shadow: 0 0 12px 2px rgba(21, 128, 61, 0.3);
+}
+
+/* Pokemon card with type-colored left border */
+.pokemon-card {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border, #e5e7eb);
+  background: var(--color-card, #fff);
+  padding: 0.75rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  border-left: 3px solid var(--type-color, #a8a878);
+}
+
+.pokemon-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dark .pokemon-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Sprite hover enlarge */
+.sprite-hover-enlarge {
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.sprite-hover-enlarge:hover {
+  transform: scale(1.3);
+  z-index: 10;
+  position: relative;
+}
+
+/* Encounter rate bar */
+.encounter-rate-bar {
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.dark .encounter-rate-bar {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Route type accent colors */
+.route-accent-route { --accent-color: #15803d; }
+.route-accent-city { --accent-color: #0d9488; }
+.route-accent-cave { --accent-color: #92400e; }
+.route-accent-water { --accent-color: #0e7490; }
+.route-accent-building { --accent-color: #78716c; }
+.route-accent-special { --accent-color: #7e22ce; }
+
+/* Progress bar stripe animation */
+@keyframes progress-stripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 0; }
+}
+
+.progress-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+  animation: progress-stripe 0.8s linear infinite;
+}
+
+/* Scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Firefox scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.25) rgba(0, 0, 0, 0.05);
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.05);
+}
