@@ -28,24 +28,24 @@ VALUES (
 INSERT INTO public.routes (game_id, name, slug, display_order, route_type, has_encounters, has_trainers, has_items, notes) VALUES
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'New Bark Town', 'new-bark-town', 1, 'city', true, false, false, 'Starter town. Choose Chikorita, Cyndaquil, or Totodile.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 29', 'route-29', 2, 'route', true, false, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 46', 'route-46', 3, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 46', 'route-46', 3, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Cherrygrove City', 'cherrygrove-city', 4, 'city', true, false, false, 'Surf and fishing available.'),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 30', 'route-30', 5, 'route', true, false, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 31', 'route-31', 6, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 30', 'route-30', 5, 'route', true, true, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 31', 'route-31', 6, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Dark Cave (Violet Side)', 'dark-cave-violet', 7, 'cave', true, false, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Violet City', 'violet-city', 8, 'city', false, true, false, 'Gym Leader Falkner. Flying-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Sprout Tower', 'sprout-tower', 9, 'building', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 32', 'route-32', 10, 'route', true, true, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Ruins of Alph', 'ruins-of-alph', 11, 'special', true, false, false, 'Unown puzzle area.'),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Ruins of Alph', 'ruins-of-alph', 11, 'special', true, true, false, 'Unown puzzle area.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Union Cave', 'union-cave', 12, 'cave', true, true, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 33', 'route-33', 13, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 33', 'route-33', 13, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Azalea Town', 'azalea-town', 14, 'city', false, true, false, 'Gym Leader Bugsy. Bug-type specialist.'),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Slowpoke Well', 'slowpoke-well', 15, 'cave', true, false, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Ilex Forest', 'ilex-forest', 16, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Slowpoke Well', 'slowpoke-well', 15, 'cave', true, true, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Ilex Forest', 'ilex-forest', 16, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 34', 'route-34', 17, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Goldenrod City', 'goldenrod-city', 18, 'city', false, true, true, 'Gym Leader Whitney. Normal-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 35', 'route-35', 19, 'route', true, true, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'National Park', 'national-park', 20, 'route', true, false, false, 'Bug Catching Contest area.'),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'National Park', 'national-park', 20, 'route', true, true, false, 'Bug Catching Contest area.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 36', 'route-36', 21, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 37', 'route-37', 22, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Ecruteak City', 'ecruteak-city', 23, 'city', false, true, false, 'Gym Leader Morty. Ghost-type specialist.'),
@@ -58,10 +58,10 @@ INSERT INTO public.routes (game_id, name, slug, display_order, route_type, has_e
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 41', 'route-41', 30, 'water', true, true, false, 'Whirl Islands nearby.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Cianwood City', 'cianwood-city', 31, 'city', false, true, false, 'Gym Leader Chuck. Fighting-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 42', 'route-42', 32, 'route', true, true, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Mt. Mortar', 'mt-mortar', 33, 'cave', true, false, true, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Mt. Mortar', 'mt-mortar', 33, 'cave', true, true, true, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Mahogany Town', 'mahogany-town', 34, 'city', false, true, false, 'Gym Leader Pryce. Ice-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 43', 'route-43', 35, 'route', true, true, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Lake of Rage', 'lake-of-rage', 36, 'water', true, false, false, 'Red Gyarados event.'),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Lake of Rage', 'lake-of-rage', 36, 'water', true, true, false, 'Red Gyarados event.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 44', 'route-44', 37, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Ice Path', 'ice-path', 38, 'cave', true, false, true, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Blackthorn City', 'blackthorn-city', 39, 'city', false, true, false, 'Gym Leader Clair. Dragon-type specialist.'),
@@ -82,7 +82,7 @@ INSERT INTO public.routes (game_id, name, slug, display_order, route_type, has_e
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 24', 'route-24', 54, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 25', 'route-25', 55, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 9', 'route-9', 56, 'route', true, true, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 10', 'route-10', 57, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 10', 'route-10', 57, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Rock Tunnel', 'rock-tunnel', 58, 'cave', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Lavender Town', 'lavender-town', 59, 'city', false, false, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 8', 'route-8', 60, 'route', true, true, false, NULL),
@@ -90,7 +90,7 @@ INSERT INTO public.routes (game_id, name, slug, display_order, route_type, has_e
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Celadon City', 'celadon-city', 62, 'city', false, true, true, 'Gym Leader Erika. Grass-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 16', 'route-16', 63, 'route', true, false, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 17', 'route-17', 64, 'route', true, true, false, 'Cycling Road.'),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 18', 'route-18', 65, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 18', 'route-18', 65, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Fuchsia City', 'fuchsia-city', 66, 'city', false, true, false, 'Gym Leader Janine. Poison-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 15', 'route-15', 67, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 14', 'route-14', 68, 'route', true, true, false, NULL),
@@ -98,11 +98,11 @@ INSERT INTO public.routes (game_id, name, slug, display_order, route_type, has_e
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 12', 'route-12', 70, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 11', 'route-11', 71, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Diglett''s Cave', 'digletts-cave', 72, 'cave', true, false, false, NULL),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 2', 'route-2', 73, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 2', 'route-2', 73, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Pewter City', 'pewter-city', 74, 'city', false, true, false, 'Gym Leader Brock. Rock-type specialist.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Viridian Forest', 'viridian-forest', 75, 'route', true, false, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Viridian City', 'viridian-city', 76, 'city', false, true, false, 'Gym Leader Blue. Mixed-type specialist.'),
-('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 1', 'route-1', 77, 'route', true, false, false, NULL),
+('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 1', 'route-1', 77, 'route', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Pallet Town', 'pallet-town', 78, 'city', true, false, false, 'Surf and fishing available.'),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Route 21', 'route-21', 79, 'water', true, true, false, NULL),
 ('e1f2a3b4-c5d6-7890-ef12-345678901234', 'Cinnabar Island', 'cinnabar-island', 80, 'city', false, true, false, 'Gym Leader Blaine (relocated to Seafoam Islands).'),
@@ -1918,6 +1918,795 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves, ability, held_item, nature)
   VALUES (v_trainer_id, 59, 58, 6, '["Roar", "Swift", "Flamethrower", "ExtremeSpeed"]'::jsonb, 'Intimidate', NULL, NULL);
 END $$;
+
+-- ===========================================
+-- STEP 6: REGULAR TRAINERS
+-- ===========================================
+
+-- Route 30 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Joey', 'Youngster', 1),
+  ('Mikey', 'Youngster', 2),
+  ('Don', 'Bug Catcher', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-30' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 31 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Wade', 'Bug Catcher', 1)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-31' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Sprout Tower regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Nico', 'Sage', 1),
+  ('Chow', 'Sage', 2),
+  ('Edmond', 'Sage', 3),
+  ('Jin', 'Sage', 4),
+  ('Neal', 'Sage', 5),
+  ('Troy', 'Sage', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'sprout-tower' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Violet City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Abe', 'Bird Keeper', 2),
+  ('Rod', 'Bird Keeper', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'violet-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 32 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Albert', 'Youngster', 1),
+  ('Liz', 'Picnicker', 2),
+  ('Roland', 'Camper', 3),
+  ('Henry', 'Fisher', 4),
+  ('Justin', 'Fisher', 5),
+  ('Ralph', 'Fisher', 6),
+  ('Gordon', 'Youngster', 7),
+  ('Peter', 'Bird Keeper', 8),
+  ('Nathan', 'Psychic', 9)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-32' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Ruins Of Alph regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Nathan', 'Psychic', 1)
+) AS t(name, class, ord)
+WHERE r.slug = 'ruins-of-alph' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Union Cave regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Daniel', 'Hiker', 1),
+  ('Russell', 'Hiker', 2),
+  ('Bill', 'Firebreather', 3),
+  ('Larry', 'PokéManiac', 4),
+  ('Ray', 'Firebreather', 5),
+  ('Leonard', 'Hiker', 6),
+  ('Phillip', 'Hiker', 7),
+  ('Calvin', 'PokéManiac', 8),
+  ('Andrew', 'PokéManiac', 9),
+  ('Nick', 'Cooltrainer', 10),
+  ('Gwen', 'Cooltrainer', 11),
+  ('Emma', 'Cooltrainer', 12)
+) AS t(name, class, ord)
+WHERE r.slug = 'union-cave' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 33 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Anthony', 'Hiker', 1)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-33' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Slowpoke Well regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Grunt 1', 'Team Rocket', 1),
+  ('Grunt 2', 'Team Rocket', 2),
+  ('Grunt 3', 'Team Rocket', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'slowpoke-well' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Azalea Town regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Amy & May', 'Twins', 2),
+  ('Al', 'Bug Catcher', 3),
+  ('Benny', 'Bug Catcher', 4),
+  ('Josh', 'Bug Catcher', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'azalea-town' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Ilex Forest regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Wayne', 'Bug Catcher', 1)
+) AS t(name, class, ord)
+WHERE r.slug = 'ilex-forest' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 34 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Samuel', 'Youngster', 1),
+  ('Brandon', 'PokéFan', 2),
+  ('Gina', 'Picnicker', 3),
+  ('Ian', 'Youngster', 4),
+  ('Keith', 'Officer', 5),
+  ('Todd', 'Camper', 6),
+  ('Irene', 'Cooltrainer', 7),
+  ('Jenn', 'Cooltrainer', 8),
+  ('Kate', 'Cooltrainer', 9)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-34' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Goldenrod City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Donald', 'PokéManiac', 2),
+  ('Teru', 'Super Nerd', 3),
+  ('Isaac', 'PokéManiac', 4),
+  ('Eric', 'Super Nerd', 5),
+  ('Victoria', 'Beauty', 6),
+  ('Samantha', 'Beauty', 7),
+  ('Carrie', 'Lass', 8),
+  ('Bridget', 'Lass', 9),
+  ('Grunt 1', 'Team Rocket', 10),
+  ('Grunt 2', 'Team Rocket', 11),
+  ('Grunt 3', 'Team Rocket', 12),
+  ('Grunt 4', 'Team Rocket', 13),
+  ('Marc', 'Scientist', 14),
+  ('Grunt 5', 'Team Rocket', 15),
+  ('Grunt 6', 'Team Rocket', 16),
+  ('Grunt 7', 'Team Rocket', 17),
+  ('Rich', 'Scientist', 18),
+  ('Grunt 8', 'Team Rocket', 19),
+  ('Grunt 9', 'Team Rocket', 20),
+  ('Eddie', 'Burglar', 21),
+  ('Duncan', 'Burglar', 22),
+  ('Grunt 10', 'Team Rocket', 23),
+  ('Grunt 11', 'Team Rocket', 24)
+) AS t(name, class, ord)
+WHERE r.slug = 'goldenrod-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 35 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Kim', 'Picnicker', 1),
+  ('Elliot', 'Camper', 2),
+  ('Brooke', 'Picnicker', 3),
+  ('Ivan', 'Camper', 4),
+  ('Irwin', 'Juggler', 5),
+  ('Walt', 'Firebreather', 6),
+  ('Dirk', 'Officer', 7),
+  ('Arnie', 'Bug Catcher', 8),
+  ('Bryan', 'Bird Keeper', 9)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-35' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- National Park regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Beverly', 'PokéFan', 1),
+  ('William', 'PokéFan', 2),
+  ('Jack', 'Schoolboy', 3),
+  ('Krise', 'Lass', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'national-park' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 36 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Mark', 'Psychic', 1),
+  ('Alan', 'Schoolboy', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-36' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 37 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Ann & Anne', 'Twins', 1),
+  ('Greg', 'Psychic', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-37' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Ecruteak City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Naoko', 'Kimono Girl', 2),
+  ('Sayo', 'Kimono Girl', 3),
+  ('Zuki', 'Kimono Girl', 4),
+  ('Kuni', 'Kimono Girl', 5),
+  ('Miki', 'Kimono Girl', 6),
+  ('Gaku', 'Sage', 7),
+  ('Masa', 'Sage', 8),
+  ('Koji', 'Sage', 9),
+  ('Ping', 'Sage', 10),
+  ('Grace', 'Medium', 11),
+  ('Jeffrey', 'Sage', 12),
+  ('Martha', 'Medium', 13)
+) AS t(name, class, ord)
+WHERE r.slug = 'ecruteak-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 38 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Harry', 'Sailor', 1),
+  ('Dana', 'Lass', 2),
+  ('Valerie', 'Beauty', 3),
+  ('Toby', 'Bird Keeper', 4),
+  ('Chad', 'Schoolboy', 5),
+  ('Olivia', 'Beauty', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-38' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 39 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Norman', 'Psychic', 1),
+  ('Derek', 'PokéFan', 2),
+  ('Ruth', 'PokéFan', 3),
+  ('Eugene', 'Sailor', 4),
+  ('Jaime', 'PokéFan', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-39' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Olivine City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Alfred', 'Gentleman', 2),
+  ('Huey', 'Sailor', 3),
+  ('Theo', 'Bird Keeper', 4),
+  ('Preston', 'Gentleman', 5),
+  ('Terrell', 'Sailor', 6),
+  ('Connie', 'Lass', 7),
+  ('Kent', 'Sailor', 8),
+  ('Denis', 'Bird Keeper', 9),
+  ('Ernest', 'Sailor', 10)
+) AS t(name, class, ord)
+WHERE r.slug = 'olivine-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 40 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Simon', 'Swimmer', 1),
+  ('Randall', 'Swimmer', 2),
+  ('Paula', 'Swimmer', 3),
+  ('Elaine', 'Swimmer', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-40' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 41 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('George', 'Swimmer', 1),
+  ('Kara', 'Swimmer', 2),
+  ('Mathew', 'Swimmer', 3),
+  ('Denise', 'Swimmer', 4),
+  ('Kirk', 'Swimmer', 5),
+  ('Berke', 'Swimmer', 6),
+  ('Charlie', 'Swimmer', 7),
+  ('Susie', 'Swimmer', 8),
+  ('Kaylee', 'Swimmer', 9),
+  ('Wendy', 'Swimmer', 10)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-41' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Cianwood City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Yoshi', 'Blackbelt', 2),
+  ('Lao', 'Blackbelt', 3),
+  ('Nob', 'Blackbelt', 4),
+  ('Lung', 'Blackbelt', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'cianwood-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 42 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Tully', 'Fisher', 1),
+  ('Shane', 'PokéManiac', 2),
+  ('Benjamin', 'Hiker', 3),
+  ('Miller', 'PokéManiac', 4),
+  ('Markus', 'Super Nerd', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-42' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Mt Mortar regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Miller', 'PokéManiac', 1),
+  ('Markus', 'Super Nerd', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'mt-mortar' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Mahogany Town regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Grunt 1', 'Team Rocket', 2),
+  ('Jed', 'Scientist', 3),
+  ('Grunt 2', 'Team Rocket', 4),
+  ('Grunt 3', 'Team Rocket', 5),
+  ('Grunt 4', 'Team Rocket', 6),
+  ('Ross', 'Scientist', 7),
+  ('Mitch', 'Scientist', 8),
+  ('Grunt 5', 'Team Rocket', 9),
+  ('Grunt 6', 'Team Rocket', 10),
+  ('Roxanne', 'Skier', 11),
+  ('Ronald', 'Boarder', 12),
+  ('Clarissa', 'Skier', 13),
+  ('Brad', 'Boarder', 14),
+  ('Douglas', 'Boarder', 15)
+) AS t(name, class, ord)
+WHERE r.slug = 'mahogany-town' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 43 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Spencer', 'Camper', 1),
+  ('Tiffany', 'Picnicker', 2),
+  ('Marvin', 'Fisher', 3),
+  ('Ron', 'PokéManiac', 4),
+  ('Brent', 'PokéManiac', 5),
+  ('Ben', 'PokéManiac', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-43' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Lake Of Rage regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Aaron', 'Cooltrainer', 1),
+  ('Raymond', 'Fisher', 2),
+  ('Andre', 'Fisher', 3),
+  ('Lois', 'Cooltrainer', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'lake-of-rage' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 44 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Phil', 'Psychic', 1),
+  ('Edgar', 'Fisher', 2),
+  ('Cybil', 'Cooltrainer', 3),
+  ('Allen', 'Cooltrainer', 4),
+  ('Zach', 'PokéManiac', 5),
+  ('Wilton', 'Fisher', 6),
+  ('Vance', 'Bird Keeper', 7)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-44' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Blackthorn City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Paul', 'Cooltrainer', 2),
+  ('Fran', 'Cooltrainer', 3),
+  ('Cody', 'Cooltrainer', 4),
+  ('Mike', 'Cooltrainer', 5),
+  ('Lola', 'Cooltrainer', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'blackthorn-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 45 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Erik', 'Hiker', 1),
+  ('Ryan', 'Cooltrainer', 2),
+  ('Kelly', 'Cooltrainer', 3),
+  ('Parry', 'Hiker', 4),
+  ('Kenji', 'Blackbelt', 5),
+  ('Timothy', 'Hiker', 6),
+  ('Michael', 'Hiker', 7),
+  ('Quentin', 'Camper', 8)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-45' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 46 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Ted', 'Camper', 1),
+  ('Erin', 'Picnicker', 2),
+  ('Bailey', 'Hiker', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-46' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 27 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Megan', 'Cooltrainer', 1),
+  ('Blake', 'Cooltrainer', 2),
+  ('Jose', 'Bird Keeper', 3),
+  ('Brian', 'Cooltrainer', 4),
+  ('Gilbert', 'Psychic', 5),
+  ('Reena', 'Cooltrainer', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-27' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 26 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Scott', 'Fisher', 1),
+  ('Richard', 'Psychic', 2),
+  ('Joyce', 'Cooltrainer', 3),
+  ('Gaven', 'Cooltrainer', 4),
+  ('Jake', 'Cooltrainer', 5),
+  ('Beth', 'Cooltrainer', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-26' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Vermilion City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Horton', 'Juggler', 2),
+  ('Vincent', 'Guitarist', 3),
+  ('Gregory', 'Gentleman', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'vermilion-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 6 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Rex', 'PokéFan', 1),
+  ('Allan', 'PokéFan', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-6' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Saffron City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Rebecca', 'Medium', 2),
+  ('Jared', 'Psychic', 3),
+  ('Doris', 'Medium', 4),
+  ('Franklin', 'Psychic', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'saffron-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 8 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Dwayne', 'Biker', 1),
+  ('Harris', 'Biker', 2),
+  ('Zeke', 'Biker', 3),
+  ('Sam', 'Super Nerd', 4),
+  ('Tom', 'Super Nerd', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-8' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 10 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Robert', 'PokéFan', 1),
+  ('Jim', 'Hiker', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-10' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 9 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Edna', 'Picnicker', 1),
+  ('Sid', 'Camper', 2),
+  ('Dean', 'Camper', 3),
+  ('Tim', 'Hiker', 4),
+  ('Heidi', 'Picnicker', 5),
+  ('Sidney', 'Hiker', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-9' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 24 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Grunt', 'Team Rocket', 1)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-24' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 25 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Dudley', 'Schoolboy', 1),
+  ('Ellen', 'Lass', 2),
+  ('Joe', 'Schoolboy', 3),
+  ('Laura', 'Lass', 4),
+  ('Lloyd', 'Camper', 5),
+  ('Shannon', 'Lass', 6),
+  ('Pat', 'Super Nerd', 7),
+  ('Kevin', 'Cooltrainer', 8)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-25' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Cerulean City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Parker', 'Swimmer', 2),
+  ('Briana', 'Swimmer', 3),
+  ('Diana', 'Swimmer', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'cerulean-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Celadon City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Jo & Zoe', 'Twins', 2),
+  ('Tanya', 'Picnicker', 3),
+  ('Michelle', 'Lass', 4),
+  ('Julia', 'Beauty', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'celadon-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 17 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Riley', 'Biker', 1),
+  ('Glenn', 'Biker', 2),
+  ('Joel', 'Biker', 3),
+  ('Charles', 'Biker', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-17' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 18 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Bob', 'Bird Keeper', 1),
+  ('Boris', 'Bird Keeper', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-18' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Fuchsia City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Linda', 'Lass', 2),
+  ('Cindy', 'Picnicker', 3),
+  ('Barry', 'Camper', 4),
+  ('Alice', 'Lass', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'fuchsia-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 15 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Kipp', 'Schoolboy', 1),
+  ('Tommy', 'Schoolboy', 2),
+  ('Hillary', 'Teacher', 3),
+  ('Billy', 'Schoolboy', 4),
+  ('Colette', 'Teacher', 5),
+  ('Johnny', 'Schoolboy', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-15' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 14 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Roy', 'Bird Keeper', 1),
+  ('Carter', 'PokéFan', 2),
+  ('Trevor', 'PokéFan', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-14' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 13 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Bret', 'Bird Keeper', 1),
+  ('Perry', 'Bird Keeper', 2),
+  ('Joshua', 'PokéFan', 3),
+  ('Alex', 'PokéFan', 4),
+  ('Kenny', 'Hiker', 5)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-13' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 12 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Barney', 'Fisher', 1),
+  ('Stephen', 'Fisher', 2),
+  ('Martin', 'Fisher', 3),
+  ('Kyle', 'Fisher', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-12' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 11 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Herman', 'Psychic', 1),
+  ('Owen', 'Youngster', 2),
+  ('Jason', 'Youngster', 3),
+  ('Fidel', 'Psychic', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-11' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 2 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Rob', 'Bug Catcher', 1),
+  ('Doug', 'Bug Catcher', 2),
+  ('Ed', 'Bug Catcher', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-2' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Pewter City regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Jerry', 'Camper', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'pewter-city' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 1 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Danny', 'Schoolboy', 1),
+  ('Quinn', 'Cooltrainer', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-1' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 21 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Nikki', 'Swimmer', 1),
+  ('Arnold', 'Fisher', 2),
+  ('Seth', 'Swimmer', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-21' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 20 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Cameron', 'Swimmer', 1),
+  ('Lori', 'Swimmer', 2),
+  ('Nicole', 'Swimmer', 3)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-20' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- Route 19 regular trainers
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Harold', 'Swimmer', 1),
+  ('Tucker', 'Swimmer', 2),
+  ('Dawn', 'Swimmer', 3),
+  ('Jerome', 'Swimmer', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-19' AND r.game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+
+-- ===========================================
+-- Update has_trainers flags for routes that now have trainers
+-- ===========================================
+
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-30' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-31' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-33' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'slowpoke-well' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'ilex-forest' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'national-park' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'lake-of-rage' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-46' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-1' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-18' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-2' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'ruins-of-alph' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'mt-mortar' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
+UPDATE public.routes SET has_trainers = true WHERE slug = 'route-10' AND game_id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';
 
 -- Update total_routes count
 UPDATE public.games SET total_routes = 86 WHERE id = 'e1f2a3b4-c5d6-7890-ef12-345678901234';

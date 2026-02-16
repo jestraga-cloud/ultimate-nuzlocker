@@ -18,6 +18,41 @@
 
 
 -- ===========================================
+-- CLEANUP: Makes this migration safe to re-run
+-- ===========================================
+
+-- 1. Delete all routes with display_order >= 16 (cascades to encounters, trainers, trainer_pokemon, route_items)
+DELETE FROM public.routes
+WHERE game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+AND display_order >= 16;
+
+-- 2. Delete trainers added by this migration to seed routes (cascades to trainer_pokemon)
+DELETE FROM public.trainers
+WHERE route_id IN (
+  SELECT id FROM public.routes
+  WHERE game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+  AND slug IN ('route-102', 'route-104-south', 'route-104-north', 'route-116', 'route-105')
+)
+AND name IN ('Rick', 'Tiana', 'Billy', 'Cindy', 'Haley', 'Gina & Mia', 'Jose', 'Joey', 'Karen', 'Clark', 'Ned', 'Elliot');
+
+-- 3. Delete items added by this migration to seed routes
+DELETE FROM public.route_items
+WHERE route_id IN (
+  SELECT id FROM public.routes
+  WHERE game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+  AND slug IN ('route-104-south', 'route-104-north', 'route-116', 'rusturf-tunnel', 'route-105')
+);
+
+DELETE FROM public.route_items
+WHERE route_id IN (
+  SELECT id FROM public.routes
+  WHERE game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+  AND slug = 'route-102'
+)
+AND item_name = 'Pecha Berry';
+
+
+-- ===========================================
 -- SECTION 1: ROUTES (display_order 16-65)
 -- ===========================================
 
@@ -1364,7 +1399,1123 @@ WHERE r.slug = 'route-128' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890
 
 
 -- ===========================================
--- SECTION 6: UPDATE TOTAL ROUTES COUNT
+-- SECTION 6: ROUTE ITEMS
+-- ===========================================
+
+-- -------------------------------------------
+-- Route 102 items (Potion and Oran Berry already in seed)
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Pecha Berry', 'berry', 'Cures poison when held', 'Berry tree on route', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-102' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 104 (South) items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Potion', 'medicine', 'Restores 20 HP', 'Near the south entrance', false),
+  ('Poke Ball', 'ball', 'A basic Poke Ball', 'On the path', false),
+  ('Oran Berry', 'berry', 'Restores 10 HP when held', 'Berry tree', false),
+  ('Pecha Berry', 'berry', 'Cures poison when held', 'Berry tree', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-104-south' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 104 (North) items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Cheri Berry', 'berry', 'Cures paralysis when held', 'Berry tree', false),
+  ('White Herb', 'hold_item', 'Restores lowered stats once', 'From the Flower Shop', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-104-north' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 116 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Repel', 'medicine', 'Repels weak wild Pokemon for 100 steps', 'On the path', false),
+  ('X Special', 'battle_item', 'Raises Sp. Atk in battle', 'Near the trainers', false),
+  ('Potion', 'medicine', 'Restores 20 HP', 'On the path', false),
+  ('Ether', 'medicine', 'Restores 10 PP to one move', 'Hidden near rocks', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-116' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Rusturf Tunnel items (Black Glasses)
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Black Glasses', 'hold_item', 'Boosts Dark-type moves', 'Inside the tunnel', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'rusturf-tunnel' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+
+-- -------------------------------------------
+-- Route 105 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Iron', 'vitamin', 'Raises Defense EVs', 'Hidden on small island', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-105' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 106 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Stardust', 'valuable', 'Can be sold for a high price', 'Hidden on the shore', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-106' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 109 items (grouped 107-109)
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Soft Sand', 'hold_item', 'Boosts Ground-type moves', 'From girls on the beach', false),
+  ('PP Up', 'medicine', 'Raises max PP of a move', 'On the beach path', false),
+  ('Stardust', 'valuable', 'Can be sold for a high price', 'Hidden on the beach', true),
+  ('Ether', 'medicine', 'Restores 10 PP to one move', 'Near the shore', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-109' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 110 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Rare Candy', 'medicine', 'Raises Pokemon level by 1', 'Hidden under Cycling Road', true),
+  ('Dire Hit', 'battle_item', 'Raises critical hit ratio in battle', 'On Cycling Road', false),
+  ('Elixir', 'medicine', 'Restores 10 PP to all moves', 'Under the bridge', false),
+  ('Nanab Berry', 'berry', 'Makes Pokemon more friendly', 'Berry tree on route', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-110' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 117 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Great Ball', 'ball', 'A better Poke Ball with higher catch rate', 'On the path', false),
+  ('Revive', 'medicine', 'Revives fainted Pokemon with half HP', 'Near the Day Care', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-117' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 111 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Elixir', 'medicine', 'Restores 10 PP to all moves', 'On the route', false),
+  ('TM43 Secret Power', 'tm', 'Normal-type move that varies by terrain', 'From man on the route', false),
+  ('Stardust', 'valuable', 'Can be sold for a high price', 'Hidden in the desert', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-111' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 112 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Nugget', 'valuable', 'Can be sold for 5000', 'On the path', false),
+  ('TM28 Dig', 'tm', 'Ground-type move, also exits caves', 'Fossil Maniac house nearby', false),
+  ('Ether', 'medicine', 'Restores 10 PP to one move', 'On the route', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-112' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 113 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Max Ether', 'medicine', 'Fully restores PP of one move', 'Hidden in ash', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-113' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 114 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Rare Candy', 'medicine', 'Raises Pokemon level by 1', 'On the route', false),
+  ('Protein', 'vitamin', 'Raises Attack EVs', 'Near Meteor Falls entrance', false),
+  ('PP Up', 'medicine', 'Raises max PP of a move', 'On the path', false),
+  ('TM05 Roar', 'tm', 'Forces opponent to switch out', 'On the route', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-114' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+
+-- -------------------------------------------
+-- Route 118 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Stardust', 'valuable', 'Can be sold for a high price', 'Hidden on the shore', true),
+  ('Hyper Potion', 'medicine', 'Restores 200 HP', 'Hidden near water edge', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-118' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 119 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Rare Candy', 'medicine', 'Raises Pokemon level by 1', 'Hidden in tall grass', true),
+  ('Leaf Stone', 'evolution', 'Evolves certain Grass-type Pokemon', 'Hidden near the river', true),
+  ('Ultra Ball', 'ball', 'High-performance Poke Ball', 'On the route', false),
+  ('Elixir', 'medicine', 'Restores 10 PP to all moves', 'Near Weather Institute', false),
+  ('TM18 Rain Dance', 'tm', 'Summons rain for 5 turns', 'On the route', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-119' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 120 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Nugget', 'valuable', 'Can be sold for 5000', 'On the route', false),
+  ('Revive', 'medicine', 'Revives fainted Pokemon with half HP', 'Near the ancient tomb', false),
+  ('Full Heal', 'medicine', 'Cures all status conditions', 'On the path', false),
+  ('Hyper Potion', 'medicine', 'Restores 200 HP', 'Near the bridge', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-120' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 121 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Zinc', 'vitamin', 'Raises Sp. Def EVs', 'On the route', false),
+  ('Revive', 'medicine', 'Revives fainted Pokemon with half HP', 'On the path', false),
+  ('Full Heal', 'medicine', 'Cures all status conditions', 'Near Lilycove', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-121' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 123 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('TM19 Giga Drain', 'tm', 'Grass-type move that drains HP', 'Near the berry garden', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-123' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 124 items (Dive routes 124-128)
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Red Shard', 'shard', 'Trade for Fire Stone at Treasure Hunter', 'Underwater', false),
+  ('Blue Shard', 'shard', 'Trade for Water Stone at Treasure Hunter', 'Underwater', false),
+  ('Heart Scale', 'valuable', 'Trade to Move Tutor for forgotten moves', 'Hidden underwater', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-124' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 125 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Calcium', 'vitamin', 'Raises Sp. Atk EVs', 'On island near Shoal Cave', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-125' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 126 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Yellow Shard', 'shard', 'Trade for Thunderstone at Treasure Hunter', 'Underwater', false),
+  ('Green Shard', 'shard', 'Trade for Leaf Stone at Treasure Hunter', 'Underwater', false),
+  ('Heart Scale', 'valuable', 'Trade to Move Tutor for forgotten moves', 'Hidden underwater', true)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-126' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 132 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Rare Candy', 'medicine', 'Raises Pokemon level by 1', 'On small island', false),
+  ('Protein', 'vitamin', 'Raises Attack EVs', 'On island in currents', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-132' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 133 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Star Piece', 'valuable', 'Can be sold for a very high price', 'On island in currents', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-133' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 134 items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Max Revive', 'medicine', 'Revives fainted Pokemon with full HP', 'Near Sealed Chamber entrance', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'route-134' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Victory Road items
+-- -------------------------------------------
+INSERT INTO public.route_items (route_id, item_name, item_category, description, location_hint, is_hidden)
+SELECT r.id, i.name, i.cat, i.descr, i.hint, i.hidden
+FROM public.routes r,
+(VALUES
+  ('Max Elixir', 'medicine', 'Fully restores PP of all moves', 'Deep in the cave', false),
+  ('Full Restore', 'medicine', 'Fully restores HP and cures status', 'Near the exit', false),
+  ('TM29 Psychic', 'tm', 'Powerful Psychic-type move', 'In the cave', false)
+) AS i(name, cat, descr, hint, hidden)
+WHERE r.slug = 'victory-road' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+
+-- ===========================================
+-- SECTION 7: ADDITIONAL TRAINERS & POKEMON
+-- ===========================================
+
+-- -------------------------------------------
+-- Route 102 additional trainers (Calvin & Allen in seed)
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Rick', 'Bug Catcher', 3),
+  ('Tiana', 'Lass', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-102' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Rick's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 265, 4, 1
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Rick' AND r.slug = 'route-102'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Tiana's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (263, 4, 1),  -- Zigzagoon
+  (285, 4, 2)   -- Shroomish
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Tiana' AND r.slug = 'route-102'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 104 (South) trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Billy', 'Youngster', 1),
+  ('Cindy', 'Lady', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-104-south' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Billy's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (263, 5, 1),  -- Zigzagoon
+  (273, 7, 2)   -- Seedot
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Billy' AND r.slug = 'route-104-south'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Cindy's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 263, 7, 1
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Cindy' AND r.slug = 'route-104-south'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 104 (North) trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Haley', 'Lass', 1),
+  ('Gina & Mia', 'Twins', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-104-north' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Haley's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (270, 6, 1),  -- Lotad
+  (285, 6, 2)   -- Shroomish
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Haley' AND r.slug = 'route-104-north'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Gina & Mia's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (273, 6, 1),  -- Seedot
+  (270, 6, 2)   -- Lotad
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Gina & Mia' AND r.slug = 'route-104-north'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 116 trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Jose', 'Bug Catcher', 1),
+  ('Joey', 'Youngster', 2),
+  ('Karen', 'School Kid', 3),
+  ('Clark', 'Hiker', 4)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-116' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Jose's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (265, 8, 1),  -- Wurmple
+  (290, 8, 2)   -- Nincada
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Jose' AND r.slug = 'route-116'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Joey's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 66, 9, 1  -- Machop
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Joey' AND r.slug = 'route-116'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Karen's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 285, 9, 1  -- Shroomish
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Karen' AND r.slug = 'route-116'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Clark's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (74, 8, 1),  -- Geodude
+  (74, 8, 2),  -- Geodude
+  (74, 8, 3)   -- Geodude
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Clark' AND r.slug = 'route-116'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 105 trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Ned', 'Fisherman', 1),
+  ('Elliot', 'Fisherman', 2)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-105' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Ned's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 72, 11, 1  -- Tentacool
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Ned' AND r.slug = 'route-105'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Elliot's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (129, 10, 1),  -- Magikarp
+  (72,  7,  2),  -- Tentacool
+  (129, 10, 3)   -- Magikarp
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Elliot' AND r.slug = 'route-105'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+
+-- -------------------------------------------
+-- Route 109 additional trainers (Ricky already exists)
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Huey', 'Sailor', 5),
+  ('Edmond', 'Sailor', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-109' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Huey's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (66,  13, 1),  -- Machop
+  (278, 13, 2)   -- Wingull
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Huey' AND r.slug = 'route-109'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Edmond's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (278, 12, 1),  -- Wingull
+  (278, 12, 2)   -- Wingull
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Edmond' AND r.slug = 'route-109'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Route 107 additional trainer
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Matthew', 'Swimmer', false, 4
+FROM public.routes r
+WHERE r.slug = 'route-107' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Matthew's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 318, 26, 1  -- Carvanha
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Matthew' AND r.slug = 'route-107'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 110 additional trainers (Rival already exists as boss)
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Edwin', 'Collector', 7),
+  ('Joseph', 'Guitarist', 8),
+  ('Isabel', 'Pokefan', 9)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-110' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Edwin's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (271, 14, 1),  -- Lombre
+  (274, 14, 2)   -- Nuzleaf
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Edwin' AND r.slug = 'route-110'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Joseph's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (309, 15, 1),  -- Electrike
+  (100, 15, 2)   -- Voltorb
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Joseph' AND r.slug = 'route-110'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Isabel's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (311, 14, 1),  -- Plusle
+  (312, 14, 2)   -- Minun
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Isabel' AND r.slug = 'route-110'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 117 additional trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Dylan', 'Triathlete', 5),
+  ('Isaac', 'Pokemon Breeder', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-117' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Dylan's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 84, 17, 1  -- Doduo
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Dylan' AND r.slug = 'route-117'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Isaac's team (Pokemon Breeder)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (293, 11, 1),  -- Whismur
+  (263, 11, 2),  -- Zigzagoon
+  (304, 11, 3),  -- Aron
+  (276, 11, 4),  -- Taillow
+  (261, 11, 5),  -- Poochyena
+  (296, 11, 6)   -- Makuhita
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Isaac' AND r.slug = 'route-117'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 111 Winstrate Family trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order, notes)
+SELECT r.id, 'Winstrate Family', 'Pokemon Trainer', false, 5, '4 consecutive battles: Zigzagoon, Numel, Roselia, Meditite.'
+FROM public.routes r
+WHERE r.slug = 'route-111' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Winstrate Family combined team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (263, 16, 1),  -- Zigzagoon (Victor)
+  (322, 16, 2),  -- Numel (Victoria)
+  (315, 17, 3),  -- Roselia (Vivi)
+  (307, 18, 4)   -- Meditite (Vicky)
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Winstrate Family' AND r.slug = 'route-111'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 112 additional trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Neal', 'Youngster', false, 3
+FROM public.routes r
+WHERE r.slug = 'route-112' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Neal's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 328, 19, 1  -- Trapinch
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Neal' AND r.slug = 'route-112'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 114 additional trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Bernie', 'Kindler', false, 6
+FROM public.routes r
+WHERE r.slug = 'route-114' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Bernie's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (218, 18, 1),  -- Slugma
+  (278, 18, 2)   -- Wingull
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Bernie' AND r.slug = 'route-114'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 119 Team Aqua Grunts
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order, notes)
+SELECT r.id, t.name, t.class, false, t.ord, 'Weather Institute invasion.'
+FROM public.routes r,
+(VALUES
+  ('Aqua Grunt 1', 'Team Aqua', 6),
+  ('Aqua Grunt 2', 'Team Aqua', 7)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-119' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (318, 28, 1),  -- Carvanha
+  (261, 25, 2)   -- Poochyena
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Aqua Grunt 1' AND r.slug = 'route-119'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 41, 27, 1  -- Zubat
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Aqua Grunt 2' AND r.slug = 'route-119'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 120 additional trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Riley', 'Ninja Boy', 5),
+  ('Leonel', 'Cooltrainer', 6)
+) AS t(name, class, ord)
+WHERE r.slug = 'route-120' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Riley's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (290, 28, 1),  -- Nincada
+  (109, 28, 2)   -- Koffing
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Riley' AND r.slug = 'route-120'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Leonel's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 310, 30, 1  -- Manectric
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Leonel' AND r.slug = 'route-120'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 121 additional trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Jessica', 'Beauty', false, 4
+FROM public.routes r
+WHERE r.slug = 'route-121' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Jessica's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (352, 29, 1),  -- Kecleon
+  (336, 29, 2)   -- Seviper
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Jessica' AND r.slug = 'route-121'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 125 additional trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Isabella', 'Triathlete', false, 4
+FROM public.routes r
+WHERE r.slug = 'route-125' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Isabella's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 120, 34, 1  -- Staryu
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Isabella' AND r.slug = 'route-125'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 127 additional trainer
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Henry', 'Fisherman', false, 4
+FROM public.routes r
+WHERE r.slug = 'route-127' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Henry's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (318, 31, 1),  -- Carvanha
+  (73,  34, 2)   -- Tentacruel
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Henry' AND r.slug = 'route-127'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 129 & 131 trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Reed', 'Swimmer', false, 1
+FROM public.routes r
+WHERE r.slug = 'route-129' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (363, 33, 1),  -- Spheal
+  (319, 33, 2)   -- Sharpedo
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Reed' AND r.slug = 'route-129'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Tisha', 'Swimmer', false, 1
+FROM public.routes r
+WHERE r.slug = 'route-131' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 170, 34, 1  -- Chinchou
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Tisha' AND r.slug = 'route-131'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Route 132-134 trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Paxton', 'Expert', false, 1
+FROM public.routes r
+WHERE r.slug = 'route-132' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (277, 33, 1),  -- Swellow
+  (286, 33, 2)   -- Breloom
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Paxton' AND r.slug = 'route-132'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Warren', 'Cooltrainer', false, 1
+FROM public.routes r
+WHERE r.slug = 'route-133' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (75,  33, 1),  -- Graveler
+  (272, 33, 2)   -- Ludicolo
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Warren' AND r.slug = 'route-133'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, 'Aaron', 'Dragon Tamer', false, 1
+FROM public.routes r
+WHERE r.slug = 'route-134' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 371, 34, 1  -- Bagon
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Aaron' AND r.slug = 'route-134'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- -------------------------------------------
+-- Victory Road additional trainers
+-- -------------------------------------------
+INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
+SELECT r.id, t.name, t.class, false, t.ord
+FROM public.routes r,
+(VALUES
+  ('Albert', 'Cooltrainer', 7),
+  ('Hope', 'Cooltrainer', 8),
+  ('Shannon', 'Cooltrainer', 9)
+) AS t(name, class, ord)
+WHERE r.slug = 'victory-road' AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Albert's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (303, 43, 1),  -- Mawile
+  (303, 43, 2)   -- Mawile (second)
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Albert' AND r.slug = 'victory-road'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Hope's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (315, 43, 1),  -- Roselia
+  (363, 43, 2)   -- Spheal
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Hope' AND r.slug = 'victory-road'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Shannon's team
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 344, 43, 1  -- Claydol
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Shannon' AND r.slug = 'victory-road'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+
+-- ===========================================
+-- SECTION 7b: POKEMON TEAMS FOR EXISTING TRAINERS
+-- ===========================================
+
+-- Ricky's team (Route 109, already exists as Tuber)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 263, 12, 1  -- Zigzagoon
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Ricky' AND r.slug = 'route-109'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Wilton's team (Route 111, exists as Cooltrainer)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (309, 17, 1),  -- Electrike
+  (320, 17, 2),  -- Wailmer
+  (296, 17, 3)   -- Makuhita
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Wilton' AND r.slug = 'route-111'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Madeline's team (Route 113, exists as Parasol Lady)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 322, 18, 1  -- Numel
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Madeline' AND r.slug = 'route-113'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Steve's team (Route 114, exists as Hiker - user says Pokemaniac)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 304, 19, 1  -- Aron
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Steve' AND r.slug = 'route-114'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Nob's team (Route 115, exists as Collector - user says Black Belt)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 66, 19, 1  -- Machop
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Nob' AND r.slug = 'route-115'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Rose's team (Route 118, exists as Aroma Lady)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (315, 14, 1),  -- Roselia
+  (285, 14, 2)   -- Shroomish
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Rose' AND r.slug = 'route-118'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Dalton's team (Route 118, exists as Fisherman - user says Guitarist)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (81,  15, 1),  -- Magnemite
+  (293, 15, 2)   -- Whismur
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Dalton' AND r.slug = 'route-118'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Catherine's team (Route 119, exists as Pokemon Ranger)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 44, 26, 1  -- Gloom
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Catherine' AND r.slug = 'route-119'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Phil's team (Route 119, exists as Bug Maniac - user says Bird Keeper)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (276, 26, 1),  -- Taillow
+  (278, 26, 2)   -- Wingull
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Phil' AND r.slug = 'route-119'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Robert's team (Route 120, exists as Bird Keeper)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 333, 29, 1  -- Swablu
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Robert' AND r.slug = 'route-120'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Tammy's team (Route 121, exists as Hex Maniac)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (355, 29, 1),  -- Duskull
+  (353, 29, 2)   -- Shuppet
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Tammy' AND r.slug = 'route-121'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Grace's team (Route 124, exists as Swimmer)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, 183, 34, 1  -- Marill
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id
+WHERE t.name = 'Grace' AND r.slug = 'route-124'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+-- Anna & Meg's team (Route 117, exists as Interviewers)
+INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order)
+SELECT t.id, e.dex_id, e.lvl, e.slot
+FROM public.trainers t
+JOIN public.routes r ON t.route_id = r.id,
+(VALUES
+  (263, 15, 1),  -- Zigzagoon
+  (296, 15, 2)   -- Makuhita
+) AS e(dex_id, lvl, slot)
+WHERE t.name = 'Anna & Meg' AND r.slug = 'route-117'
+AND r.game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890';
+
+
+-- ===========================================
+-- SECTION 8: UPDATE ROUTE FLAGS
+-- ===========================================
+
+-- Update has_items for routes that now have items
+UPDATE public.routes SET has_items = true
+WHERE game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+AND slug IN (
+  'route-105', 'route-106', 'route-109',
+  'route-112', 'route-115', 'route-118',
+  'route-121', 'route-124', 'route-125',
+  'route-126', 'route-132', 'route-133', 'route-134'
+);
+
+-- Update has_trainers for routes that now have trainers
+UPDATE public.routes SET has_trainers = true
+WHERE game_id = 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+AND slug IN (
+  'route-129', 'route-131', 'route-132',
+  'route-133', 'route-134'
+);
+
+
+-- ===========================================
+-- SECTION 9: UPDATE TOTAL ROUTES COUNT
 -- ===========================================
 
 UPDATE public.games
