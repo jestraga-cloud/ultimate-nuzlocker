@@ -1,12 +1,12 @@
 "use client";
 
-import type { RouteDetail as RouteDetailType } from "@/types/game";
+import type { Encounter, RouteDetail as RouteDetailType } from "@/types/game";
 import { ROUTE_TYPE_COLORS } from "@/types/game";
 import { EncounterList } from "./encounter-list";
 import { ItemList } from "./item-list";
 import { TrainerList } from "./trainer-list";
+import type { EncounterState } from "./encounter-shared";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   MapPin,
@@ -16,7 +16,7 @@ import {
   Home,
   Star,
   Check,
-  CircleCheck,
+  X,
 } from "lucide-react";
 import type { RouteType } from "@/types/game";
 
@@ -32,22 +32,24 @@ const ROUTE_ICON_MAP: Record<string, React.ElementType> = {
 interface RouteDetailProps {
   routeDetail: RouteDetailType | null;
   pokemonNames: Record<number, { name: string; types: string[] }>;
-  isVisited: boolean;
-  encounterUsed: boolean;
-  onToggleVisited: () => void;
-  onCatchPokemon: () => void;
+  encounterState: EncounterState;
+  routeId: string | null;
+  onEncounterCaught: (encounter: Encounter) => void;
+  onEncounterMissed: () => void;
   onPokemonClick?: (dexId: number) => void;
+  onTrainerDragStart?: (e: React.DragEvent, trainer: import("@/types/game").Trainer) => void;
   loading?: boolean;
 }
 
 export function RouteDetail({
   routeDetail,
   pokemonNames,
-  isVisited,
-  encounterUsed,
-  onToggleVisited,
-  onCatchPokemon,
+  encounterState,
+  routeId,
+  onEncounterCaught,
+  onEncounterMissed,
   onPokemonClick,
+  onTrainerDragStart,
   loading,
 }: RouteDetailProps) {
   if (loading) {
@@ -121,37 +123,38 @@ export function RouteDetail({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <Button
-              variant={isVisited ? "secondary" : "outline"}
-              size="sm"
-              onClick={onToggleVisited}
-              className="text-xs pixel-shadow"
-            >
-              <Check className={`h-3.5 w-3.5 mr-1 ${isVisited ? "text-green-500" : ""}`} />
-              {isVisited ? "Visited" : "Mark Visited"}
-            </Button>
-
-            {encounters.length > 0 && (
-              encounterUsed ? (
-                <Button variant="outline" size="sm" className="text-xs" disabled>
-                  <CircleCheck className="h-3.5 w-3.5 mr-1 text-green-500" />
+          {/* Encounter status badge */}
+          {encounters.length > 0 && (
+            <div className="flex-shrink-0">
+              {encounterState === "caught" && (
+                <Badge className="bg-green-600 text-white text-[10px] gap-1">
+                  <Check className="h-3 w-3" />
                   Caught
-                </Button>
-              ) : (
-                <Button size="sm" onClick={onCatchPokemon} className="text-xs pixel-shadow">
-                  Catch Pokemon
-                </Button>
-              )
-            )}
-          </div>
+                </Badge>
+              )}
+              {encounterState === "missed" && (
+                <Badge variant="secondary" className="text-[10px] gap-1">
+                  <X className="h-3 w-3" />
+                  Missed
+                </Badge>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Collapsible sections — only render if data exists */}
         <div className="space-y-4">
-          <EncounterList encounters={encounters} pokemonNames={pokemonNames} onPokemonClick={onPokemonClick} />
+          <EncounterList
+            encounters={encounters}
+            pokemonNames={pokemonNames}
+            onPokemonClick={onPokemonClick}
+            encounterState={encounterState}
+            routeId={routeId || ""}
+            onEncounterCaught={onEncounterCaught}
+            onEncounterMissed={onEncounterMissed}
+          />
           <ItemList items={items} />
-          <TrainerList trainers={trainers} pokemonNames={pokemonNames} onPokemonClick={onPokemonClick} />
+          <TrainerList trainers={trainers} pokemonNames={pokemonNames} onPokemonClick={onPokemonClick} onTrainerDragStart={onTrainerDragStart} />
 
           {/* Empty state if no data at all */}
           {encounters.length === 0 &&

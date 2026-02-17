@@ -19,6 +19,7 @@ interface CatchModalProps {
   onOpenChange: (open: boolean) => void;
   encounters: Encounter[];
   pokemonNames: Record<number, { name: string; types: string[] }>;
+  preselectedDexId?: number | null;
   onCatch: (data: {
     pokemonDexId: number;
     nickname: string | null;
@@ -31,6 +32,7 @@ export function CatchModal({
   onOpenChange,
   encounters,
   pokemonNames,
+  preselectedDexId,
   onCatch,
 }: CatchModalProps) {
   const [selectedDexId, setSelectedDexId] = useState<number | null>(null);
@@ -38,13 +40,17 @@ export function CatchModal({
   const [level, setLevel] = useState("");
   const [caught, setCaught] = useState(false);
 
+  // Use preselected dex ID when provided
+  const effectiveDexId = preselectedDexId ?? selectedDexId;
+  const isPreselected = preselectedDexId != null;
+
   const handleCatch = () => {
-    if (!selectedDexId) return;
+    if (!effectiveDexId) return;
     setCaught(true);
 
     setTimeout(() => {
       onCatch({
-        pokemonDexId: selectedDexId,
+        pokemonDexId: effectiveDexId,
         nickname: nickname.trim() || null,
         level: level ? parseInt(level) : null,
       });
@@ -80,12 +86,12 @@ export function CatchModal({
 
         {caught ? (
           <div className="flex flex-col items-center justify-center py-8 space-y-4">
-            {selectedDexId && (
+            {effectiveDexId && (
               <div className="animate-pixel-bounce">
                 <PokemonSprite
-                  dexId={selectedDexId}
+                  dexId={effectiveDexId}
                   size="xl"
-                  name={pokemonNames[selectedDexId]?.name}
+                  name={pokemonNames[effectiveDexId]?.name}
                 />
               </div>
             )}
@@ -98,54 +104,56 @@ export function CatchModal({
           </div>
         ) : (
           <div className="space-y-4">
-            {/* Pokemon selection */}
-            <div className="space-y-2">
-              <Label className="text-xs">Select Pokemon</Label>
-              <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto custom-scrollbar">
-                {uniqueEncounters.map((enc) => {
-                  const pokemon = pokemonNames[enc.pokemonDexId];
-                  const name = pokemon?.name || `#${enc.pokemonDexId}`;
-                  const isSelected = selectedDexId === enc.pokemonDexId;
+            {/* Pokemon selection — skip if preselected */}
+            {!isPreselected && (
+              <div className="space-y-2">
+                <Label className="text-xs">Select Pokemon</Label>
+                <div className="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto custom-scrollbar">
+                  {uniqueEncounters.map((enc) => {
+                    const pokemon = pokemonNames[enc.pokemonDexId];
+                    const name = pokemon?.name || `#${enc.pokemonDexId}`;
+                    const isSelected = selectedDexId === enc.pokemonDexId;
 
-                  return (
-                    <button
-                      key={enc.pokemonDexId}
-                      onClick={() => setSelectedDexId(enc.pokemonDexId)}
-                      className={`flex flex-col items-center gap-1 p-3 rounded-lg border transition-colors ${
-                        isSelected
-                          ? "border-primary bg-primary/10"
-                          : "border-border hover:bg-muted"
-                      }`}
-                    >
-                      <PokemonSprite
-                        dexId={enc.pokemonDexId}
-                        size="md"
-                        name={name}
-                      />
-                      <span className="text-[10px] truncate w-full text-center">
-                        {name}
-                      </span>
-                    </button>
-                  );
-                })}
+                    return (
+                      <button
+                        key={enc.pokemonDexId}
+                        onClick={() => setSelectedDexId(enc.pokemonDexId)}
+                        className={`flex flex-col items-center gap-1 p-3 rounded-lg border transition-colors ${
+                          isSelected
+                            ? "border-primary bg-primary/10"
+                            : "border-border hover:bg-muted"
+                        }`}
+                      >
+                        <PokemonSprite
+                          dexId={enc.pokemonDexId}
+                          size="md"
+                          name={name}
+                        />
+                        <span className="text-[10px] truncate w-full text-center">
+                          {name}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            )}
 
-            {selectedDexId && (
+            {effectiveDexId && (
               <>
                 {/* Selected pokemon info */}
                 <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50">
                   <PokemonSprite
-                    dexId={selectedDexId}
+                    dexId={effectiveDexId}
                     size="lg"
-                    name={pokemonNames[selectedDexId]?.name}
+                    name={pokemonNames[effectiveDexId]?.name}
                   />
                   <div>
                     <p className="text-sm font-medium">
-                      {pokemonNames[selectedDexId]?.name || `#${selectedDexId}`}
+                      {pokemonNames[effectiveDexId]?.name || `#${effectiveDexId}`}
                     </p>
                     <div className="flex gap-1 mt-1">
-                      {pokemonNames[selectedDexId]?.types.map((t) => (
+                      {pokemonNames[effectiveDexId]?.types.map((t) => (
                         <TypeBadge key={t} type={t} size="sm" />
                       ))}
                     </div>

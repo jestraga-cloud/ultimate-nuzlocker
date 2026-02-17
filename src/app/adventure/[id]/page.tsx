@@ -15,7 +15,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Map, Backpack } from "lucide-react";
+import { Map, Backpack, Calculator } from "lucide-react";
+import { CalculatorTab } from "@/components/adventure/calculator-tab";
+import { getEncounterState } from "@/components/tracker/encounter-shared";
 import type { Route, Encounter, RouteItem, Trainer, RouteDetail as RouteDetailType } from "@/types/game";
 
 export default function AdventurePage() {
@@ -39,6 +41,7 @@ export default function AdventurePage() {
   const [pokemonDetailDexId, setPokemonDetailDexId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<string>("routes");
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [calcTrainer, setCalcTrainer] = useState<Trainer | null>(null);
 
   // Pokemon names cache — use ref to avoid stale closures in fetchPokemonNames
   const [pokemonNames, setPokemonNames] = useState<
@@ -257,11 +260,21 @@ export default function AdventurePage() {
     return map;
   }, [catches, pokemonNames]);
 
-  const handleToggleVisited = useCallback(() => {
+  const [preselectedDexId, setPreselectedDexId] = useState<number | null>(null);
+
+  const handleEncounterCaught = useCallback(
+    (encounter: Encounter) => {
+      setPreselectedDexId(encounter.pokemonDexId);
+      setCatchModalOpen(true);
+    },
+    []
+  );
+
+  const handleEncounterMissed = useCallback(() => {
     if (!selectedRouteId) return;
-    const current = routeProgress[selectedRouteId]?.visited || false;
-    setRouteVisited(adventureId, selectedRouteId, !current);
-  }, [selectedRouteId, routeProgress, adventureId, setRouteVisited]);
+    setEncounterUsed(adventureId, selectedRouteId, true);
+    setRouteVisited(adventureId, selectedRouteId, true);
+  }, [adventureId, selectedRouteId, setEncounterUsed, setRouteVisited]);
 
   const handleCatch = useCallback(
     (data: { pokemonDexId: number; nickname: string | null; level: number | null }) => {
@@ -288,6 +301,16 @@ export default function AdventurePage() {
     },
     [adventureId, selectedRouteId, addCatch, setEncounterUsed, setRouteVisited]
   );
+
+  const currentEncounterState = useMemo(() => {
+    if (!selectedRouteId) return "null" as const;
+    const progress = routeProgress[selectedRouteId];
+    return getEncounterState(
+      selectedRouteId,
+      progress?.encounterUsed || false,
+      catches
+    );
+  }, [selectedRouteId, routeProgress, catches]);
 
   if (!hydrated || loading) {
     return (
@@ -320,10 +343,6 @@ export default function AdventurePage() {
     );
   }
 
-  const currentRouteProgress = selectedRouteId
-    ? routeProgress[selectedRouteId]
-    : null;
-
   const sidebarContent = (
     <RouteSidebar
       routes={routes}
@@ -350,7 +369,7 @@ export default function AdventurePage() {
       />
 
       {/* Mobile toolbar */}
-      <div className="md:hidden flex items-center gap-2 px-4 py-2 border-b">
+      <div className="md:hidden flex items-center gap-2 px-4 py-2 border-b overflow-x-auto">
         <Sheet open={mobileSidebarOpen} onOpenChange={setMobileSidebarOpen}>
           <SheetTrigger asChild>
             <Button variant="outline" size="sm" className="text-xs">
@@ -366,11 +385,21 @@ export default function AdventurePage() {
         <Button
           variant={activeTab === "pokemon" ? "secondary" : "outline"}
           size="sm"
-          className="text-xs"
-          onClick={() => setActiveTab(activeTab === "pokemon" ? "routes" : "pokemon")}
+          className="text-xs whitespace-nowrap"
+          onClick={() => setActiveTab("pokemon")}
         >
           <Backpack className="h-3.5 w-3.5 mr-1" />
           My Pokemon ({catches.length})
+        </Button>
+
+        <Button
+          variant={activeTab === "calculator" ? "secondary" : "outline"}
+          size="sm"
+          className="text-xs whitespace-nowrap"
+          onClick={() => setActiveTab("calculator")}
+        >
+          <Calculator className="h-3.5 w-3.5 mr-1" />
+          Calculator
         </Button>
       </div>
 
@@ -397,6 +426,19 @@ export default function AdventurePage() {
                 <Backpack className="h-3.5 w-3.5" />
                 My Pokemon ({catches.length})
               </TabsTrigger>
+              <TabsTrigger
+                value="calculator"
+                className="text-xs gap-1.5"
+                onDragOver={(e) => { e.preventDefault(); setActiveTab("calculator"); }}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const trainerJson = e.dataTransfer.getData("application/trainer-json");
+                  if (trainerJson) setCalcTrainer(JSON.parse(trainerJson));
+                }}
+              >
+                <Calculator className="h-3.5 w-3.5" />
+                Calculator
+              </TabsTrigger>
             </TabsList>
           </div>
 
@@ -404,11 +446,15 @@ export default function AdventurePage() {
             <RouteDetail
               routeDetail={routeDetail}
               pokemonNames={pokemonNames}
-              isVisited={currentRouteProgress?.visited || false}
-              encounterUsed={currentRouteProgress?.encounterUsed || false}
-              onToggleVisited={handleToggleVisited}
-              onCatchPokemon={() => setCatchModalOpen(true)}
+              encounterState={currentEncounterState}
+              routeId={selectedRouteId}
+              onEncounterCaught={handleEncounterCaught}
+              onEncounterMissed={handleEncounterMissed}
               onPokemonClick={(dexId) => setPokemonDetailDexId(dexId)}
+              onTrainerDragStart={(e, trainer) => {
+                e.dataTransfer.setData("application/trainer-json", JSON.stringify(trainer));
+                e.dataTransfer.effectAllowed = "copy";
+              }}
               loading={detailLoading}
             />
           </TabsContent>
@@ -419,7 +465,20 @@ export default function AdventurePage() {
               catches={catches}
               pokemonNames={pokemonNames}
               routes={routes}
+              generation={adventure.gameGeneration ?? undefined}
               onViewStats={(dexId) => setPokemonDetailDexId(dexId)}
+            />
+          </TabsContent>
+
+          <TabsContent value="calculator" className="flex-1 overflow-hidden">
+            <CalculatorTab
+              adventureId={adventureId}
+              gameId={adventure.gameId}
+              generation={adventure.gameGeneration ?? 3}
+              catches={catches}
+              pokemonNames={pokemonNames}
+              calcTrainer={calcTrainer}
+              onClearTrainer={() => setCalcTrainer(null)}
             />
           </TabsContent>
         </Tabs>
@@ -428,9 +487,13 @@ export default function AdventurePage() {
       {/* Catch modal */}
       <CatchModal
         open={catchModalOpen}
-        onOpenChange={setCatchModalOpen}
+        onOpenChange={(open) => {
+          setCatchModalOpen(open);
+          if (!open) setPreselectedDexId(null);
+        }}
         encounters={routeDetail?.encounters || []}
         pokemonNames={pokemonNames}
+        preselectedDexId={preselectedDexId}
         onCatch={handleCatch}
       />
 

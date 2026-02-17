@@ -54,7 +54,7 @@ export function Navbar() {
         </nav>
 
         {/* Right: Theme toggle + User menu */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <ThemeToggle />
           <UserMenu />
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import type { LocalCatch } from "@/lib/store/types";
+import type { PokemonStatsEntry } from "@/hooks/use-pokemon-stats";
 import { PokemonSprite } from "./pokemon-sprite";
 import { TypeBadge } from "./type-badge";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,7 @@ interface PokemonCardProps {
   pokemonNames: Record<number, { name: string; types: string[] }>;
   routeName?: string;
   variant: "team" | "box" | "graveyard";
+  statsEntry?: PokemonStatsEntry;
   onSelect: () => void;
   onEdit?: () => void;
 }
@@ -20,6 +22,7 @@ export function PokemonCard({
   pokemonNames,
   routeName,
   variant,
+  statsEntry,
   onSelect,
   onEdit,
 }: PokemonCardProps) {
@@ -37,7 +40,7 @@ export function PokemonCard({
         style={{ "--type-color": TYPE_COLOR_MAP[primaryType] || "#A8A77A" } as React.CSSProperties}
       >
         <PokemonSprite dexId={dexId} size="sm" name={displayName} hoverable />
-        <div className="flex flex-col items-start min-w-0">
+        <div className="flex flex-col items-start min-w-0 flex-1">
           <span className="text-xs font-medium truncate max-w-[100px]">{displayName}</span>
           <div className="flex items-center gap-1 mt-0.5">
             {types.map((t) => (
@@ -48,6 +51,14 @@ export function PokemonCard({
             <span className="text-[9px] text-muted-foreground mt-0.5">Lv. {catchData.level}</span>
           )}
         </div>
+        {statsEntry && (
+          <div className="flex-shrink-0 text-right">
+            <span className="text-[9px] font-mono text-muted-foreground block">BST {statsEntry.bst}</span>
+            <span className="text-[8px] font-mono text-muted-foreground">
+              Spe {statsEntry.stats.speed}
+            </span>
+          </div>
+        )}
       </button>
     );
   }
@@ -156,6 +167,40 @@ export function PokemonCard({
             )}
           </div>
         </div>
+
+        {/* Base stats */}
+        {statsEntry && (
+          <div className="mt-2 pt-2 border-t space-y-1.5">
+            <div className="flex items-center justify-between text-[9px] text-muted-foreground">
+              <span className="font-medium uppercase tracking-wider">Base Stats</span>
+              <span className="font-mono text-foreground font-bold">BST {statsEntry.bst}</span>
+            </div>
+            <div className="space-y-1">
+              {(
+                [
+                  { key: "hp", label: "HP", color: "#ff5959" },
+                  { key: "attack", label: "Atk", color: "#f5ac78" },
+                  { key: "defense", label: "Def", color: "#fae078" },
+                  { key: "specialAttack", label: "SpA", color: "#9db7f5" },
+                  { key: "specialDefense", label: "SpD", color: "#a7db8d" },
+                  { key: "speed", label: "Spe", color: "#fa92b2" },
+                ] as const
+              ).map(({ key, label, color }) => {
+                const val = statsEntry.stats[key];
+                const pct = Math.min((val / 255) * 100, 100);
+                return (
+                  <div key={key} className="flex items-center gap-1.5">
+                    <span className="text-[9px] font-medium text-muted-foreground w-6 text-right shrink-0">{label}</span>
+                    <span className="text-[9px] font-mono tabular-nums w-6 text-right shrink-0">{val}</span>
+                    <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
+                      <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: color }} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         {/* Notes */}
         {catchData.notes && (

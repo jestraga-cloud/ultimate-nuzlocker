@@ -247,16 +247,16 @@
   position: relative;
 }
 
-/* Encounter rate bar */
-.encounter-rate-bar {
-  height: 4px;
-  border-radius: 2px;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.08);
+/* Encounter card visual states */
+.encounter-card-missed {
+  opacity: 0.4;
+  cursor: default;
+  filter: grayscale(0.3);
 }
 
-.dark .encounter-rate-bar {
-  background: rgba(255, 255, 255, 0.08);
+.encounter-card-caught {
+  opacity: 0.65;
+  cursor: default;
 }
 
 /* Route type accent colors */
@@ -329,4 +329,81 @@
 
 .dark .custom-scrollbar {
   scrollbar-color: rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.05);
+}
+
+/* ── Encounter Swim Lane Cards ── */
+
+@keyframes rare-pulse {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(239, 68, 68, 0.3); }
+  50% { box-shadow: 0 0 12px 3px rgba(239, 68, 68, 0.5); }
+}
+
+.encounter-rare-pulse {
+  animation: rare-pulse 2s ease-in-out infinite;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+/* ── Day/Night Theme Toggle ── */
+
+@keyframes dn-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes dn-twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.15; }
+}
+
+@keyframes dn-cloud-drift {
+  from { transform: translateX(-20px); }
+  to { transform: translateX(130px); }
+}
+
+@keyframes dn-flash {
+  0%, 20% { transform: scale(0); opacity: 0; }
+  40% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+@keyframes dn-nudge-right {
+  0%, 100% { transform: translateX(0); }
+  30%, 60% { transform: translateX(14px); }
+}
+
+@keyframes dn-nudge-left {
+  0%, 100% { transform: translateX(0); }
+  30%, 60% { transform: translateX(-14px); }
+}
+
+.dn-nudge-right {
+  animation: dn-nudge-right 650ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dn-nudge-left {
+  animation: dn-nudge-left 650ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .dn-toggle,
+  .dn-toggle * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Encounter Popover Styles ── */
+
+/* Subtle glow pulse on the popover border (glass variant) */
+@keyframes popover-glow-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Shimmer effect on the glass divider */
+@keyframes popover-divider-shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import type { LocalCatch } from "@/lib/store/types";
 import type { Route } from "@/types/game";
 import { PokemonCard } from "@/components/pokemon/pokemon-card";
@@ -9,13 +9,27 @@ import { EvolutionPicker } from "@/components/pokemon/evolution-picker";
 import { PokemonSprite } from "@/components/pokemon/pokemon-sprite";
 import { useStore } from "@/lib/store";
 import { Input } from "@/components/ui/input";
-import { Skull, Box, Search, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Skull, Box, Search, Sparkles, ArrowUpDown } from "lucide-react";
+import { usePokemonStats, getSortValue, type SortKey } from "@/hooks/use-pokemon-stats";
+
+const SORT_OPTIONS: { key: SortKey; label: string }[] = [
+  { key: "none", label: "Catch Order" },
+  { key: "bst", label: "BST" },
+  { key: "hp", label: "HP" },
+  { key: "attack", label: "Atk" },
+  { key: "defense", label: "Def" },
+  { key: "specialAttack", label: "Sp.Atk" },
+  { key: "specialDefense", label: "Sp.Def" },
+  { key: "speed", label: "Speed" },
+];
 
 interface MyPokemonPanelProps {
   adventureId: string;
   catches: LocalCatch[];
   pokemonNames: Record<number, { name: string; types: string[] }>;
   routes: Route[];
+  generation?: number;
   onViewStats: (dexId: number) => void;
 }
 
@@ -24,6 +38,7 @@ export function MyPokemonPanel({
   catches,
   pokemonNames,
   routes,
+  generation,
   onViewStats,
 }: MyPokemonPanelProps) {
   const evolvePokemon = useStore((s) => s.evolvePokemon);
@@ -31,6 +46,30 @@ export function MyPokemonPanel({
   const [editingCatch, setEditingCatch] = useState<LocalCatch | null>(null);
   const [evolvingCatch, setEvolvingCatch] = useState<LocalCatch | null>(null);
   const [boxSearch, setBoxSearch] = useState("");
+  const [sortBy, setSortBy] = useState<SortKey>("none");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
+
+  // Collect all dex IDs for stats fetching
+  const catchDexIds = useMemo(
+    () => catches.map((c) => c.currentEvolutionDexId || c.pokemonDexId),
+    [catches]
+  );
+
+  const { statsMap } = usePokemonStats(catchDexIds, generation);
+
+  const sortPokemon = useCallback(
+    (pokemon: LocalCatch[]): LocalCatch[] => {
+      if (sortBy === "none") return pokemon;
+      return [...pokemon].sort((a, b) => {
+        const aDexId = a.currentEvolutionDexId || a.pokemonDexId;
+        const bDexId = b.currentEvolutionDexId || b.pokemonDexId;
+        const aVal = getSortValue(statsMap[aDexId], sortBy);
+        const bVal = getSortValue(statsMap[bDexId], sortBy);
+        return sortDir === "desc" ? bVal - aVal : aVal - bVal;
+      });
+    },
+    [sortBy, sortDir, statsMap]
+  );
 
   const routeNameMap = useMemo(() => {
     const map: Record<string, string> = {};
@@ -39,22 +78,25 @@ export function MyPokemonPanel({
   }, [routes]);
 
   const alive = useMemo(
-    () => catches.filter((c) => c.status === "alive" || c.status === "in_team"),
-    [catches]
+    () => sortPokemon(catches.filter((c) => c.status === "alive" || c.status === "in_team")),
+    [catches, sortPokemon]
   );
   const boxed = useMemo(() => catches.filter((c) => c.status === "boxed"), [catches]);
   const dead = useMemo(() => catches.filter((c) => c.status === "dead"), [catches]);
 
   const filteredBoxed = useMemo(() => {
-    if (!boxSearch.trim()) return boxed;
-    const q = boxSearch.toLowerCase();
-    return boxed.filter((c) => {
-      const dexId = c.currentEvolutionDexId || c.pokemonDexId;
-      const pName = pokemonNames[dexId]?.name?.toLowerCase() || "";
-      const nick = c.nickname?.toLowerCase() || "";
-      return pName.includes(q) || nick.includes(q);
-    });
-  }, [boxed, boxSearch, pokemonNames]);
+    let result = boxed;
+    if (boxSearch.trim()) {
+      const q = boxSearch.toLowerCase();
+      result = result.filter((c) => {
+        const dexId = c.currentEvolutionDexId || c.pokemonDexId;
+        const pName = pokemonNames[dexId]?.name?.toLowerCase() || "";
+        const nick = c.nickname?.toLowerCase() || "";
+        return pName.includes(q) || nick.includes(q);
+      });
+    }
+    return sortPokemon(result);
+  }, [boxed, boxSearch, pokemonNames, sortPokemon]);
 
   const handleEvolve = (dexId: number) => {
     if (evolvingCatch) {
@@ -65,6 +107,36 @@ export function MyPokemonPanel({
 
   return (
     <div className="p-4 md:p-6 space-y-8">
+      {/* Sort controls */}
+      {catches.length > 0 && (
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider mr-1">
+            Sort:
+          </span>
+          {SORT_OPTIONS.map((opt) => (
+            <Button
+              key={opt.key}
+              variant={sortBy === opt.key ? "secondary" : "outline"}
+              size="sm"
+              className="text-[10px] h-6 px-2"
+              onClick={() => {
+                if (sortBy === opt.key && opt.key !== "none") {
+                  setSortDir((d) => (d === "desc" ? "asc" : "desc"));
+                } else {
+                  setSortBy(opt.key);
+                  setSortDir("desc");
+                }
+              }}
+            >
+              {opt.label}
+              {sortBy === opt.key && opt.key !== "none" && (
+                <ArrowUpDown className="h-2.5 w-2.5 ml-0.5" />
+              )}
+            </Button>
+          ))}
+        </div>
+      )}
+
       {/* Active Team */}
       <section>
         <div className="pixel-section-header flex items-center gap-2 mb-4">
@@ -99,6 +171,7 @@ export function MyPokemonPanel({
               );
             }
 
+            const dexId = pokemon.currentEvolutionDexId || pokemon.pokemonDexId;
             return (
               <PokemonCard
                 key={pokemon.id}
@@ -106,10 +179,8 @@ export function MyPokemonPanel({
                 pokemonNames={pokemonNames}
                 routeName={routeNameMap[pokemon.routeId]}
                 variant="team"
-                onSelect={() => {
-                  const dexId = pokemon.currentEvolutionDexId || pokemon.pokemonDexId;
-                  onViewStats(dexId);
-                }}
+                statsEntry={statsMap[dexId]}
+                onSelect={() => onViewStats(dexId)}
                 onEdit={() => setEditingCatch(pokemon)}
               />
             );
@@ -143,20 +214,21 @@ export function MyPokemonPanel({
           )}
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-            {filteredBoxed.map((pokemon) => (
-              <PokemonCard
-                key={pokemon.id}
-                catchData={pokemon}
-                pokemonNames={pokemonNames}
-                routeName={routeNameMap[pokemon.routeId]}
-                variant="box"
-                onSelect={() => {
-                  const dexId = pokemon.currentEvolutionDexId || pokemon.pokemonDexId;
-                  onViewStats(dexId);
-                }}
-                onEdit={() => setEditingCatch(pokemon)}
-              />
-            ))}
+            {filteredBoxed.map((pokemon) => {
+              const dexId = pokemon.currentEvolutionDexId || pokemon.pokemonDexId;
+              return (
+                <PokemonCard
+                  key={pokemon.id}
+                  catchData={pokemon}
+                  pokemonNames={pokemonNames}
+                  routeName={routeNameMap[pokemon.routeId]}
+                  variant="box"
+                  statsEntry={statsMap[dexId]}
+                  onSelect={() => onViewStats(dexId)}
+                  onEdit={() => setEditingCatch(pokemon)}
+                />
+              );
+            })}
           </div>
         </section>
       )}

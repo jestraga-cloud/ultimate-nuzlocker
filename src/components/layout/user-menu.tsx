@@ -20,6 +20,7 @@ export function UserMenu() {
   const isGuest = useStore((s) => s.isGuest);
   const displayName = useStore((s) => s.displayName);
   const avatarUrl = useStore((s) => s.avatarUrl);
+  const setGuest = useStore((s) => s.setGuest);
 
   if (!hydrated) {
     return <Skeleton className="h-8 w-8 rounded-full" />;
@@ -73,13 +74,15 @@ export function UserMenu() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <form action={signOut}>
-            <button type="submit" className="flex w-full items-center cursor-pointer">
-              <LogOut className="mr-2 h-4 w-4" />
-              Sign Out
-            </button>
-          </form>
+        <DropdownMenuItem
+          onClick={async () => {
+            setGuest();
+            await signOut();
+          }}
+          className="cursor-pointer"
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          Sign Out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

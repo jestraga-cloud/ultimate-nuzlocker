@@ -4,9 +4,10 @@ import Image from "next/image";
 import { getSpriteUrl } from "@/lib/pokeapi/client";
 import { useState } from "react";
 
-type SpriteSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
+type SpriteSize = "2xs" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 const SIZE_MAP: Record<SpriteSize, number> = {
+  "2xs": 24,
   xs: 32,
   sm: 48,
   md: 64,

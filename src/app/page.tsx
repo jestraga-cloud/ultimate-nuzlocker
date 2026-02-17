@@ -1,53 +1,13 @@
 import Link from "next/link";
-import { MapPin, Users, Zap, Gamepad2, Wifi, Wrench } from "lucide-react";
 import { PokeballIcon } from "@/components/icons/pokeball-icon";
 import { ThemeDecorations } from "@/components/theme-decorations";
 
-const FEATURES = [
-  {
-    icon: Gamepad2,
-    title: "Every Game",
-    description: "Support for all mainline Pokemon games from Gen 1 to Gen 9, plus popular ROM hacks.",
-    color: "#b91c1c",
-  },
-  {
-    icon: MapPin,
-    title: "Route Tracking",
-    description: "View encounters, items, and trainer battles for every route. Never miss a catch.",
-    color: "#15803d",
-  },
-  {
-    icon: Users,
-    title: "Team Manager",
-    description: "Track your catches, evolutions, and fallen companions. Manage your team with ease.",
-    color: "#0f766e",
-  },
-  {
-    icon: Zap,
-    title: "Smart Stats",
-    description: "Generation-aware Pokemon stats. See the correct base stats for the game you're playing.",
-    color: "#d97706",
-  },
-  {
-    icon: Wifi,
-    title: "Works Offline",
-    description: "Play as a guest with local saves. Sign in to sync your data across devices.",
-    color: "#059669",
-  },
-  {
-    icon: Wrench,
-    title: "ROM Hack Ready",
-    description: "Custom type changes, stat modifications, and new abilities — we handle it all.",
-    color: "#7e22ce",
-  },
-];
-
 export default function HomePage() {
   return (
-    <div className="mx-auto max-w-7xl px-4 py-12 pixel-pattern-bg relative">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 pixel-pattern-bg relative">
       <ThemeDecorations />
       {/* Hero Section */}
-      <section className="text-center space-y-6 py-16 relative z-10">
+      <section className="text-center space-y-6 relative z-10">
         <div className="mx-auto w-36 h-36 relative animate-pixel-fade-in">
           <PokeballIcon className="w-full h-full drop-shadow-xl" />
         </div>
@@ -79,28 +39,6 @@ export default function HomePage() {
             Continue Adventure
           </Link>
         </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-5 py-12 relative z-10">
-        {FEATURES.map((feature) => (
-          <div
-            key={feature.title}
-            className="pixel-panel p-6 space-y-3 transition-all hover:translate-y-[-2px]"
-          >
-            <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center"
-              style={{ backgroundColor: `${feature.color}15` }}
-            >
-              <feature.icon
-                className="h-5 w-5"
-                style={{ color: feature.color }}
-              />
-            </div>
-            <h3 className="font-semibold text-base">{feature.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-          </div>
-        ))}
       </section>
     </div>
   );

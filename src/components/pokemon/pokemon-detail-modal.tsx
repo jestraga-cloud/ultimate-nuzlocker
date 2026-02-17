@@ -33,6 +33,7 @@ export function PokemonDetailModal({
       <DialogContent className="max-w-sm">
         {loading || !data ? (
           <div className="space-y-4 py-4">
+            <DialogTitle className="sr-only">Loading Pokemon</DialogTitle>
             <div className="flex flex-col items-center gap-3">
               <Skeleton className="h-32 w-32 rounded-lg" />
               <Skeleton className="h-6 w-32" />

@@ -16,6 +16,7 @@ interface TrainerListProps {
   trainers: Trainer[];
   pokemonNames: Record<number, { name: string; types: string[] }>;
   onPokemonClick?: (dexId: number) => void;
+  onTrainerDragStart?: (e: React.DragEvent, trainer: Trainer) => void;
 }
 
 const BOSS_LABELS: Record<string, string> = {
@@ -27,7 +28,7 @@ const BOSS_LABELS: Record<string, string> = {
   totem: "Totem",
 };
 
-export function TrainerList({ trainers, pokemonNames, onPokemonClick }: TrainerListProps) {
+export function TrainerList({ trainers, pokemonNames, onPokemonClick, onTrainerDragStart }: TrainerListProps) {
   const [isOpen, setIsOpen] = useState(true);
 
   if (trainers.length === 0) return null;
@@ -59,6 +60,7 @@ export function TrainerList({ trainers, pokemonNames, onPokemonClick }: TrainerL
             trainer={trainer}
             pokemonNames={pokemonNames}
             onPokemonClick={onPokemonClick}
+            onDragStart={onTrainerDragStart}
             isBoss
           />
         ))}
@@ -69,6 +71,7 @@ export function TrainerList({ trainers, pokemonNames, onPokemonClick }: TrainerL
             trainer={trainer}
             pokemonNames={pokemonNames}
             onPokemonClick={onPokemonClick}
+            onDragStart={onTrainerDragStart}
           />
         ))}
       </CollapsibleContent>
@@ -80,20 +83,24 @@ function TrainerCard({
   trainer,
   pokemonNames,
   onPokemonClick,
+  onDragStart,
   isBoss = false,
 }: {
   trainer: Trainer;
   pokemonNames: Record<number, { name: string; types: string[] }>;
   onPokemonClick?: (dexId: number) => void;
+  onDragStart?: (e: React.DragEvent, trainer: Trainer) => void;
   isBoss?: boolean;
 }) {
   const [expanded, setExpanded] = useState(isBoss);
 
   return (
     <div
+      draggable={!!onDragStart}
+      onDragStart={onDragStart ? (e) => onDragStart(e, trainer) : undefined}
       className={`rounded-lg border ${
         isBoss ? "border-amber-500/40 bg-amber-500/5 pixel-glow" : "bg-card"
-      }`}
+      } ${onDragStart ? "cursor-grab active:cursor-grabbing" : ""}`}
     >
       <button
         onClick={() => setExpanded(!expanded)}
