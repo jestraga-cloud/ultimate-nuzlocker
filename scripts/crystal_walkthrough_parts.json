@@ -1,0 +1,1897 @@
+[
+  {
+    "part": "Part_1",
+    "area": "New Bark Town",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": []
+  },
+  {
+    "part": "Part_1",
+    "area": "Route 29",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": []
+  },
+  {
+    "part": "Part_2",
+    "area": "Cherrygrove City",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": []
+  },
+  {
+    "part": "Part_2",
+    "area": "Route 30",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Youngster Joey Reward: $ 64",
+        "pokemon_count": 1,
+        "levels": [4]
+      },
+      {
+        "name": "Youngster Mikey Reward: $ 64",
+        "pokemon_count": 1,
+        "levels": [2]
+      },
+      {
+        "name": "Bug Catcher Don Reward: $ 48",
+        "pokemon_count": 1,
+        "levels": [3]
+      }
+    ]
+  },
+  {
+    "part": "Part_3",
+    "area": "Route 31",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Bug Catcher Wade Reward: $ 32",
+        "pokemon_count": 1,
+        "levels": [2]
+      }
+    ]
+  },
+  {
+    "part": "Part_3",
+    "area": "Sprout Tower",
+    "items": [
+      "1F",
+      "2F",
+      "3F"
+    ],
+    "trainers": [
+      {
+        "name": "Sage Nico Reward: $ 96",
+        "pokemon_count": 1,
+        "levels": [3]
+      },
+      {
+        "name": "Sage Chow Reward: $ 96",
+        "pokemon_count": 1,
+        "levels": [3]
+      },
+      {
+        "name": "Sage Edmond Reward: $ 96",
+        "pokemon_count": 1,
+        "levels": [3]
+      },
+      {
+        "name": "Sage Jin Reward: $ 192",
+        "pokemon_count": 1,
+        "levels": [6]
+      },
+      {
+        "name": "Sage Neal Reward: $ 192",
+        "pokemon_count": 1,
+        "levels": [6]
+      },
+      {
+        "name": "Sage Troy Reward: $ 224",
+        "pokemon_count": 1,
+        "levels": [7]
+      }
+    ]
+  },
+  {
+    "part": "Part_3",
+    "area": "Violet Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Bird Keeper Abe Reward: $ 216",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Bird Keeper Rod Reward: $ 168",
+        "pokemon_count": 1,
+        "levels": [7]
+      }
+    ]
+  },
+  {
+    "part": "Part_4",
+    "area": "Route 32",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Youngster Albert Reward: $ 128",
+        "pokemon_count": 1,
+        "levels": [6]
+      },
+      {
+        "name": "Picnicker Liz Reward: $ 180",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Camper Roland Reward: $ 180",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Fisher Henry Reward: $ 320",
+        "pokemon_count": 1,
+        "levels": [8]
+      },
+      {
+        "name": "Fisher Justin Reward: $ 200",
+        "pokemon_count": 1,
+        "levels": [5]
+      },
+      {
+        "name": "Fisher Ralph Reward: $ 400",
+        "pokemon_count": 1,
+        "levels": [10]
+      },
+      {
+        "name": "Youngster Gordon Reward: $ 160",
+        "pokemon_count": 1,
+        "levels": [10]
+      },
+      {
+        "name": "Bird Keeper Peter Reward: $ 192",
+        "pokemon_count": 1,
+        "levels": [6]
+      }
+    ]
+  },
+  {
+    "part": "Part_4",
+    "area": "Ruins of Alph",
+    "items": [
+      "Secret rooms"
+    ],
+    "trainers": [
+      {
+        "name": "Psychic Nathan Reward: $ 832",
+        "pokemon_count": 1,
+        "levels": [26]
+      }
+    ]
+  },
+  {
+    "part": "Part_4",
+    "area": "Union Cave",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Hiker Daniel Reward: $ 352",
+        "pokemon_count": 1,
+        "levels": [11]
+      },
+      {
+        "name": "Hiker Russell Reward: $ 256",
+        "pokemon_count": 1,
+        "levels": [4]
+      },
+      {
+        "name": "Firebreather Bill Reward: $ 288",
+        "pokemon_count": 1,
+        "levels": [6]
+      },
+      {
+        "name": "Firebreather Ray Reward: $ 246",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Hiker Leonard Reward: $ 800",
+        "pokemon_count": 1,
+        "levels": [23]
+      },
+      {
+        "name": "Hiker Phillip Reward: $ 736",
+        "pokemon_count": 1,
+        "levels": [23]
+      },
+      {
+        "name": "Cooltrainer Nick Reward: $ 1248",
+        "pokemon_count": 1,
+        "levels": [26]
+      },
+      {
+        "name": "Cooltrainer Gwen Reward: $ 1248",
+        "pokemon_count": 1,
+        "levels": [26]
+      },
+      {
+        "name": "Cooltrainer Emma Reward: $ 1344",
+        "pokemon_count": 1,
+        "levels": [28]
+      }
+    ]
+  },
+  {
+    "part": "Part_4",
+    "area": "Route 33",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Hiker Anthony Reward: $ 352",
+        "pokemon_count": 1,
+        "levels": [11]
+      }
+    ]
+  },
+  {
+    "part": "Part_5",
+    "area": "Slowpoke Well",
+    "items": [
+      "B1F",
+      "B2F"
+    ],
+    "trainers": [
+      {
+        "name": "Rocket Grunt Reward: $ 360",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 440",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 360",
+        "pokemon_count": 1,
+        "levels": [7]
+      }
+    ]
+  },
+  {
+    "part": "Part_5",
+    "area": "Azalea Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Twins Amy & May Reward: $ 200",
+        "pokemon_count": 1,
+        "levels": [10]
+      },
+      {
+        "name": "Bug Catcher Al Reward: $ 192",
+        "pokemon_count": 1,
+        "levels": [12]
+      },
+      {
+        "name": "Bug Catcher Benny Reward: $ 192",
+        "pokemon_count": 1,
+        "levels": [7]
+      },
+      {
+        "name": "Bug Catcher Josh Reward: $ 208",
+        "pokemon_count": 1,
+        "levels": [13]
+      }
+    ]
+  },
+  {
+    "part": "Part_5",
+    "area": "Ilex Forest",
+    "items": [
+      "Southern area",
+      "Northern area (requires Cut)"
+    ],
+    "trainers": [
+      {
+        "name": "Bug Catcher Wayne Reward: $ 160",
+        "pokemon_count": 1,
+        "levels": [8]
+      }
+    ]
+  },
+  {
+    "part": "Part_5",
+    "area": "Route 34",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Youngster Samuel Reward: $ 128",
+        "pokemon_count": 1,
+        "levels": [7]
+      },
+      {
+        "name": "Camper Todd Reward: $ 280",
+        "pokemon_count": 1,
+        "levels": [14]
+      },
+      {
+        "name": "Picnicker Gina Reward: $ 240",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Youngster Ian Reward: $ 192",
+        "pokemon_count": 1,
+        "levels": [10]
+      },
+      {
+        "name": "Officer Keith Reward: $ 680",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Cooltrainer Irene Reward: $ 1152",
+        "pokemon_count": 1,
+        "levels": [22]
+      },
+      {
+        "name": "Cooltrainer Jenn Reward: $ 1248",
+        "pokemon_count": 1,
+        "levels": [24]
+      },
+      {
+        "name": "Cooltrainer Kate Reward: $ 1344",
+        "pokemon_count": 1,
+        "levels": [26]
+      }
+    ]
+  },
+  {
+    "part": "Part_6",
+    "area": "Goldenrod City",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Beauty Victoria Reward: $ 1496",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Beauty Samantha Reward: $ 1408",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Lass Carrie Reward: $ 432",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Lass Bridget Reward: $ 360",
+        "pokemon_count": 1,
+        "levels": [15]
+      }
+    ]
+  },
+  {
+    "part": "Part_6",
+    "area": "Goldenrod Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Beauty Victoria Reward: $ 1496",
+        "pokemon_count": 1,
+        "levels": [9]
+      },
+      {
+        "name": "Beauty Samantha Reward: $ 1408",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Lass Carrie Reward: $ 432",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Lass Bridget Reward: $ 360",
+        "pokemon_count": 1,
+        "levels": [15]
+      }
+    ]
+  },
+  {
+    "part": "Part_7",
+    "area": "Route 35",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Picnicker Kim Reward: $ 300",
+        "pokemon_count": 1,
+        "levels": [15]
+      },
+      {
+        "name": "Camper Elliot Reward: $ 300",
+        "pokemon_count": 1,
+        "levels": [13]
+      },
+      {
+        "name": "Picnicker Brooke Reward: $ 320",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Camper Ivan Reward: $ 280",
+        "pokemon_count": 1,
+        "levels": [10]
+      },
+      {
+        "name": "Juggler Irwin Reward: $ 560",
+        "pokemon_count": 1,
+        "levels": [2]
+      },
+      {
+        "name": "Firebreather Walt Reward: $ 624",
+        "pokemon_count": 1,
+        "levels": [11]
+      },
+      {
+        "name": "Officer Dirk Reward: $ 560",
+        "pokemon_count": 1,
+        "levels": [14]
+      },
+      {
+        "name": "Bug Catcher Arnie Reward: $ 240",
+        "pokemon_count": 1,
+        "levels": [15]
+      },
+      {
+        "name": "Bird Keeper Bryan Reward: $ 336",
+        "pokemon_count": 1,
+        "levels": [12]
+      }
+    ]
+  },
+  {
+    "part": "Part_7",
+    "area": "National Park",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Schoolboy Jack Reward: $ 480",
+        "pokemon_count": 1,
+        "levels": [12]
+      },
+      {
+        "name": "Lass Krise Reward: $ 360",
+        "pokemon_count": 1,
+        "levels": [12]
+      }
+    ]
+  },
+  {
+    "part": "Part_7",
+    "area": "Route 36",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Psychic Mark Reward: $ 544",
+        "pokemon_count": 1,
+        "levels": [13]
+      },
+      {
+        "name": "Schoolboy Alan Reward: $ 512",
+        "pokemon_count": 1,
+        "levels": [16]
+      }
+    ]
+  },
+  {
+    "part": "Part_7",
+    "area": "Route 37",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Twins Ann & Anne Reward: $ 320",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Psychic Greg Reward: $ 544",
+        "pokemon_count": 1,
+        "levels": [17]
+      }
+    ]
+  },
+  {
+    "part": "Part_8",
+    "area": "Ecruteak City",
+    "items": [
+      "1F",
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Kimono Girl Naoko Reward: $ 1224",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Kimono Girl Sayo Reward: $ 1224",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Kimono Girl Zuki Reward: $ 1224",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Kimono Girl Kuni Reward: $ 1224",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Kimono Girl Miki Reward: $ 1224",
+        "pokemon_count": 1,
+        "levels": [17]
+      }
+    ]
+  },
+  {
+    "part": "Part_8",
+    "area": "Ecruteak Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Sage Ping Reward: $ 512",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Medium Grace Reward: $ 800",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Sage Jeffrey Reward: $ 704",
+        "pokemon_count": 1,
+        "levels": [22]
+      },
+      {
+        "name": "Medium Martha Reward: $ 800",
+        "pokemon_count": 1,
+        "levels": [18]
+      }
+    ]
+  },
+  {
+    "part": "Part_8",
+    "area": "Route 38",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Sailor Harry Reward: $ 760",
+        "pokemon_count": 1,
+        "levels": [19]
+      },
+      {
+        "name": "Lass Dana Reward: $ 432",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Beauty Valerie Reward: $ 1496",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Bird Keeper Toby Reward: $ 408",
+        "pokemon_count": 1,
+        "levels": [15]
+      },
+      {
+        "name": "Schoolboy Chad Reward: $ 608",
+        "pokemon_count": 1,
+        "levels": [19]
+      },
+      {
+        "name": "Beauty Olivia Reward: $ 1672",
+        "pokemon_count": 1,
+        "levels": [19]
+      }
+    ]
+  },
+  {
+    "part": "Part_8",
+    "area": "Route 39",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Psychic Norman Reward: $ 640",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Sailor Eugene Reward: $ 760",
+        "pokemon_count": 1,
+        "levels": [17]
+      }
+    ]
+  },
+  {
+    "part": "Part_9",
+    "area": "Olivine City",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Gentleman Alfred Reward: $ 1440",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Sailor Huey Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Bird Keeper Theo Reward: $ 360",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Gentleman Preston Reward: $ 1296",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Sailor Terrell Reward: $ 800",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Lass Connie Reward: $ 504",
+        "pokemon_count": 1,
+        "levels": [21]
+      },
+      {
+        "name": "Sailor Kent Reward: $ 800",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Bird Keeper Denis Reward: $ 432",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Sailor Ernest Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [18]
+      }
+    ]
+  },
+  {
+    "part": "Part_9",
+    "area": "Route 40",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Swimmer Simon Reward: $ 160",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Swimmer Randall Reward: $ 144",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Swimmer Paula Reward: $ 380",
+        "pokemon_count": 1,
+        "levels": [19]
+      },
+      {
+        "name": "Swimmer Elaine Reward: $ 420",
+        "pokemon_count": 1,
+        "levels": [21]
+      }
+    ]
+  },
+  {
+    "part": "Part_9",
+    "area": "Route 41",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Swimmer George Reward: $ 152",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Swimmer Kara Reward: $ 400",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Swimmer Mathew Reward: $ 184",
+        "pokemon_count": 1,
+        "levels": [23]
+      },
+      {
+        "name": "Swimmer Denise Reward: $ 440",
+        "pokemon_count": 1,
+        "levels": [22]
+      },
+      {
+        "name": "Swimmer Kirk Reward: $ 180",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Swimmer Berke Reward: $ 184",
+        "pokemon_count": 1,
+        "levels": [23]
+      },
+      {
+        "name": "Swimmer Charlie Reward: $ 152",
+        "pokemon_count": 1,
+        "levels": [21]
+      },
+      {
+        "name": "Swimmer Susie Reward: $ 440",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Swimmer Kaylee Reward: $ 400",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Swimmer Wendy Reward: $ 420",
+        "pokemon_count": 1,
+        "levels": [21]
+      }
+    ]
+  },
+  {
+    "part": "Part_10",
+    "area": "Cianwood Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Blackbelt Yoshi Reward: $ 648",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Blackbelt Lao Reward: $ 648",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Blackbelt Nob Reward: $ 600",
+        "pokemon_count": 1,
+        "levels": [25]
+      },
+      {
+        "name": "Blackbelt Lung Reward: $ 600",
+        "pokemon_count": 1,
+        "levels": [23]
+      }
+    ]
+  },
+  {
+    "part": "Part_10",
+    "area": "Route 42",
+    "items": [
+      "Entrance",
+      "Lower Cave"
+    ],
+    "trainers": [
+      {
+        "name": "Fisher Tully Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Hiker Benjamin Reward: $ 512",
+        "pokemon_count": 1,
+        "levels": [14]
+      },
+      {
+        "name": "Super Nerd Markus Reward: $ 608",
+        "pokemon_count": 1,
+        "levels": [19]
+      }
+    ]
+  },
+  {
+    "part": "Part_10",
+    "area": "Mt. Mortar",
+    "items": [
+      "Entrance",
+      "Lower Cave"
+    ],
+    "trainers": [
+      {
+        "name": "Super Nerd Markus Reward: $ 608",
+        "pokemon_count": 1,
+        "levels": [19]
+      }
+    ]
+  },
+  {
+    "part": "Part_11",
+    "area": "Route 43",
+    "items": [
+      "Later visit"
+    ],
+    "trainers": [
+      {
+        "name": "Camper Spencer Reward: $ 380",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Picnicker Tiffany Reward: $ 400",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Fisher Marvin Reward: $ 600",
+        "pokemon_count": 1,
+        "levels": [10]
+      }
+    ]
+  },
+  {
+    "part": "Part_11",
+    "area": "Lake of Rage",
+    "items": [
+      "Eastern lake",
+      "Western woods"
+    ],
+    "trainers": [
+      {
+        "name": "Cooltrainer Aaron Reward: $ 1152",
+        "pokemon_count": 1,
+        "levels": [24]
+      },
+      {
+        "name": "Fisher Raymond Reward: $ 880",
+        "pokemon_count": 1,
+        "levels": [22]
+      },
+      {
+        "name": "Fisher Andre Reward: $ 1080",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Cooltrainer Lois Reward: $ 1200",
+        "pokemon_count": 1,
+        "levels": [25]
+      }
+    ]
+  },
+  {
+    "part": "Part_11",
+    "area": "Mahogany Town",
+    "items": [
+      "B1F",
+      "B2F",
+      "B3F"
+    ],
+    "trainers": [
+      {
+        "name": "Rocket Grunt Reward: $ 640",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Scientist Jed Reward: $ 2000",
+        "pokemon_count": 1,
+        "levels": [20]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [18]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 680",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 760",
+        "pokemon_count": 1,
+        "levels": [19]
+      },
+      {
+        "name": "Scientist Ross Reward: $ 2200",
+        "pokemon_count": 1,
+        "levels": [22]
+      },
+      {
+        "name": "Scientist Mitch Reward: $ 2400",
+        "pokemon_count": 1,
+        "levels": [24]
+      }
+    ]
+  },
+  {
+    "part": "Part_11",
+    "area": "Mahogany Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Skier Roxanne Reward: $ 2016",
+        "pokemon_count": 1,
+        "levels": [28]
+      },
+      {
+        "name": "Boarder Ronald Reward: $ 1728",
+        "pokemon_count": 1,
+        "levels": [24]
+      },
+      {
+        "name": "Skier Clarissa Reward: $ 2016",
+        "pokemon_count": 1,
+        "levels": [28]
+      },
+      {
+        "name": "Boarder Brad Reward: $ 1872",
+        "pokemon_count": 1,
+        "levels": [26]
+      },
+      {
+        "name": "Boarder Douglas Reward: $ 1728",
+        "pokemon_count": 1,
+        "levels": [24]
+      }
+    ]
+  },
+  {
+    "part": "Part_12",
+    "area": "Goldenrod City",
+    "items": [
+      "B2F",
+      "Warehouse"
+    ],
+    "trainers": [
+      {
+        "name": "Rocket Grunt Reward: $ 960",
+        "pokemon_count": 1,
+        "levels": [24]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 1040",
+        "pokemon_count": 1,
+        "levels": [26]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 920",
+        "pokemon_count": 1,
+        "levels": [21]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 1000",
+        "pokemon_count": 1,
+        "levels": [23]
+      },
+      {
+        "name": "Scientist Marc Reward: $ 2700",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Scientist Rich Reward: $ 3000",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 880",
+        "pokemon_count": 1,
+        "levels": [22]
+      },
+      {
+        "name": "Rocket Grunt Reward: $ 1080",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Burglar Eddie Reward: $ 2112",
+        "pokemon_count": 1,
+        "levels": [26]
+      },
+      {
+        "name": "Burglar Duncan Reward: $ 2024",
+        "pokemon_count": 1,
+        "levels": [23]
+      }
+    ]
+  },
+  {
+    "part": "Part_12",
+    "area": "Ecruteak City",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Sage Gaku Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Sage Masa Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Sage Koji Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [32]
+      }
+    ]
+  },
+  {
+    "part": "Part_12",
+    "area": "Route 44",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Psychic Phil Reward: $ 972",
+        "pokemon_count": 1,
+        "levels": [24]
+      },
+      {
+        "name": "Fisher Edgar Reward: $ 1000",
+        "pokemon_count": 1,
+        "levels": [25]
+      },
+      {
+        "name": "Cooltrainer Cybil Reward: $ 1200",
+        "pokemon_count": 1,
+        "levels": [25]
+      },
+      {
+        "name": "Cooltrainer Allen Reward: $ 1296",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Fisher Wilton Reward: $ 1000",
+        "pokemon_count": 1,
+        "levels": [23]
+      },
+      {
+        "name": "Bird Keeper Vance Reward: $ 600",
+        "pokemon_count": 1,
+        "levels": [25]
+      }
+    ]
+  },
+  {
+    "part": "Part_13",
+    "area": "Blackthorn Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Cooltrainer Paul Reward: $ 1632",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Cooltrainer Fran Reward: $ 1776",
+        "pokemon_count": 1,
+        "levels": [37]
+      },
+      {
+        "name": "Cooltrainer Cody Reward: $ 1728",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Cooltrainer Mike Reward: $ 1776",
+        "pokemon_count": 1,
+        "levels": [37]
+      },
+      {
+        "name": "Cooltrainer Lola Reward: $ 1728",
+        "pokemon_count": 1,
+        "levels": [34]
+      }
+    ]
+  },
+  {
+    "part": "Part_13",
+    "area": "Route 45",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Hiker Erik Reward: $ 864",
+        "pokemon_count": 1,
+        "levels": [24]
+      },
+      {
+        "name": "Cooltrainer Ryan Reward: $ 1296",
+        "pokemon_count": 1,
+        "levels": [25]
+      },
+      {
+        "name": "Cooltrainer Kelly Reward: $ 1152",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Hiker Parry Reward: $ 928",
+        "pokemon_count": 1,
+        "levels": [29]
+      },
+      {
+        "name": "Blackbelt Kenji Reward: $ 672",
+        "pokemon_count": 1,
+        "levels": [28]
+      },
+      {
+        "name": "Hiker Timothy Reward: $ 864",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Hiker Michael Reward: $ 800",
+        "pokemon_count": 1,
+        "levels": [25]
+      },
+      {
+        "name": "Camper Quentin Reward: $ 600",
+        "pokemon_count": 1,
+        "levels": [30]
+      }
+    ]
+  },
+  {
+    "part": "Part_13",
+    "area": "Route 46",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Camper Ted Reward: $ 340",
+        "pokemon_count": 1,
+        "levels": [17]
+      },
+      {
+        "name": "Picnicker Erin Reward: $ 320",
+        "pokemon_count": 1,
+        "levels": [16]
+      },
+      {
+        "name": "Hiker Bailey Reward: $ 416",
+        "pokemon_count": 1,
+        "levels": [13]
+      }
+    ]
+  },
+  {
+    "part": "Part_14",
+    "area": "Route 27",
+    "items": [
+      "West side",
+      "East side (requires Waterfall)"
+    ],
+    "trainers": [
+      {
+        "name": "Cooltrainer Megan Reward: $ 1536",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Cooltrainer Blake Reward: $ 1488",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Bird Keeper Jose Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Cooltrainer Brian Reward: $ 1680",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Psychic Gilbert Reward: $ 1088",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Cooltrainer Reena Reward: $ 1488",
+        "pokemon_count": 1,
+        "levels": [31]
+      }
+    ]
+  },
+  {
+    "part": "Part_14",
+    "area": "Route 26",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Fisher Scott Reward: $ 1360",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Psychic Richard Reward: $ 1152",
+        "pokemon_count": 1,
+        "levels": [36]
+      },
+      {
+        "name": "Cooltrainer Joyce Reward: $ 1536",
+        "pokemon_count": 1,
+        "levels": [36]
+      },
+      {
+        "name": "Cooltrainer Gaven Reward: $ 1536",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Cooltrainer Jake Reward: $ 1680",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Cooltrainer Beth Reward: $ 1728",
+        "pokemon_count": 1,
+        "levels": [36]
+      }
+    ]
+  },
+  {
+    "part": "Part_16",
+    "area": "Vermilion Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Juggler Horton Reward: $ 1320",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Guitarist Vincent Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Gentleman Gregory Reward: $ 2376",
+        "pokemon_count": 1,
+        "levels": [37]
+      }
+    ]
+  },
+  {
+    "part": "Part_17",
+    "area": "Route 6",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Schoolboy Danny Reward: $ 992",
+        "pokemon_count": 1,
+        "levels": [31]
+      }
+    ]
+  },
+  {
+    "part": "Part_17",
+    "area": "Saffron Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Medium Rebecca Reward: $ 1400",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Psychic Jared Reward: $ 1120",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Medium Doris Reward: $ 1440",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Psychic Franklin Reward: $ 1184",
+        "pokemon_count": 1,
+        "levels": [37]
+      }
+    ]
+  },
+  {
+    "part": "Part_18",
+    "area": "Route 8",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Biker Dwayne Reward: $ 960",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Biker Harris Reward: $ 1088",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Biker Zeke Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Super Nerd Sam Reward: $ 1088",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Super Nerd Tom Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [32]
+      }
+    ]
+  },
+  {
+    "part": "Part_18",
+    "area": "Route 10 (South)",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Hiker Jim Reward: $ 1120",
+        "pokemon_count": 1,
+        "levels": [35]
+      }
+    ]
+  },
+  {
+    "part": "Part_18",
+    "area": "Route 9",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Picnicker Edna Reward: $ 680",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Camper Sid Reward: $ 580",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Camper Dean Reward: $ 620",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Hiker Tim Reward: $ 992",
+        "pokemon_count": 1,
+        "levels": [31]
+      },
+      {
+        "name": "Picnicker Heidi Reward: $ 640",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Hiker Sidney Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [34]
+      }
+    ]
+  },
+  {
+    "part": "Part_19",
+    "area": "Route 24",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Rocket Grunt Reward: $ 1200",
+        "pokemon_count": 1,
+        "levels": [30]
+      }
+    ]
+  },
+  {
+    "part": "Part_19",
+    "area": "Route 25",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Schoolboy Dudley Reward: $ 1120",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Lass Ellen Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Schoolboy Joe Reward: $ 1056",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Lass Laura Reward: $ 744",
+        "pokemon_count": 1,
+        "levels": [28]
+      },
+      {
+        "name": "Camper Lloyd Reward: $ 680",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Lass Shannon Reward: $ 768",
+        "pokemon_count": 1,
+        "levels": [29]
+      },
+      {
+        "name": "Super Nerd Pat Reward: $ 1152",
+        "pokemon_count": 1,
+        "levels": [36]
+      },
+      {
+        "name": "Cooltrainer Kevin Reward: $ 1680",
+        "pokemon_count": 1,
+        "levels": [38]
+      }
+    ]
+  },
+  {
+    "part": "Part_19",
+    "area": "Cerulean Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Swimmer Parker Reward: $ 280",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Swimmer Briana Reward: $ 700",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Swimmer Diana Reward: $ 740",
+        "pokemon_count": 1,
+        "levels": [37]
+      }
+    ]
+  },
+  {
+    "part": "Part_20",
+    "area": "Celadon Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Twins Jo & Zoe Reward: $ 700",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Picnicker Tanya Reward: $ 740",
+        "pokemon_count": 1,
+        "levels": [37]
+      },
+      {
+        "name": "Lass Michelle Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Beauty Julia Reward: $ 3080",
+        "pokemon_count": 1,
+        "levels": [32]
+      }
+    ]
+  },
+  {
+    "part": "Part_21",
+    "area": "Route 17",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Biker Riley Reward: $ 1088",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Biker Glenn Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [28]
+      },
+      {
+        "name": "Biker Joel Reward: $ 1024",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Biker Charles Reward: $ 960",
+        "pokemon_count": 1,
+        "levels": [30]
+      }
+    ]
+  },
+  {
+    "part": "Part_21",
+    "area": "Route 18",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Bird Keeper Bob Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Bird Keeper Boris Reward: $ 768",
+        "pokemon_count": 1,
+        "levels": [30]
+      }
+    ]
+  },
+  {
+    "part": "Part_21",
+    "area": "Fuchsia Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Lass Linda Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Picnicker Cindy Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [36]
+      },
+      {
+        "name": "Camper Barry Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [36]
+      },
+      {
+        "name": "Lass Alice Reward: $ 720",
+        "pokemon_count": 1,
+        "levels": [30]
+      }
+    ]
+  },
+  {
+    "part": "Part_22",
+    "area": "Route 15",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Schoolboy Kipp Reward: $ 992",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Schoolboy Tommy Reward: $ 1088",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Teacher Hillary Reward: $ 2592",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Schoolboy Billy Reward: $ 1120",
+        "pokemon_count": 1,
+        "levels": [27]
+      },
+      {
+        "name": "Teacher Colette Reward: $ 2592",
+        "pokemon_count": 1,
+        "levels": [36]
+      },
+      {
+        "name": "Schoolboy Johnny Reward: $ 1056",
+        "pokemon_count": 1,
+        "levels": [29]
+      }
+    ]
+  },
+  {
+    "part": "Part_22",
+    "area": "Route 14",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Bird Keeper Roy Reward: $ 840",
+        "pokemon_count": 1,
+        "levels": [29]
+      }
+    ]
+  },
+  {
+    "part": "Part_22",
+    "area": "Route 13",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Bird Keeper Bret Reward: $ 768",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Bird Keeper Perry Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Hiker Kenny Reward: $ 1056",
+        "pokemon_count": 1,
+        "levels": [27]
+      }
+    ]
+  },
+  {
+    "part": "Part_22",
+    "area": "Route 12",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Fisher Barney Reward: $ 1200",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Fisher Stephen Reward: $ 1240",
+        "pokemon_count": 1,
+        "levels": [25]
+      },
+      {
+        "name": "Fisher Martin Reward: $ 1280",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Fisher Kyle Reward: $ 1240",
+        "pokemon_count": 1,
+        "levels": [28]
+      }
+    ]
+  },
+  {
+    "part": "Part_23",
+    "area": "Route 11",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Psychic Herman Reward: $ 960",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Youngster Owen Reward: $ 560",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Youngster Jason Reward: $ 528",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Psychic Fidel Reward: $ 1088",
+        "pokemon_count": 1,
+        "levels": [34]
+      }
+    ]
+  },
+  {
+    "part": "Part_23",
+    "area": "Route 2",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Bug Catcher Rob Reward: $ 512",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Bug Catcher Doug Reward: $ 544",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Bug Catcher Ed Reward: $ 480",
+        "pokemon_count": 1,
+        "levels": [30]
+      }
+    ]
+  },
+  {
+    "part": "Part_23",
+    "area": "Pewter Gym",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Camper Jerry Reward: $ 740",
+        "pokemon_count": 1,
+        "levels": [37]
+      }
+    ]
+  },
+  {
+    "part": "Part_24",
+    "area": "Route 3",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Youngster Warren Reward: $ 560",
+        "pokemon_count": 1,
+        "levels": [35]
+      },
+      {
+        "name": "Youngster Jimmy Reward: $ 528",
+        "pokemon_count": 1,
+        "levels": [33]
+      },
+      {
+        "name": "Firebreather Otis Reward: $ 1392",
+        "pokemon_count": 1,
+        "levels": [29]
+      },
+      {
+        "name": "Firebreather Burt Reward: $ 1536",
+        "pokemon_count": 1,
+        "levels": [32]
+      }
+    ]
+  },
+  {
+    "part": "Part_24",
+    "area": "Route 4",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Picnicker Hope Reward: $ 680",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Bird Keeper Hank Reward: $ 816",
+        "pokemon_count": 1,
+        "levels": [12]
+      },
+      {
+        "name": "Picnicker Sharon Reward: $ 660",
+        "pokemon_count": 1,
+        "levels": [31]
+      }
+    ]
+  },
+  {
+    "part": "Part_25",
+    "area": "Route 1",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Schoolboy Danny Reward: $ 992",
+        "pokemon_count": 1,
+        "levels": [31]
+      },
+      {
+        "name": "Cooltrainer Quinn Reward: $ 1824",
+        "pokemon_count": 1,
+        "levels": [38]
+      }
+    ]
+  },
+  {
+    "part": "Part_26",
+    "area": "Route 21",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Swimmer Nikki Reward: $ 560",
+        "pokemon_count": 1,
+        "levels": [28]
+      },
+      {
+        "name": "Fisher Arnold Reward: $ 1360",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Swimmer Seth Reward: $ 256",
+        "pokemon_count": 1,
+        "levels": [29]
+      }
+    ]
+  },
+  {
+    "part": "Part_26",
+    "area": "Route 20",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Swimmer Cameron Reward: $ 272",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Swimmer Lori Reward: $ 640",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Swimmer Nicole Reward: $ 640",
+        "pokemon_count": 1,
+        "levels": [29]
+      }
+    ]
+  },
+  {
+    "part": "Part_26",
+    "area": "Route 19",
+    "items": [],
+    "trainers": [
+      {
+        "name": "Swimmer Harold Reward: $ 240",
+        "pokemon_count": 1,
+        "levels": [32]
+      },
+      {
+        "name": "Swimmer Tucker Reward: $ 272",
+        "pokemon_count": 1,
+        "levels": [30]
+      },
+      {
+        "name": "Swimmer Dawn Reward: $ 680",
+        "pokemon_count": 1,
+        "levels": [34]
+      },
+      {
+        "name": "Swimmer Jerome Reward: $ 224",
+        "pokemon_count": 1,
+        "levels": [26]
+      }
+    ]
+  }
+]

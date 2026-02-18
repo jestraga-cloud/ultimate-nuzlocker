@@ -29,6 +29,9 @@ export type EncounterMethod =
   | "rock_smash"
   | "honey_tree"
   | "poke_radar"
+  | "dexnav"
+  | "horde"
+  | "birds"
   | "gift"
   | "static"
   | "trade";
@@ -161,6 +164,9 @@ export const ENCOUNTER_METHOD_LABELS: Record<EncounterMethod, string> = {
   rock_smash: "Rock Smash",
   honey_tree: "Honey Tree",
   poke_radar: "Poké Radar",
+  dexnav: "DexNav",
+  horde: "Horde",
+  birds: "Soaring",
   gift: "Gift",
   static: "Static Encounter",
   trade: "In-Game Trade",

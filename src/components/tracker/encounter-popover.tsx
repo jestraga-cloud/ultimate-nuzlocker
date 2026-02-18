@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Encounter } from "@/types/game";
-import { TypeIcon } from "@/components/pokemon/type-icon";
+import { TypeBadge } from "@/components/pokemon/type-badge";
 import { Button } from "@/components/ui/button";
 import { Info } from "lucide-react";
 import {
@@ -87,7 +87,7 @@ function TypePills({
             className="inline-flex rounded-full px-1 py-0.5"
             style={{ background: pillBg(tc), border: `1px solid ${pillBorder(tc)}` }}
           >
-            <TypeIcon type={t} size="sm" />
+            <TypeBadge type={t} size="sm" />
           </span>
         );
       })}

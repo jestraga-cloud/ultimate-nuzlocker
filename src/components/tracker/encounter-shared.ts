@@ -1,6 +1,6 @@
 import type { Encounter } from "@/types/game";
 import type { LocalCatch } from "@/lib/store/types";
-import { Leaf, Waves, Fish } from "lucide-react";
+import { Leaf, Waves, Fish, Gift, Compass, Users, Bird, Hammer, Zap, ArrowLeftRight } from "lucide-react";
 
 export const TYPE_COLORS: Record<string, string> = {
   normal: "#A8A878",
@@ -29,6 +29,32 @@ export const METHOD_ICONS: Record<string, React.ElementType> = {
   fishing_old: Fish,
   fishing_good: Fish,
   fishing_super: Fish,
+  dexnav: Compass,
+  horde: Users,
+  birds: Bird,
+  rock_smash: Hammer,
+  gift: Gift,
+  static: Zap,
+  trade: ArrowLeftRight,
+};
+
+/** Lower number = appears first in UI */
+export const METHOD_PRIORITY: Record<string, number> = {
+  gift: 0,
+  walking: 1,
+  dexnav: 2,
+  horde: 3,
+  rock_smash: 4,
+  surfing: 5,
+  fishing_old: 6,
+  fishing_good: 7,
+  fishing_super: 8,
+  birds: 9,
+  static: 10,
+  trade: 11,
+  headbutt: 12,
+  honey_tree: 13,
+  poke_radar: 14,
 };
 
 export function getRateColor(rate: number): string {

@@ -349,6 +349,7 @@ export default function AdventurePage() {
       selectedRouteId={selectedRouteId}
       onSelectRoute={(id) => {
         setSelectedRouteId(id);
+        setActiveTab("routes");
         setMobileSidebarOpen(false);
       }}
       visitedRoutes={visitedRoutes}
@@ -478,6 +479,7 @@ export default function AdventurePage() {
               catches={catches}
               pokemonNames={pokemonNames}
               calcTrainer={calcTrainer}
+              onSetTrainer={setCalcTrainer}
               onClearTrainer={() => setCalcTrainer(null)}
             />
           </TabsContent>

@@ -23,6 +23,7 @@ interface CalculatorTabProps {
   catches: LocalCatch[];
   pokemonNames: Record<number, { name: string; types: string[] }>;
   calcTrainer: Trainer | null;
+  onSetTrainer: (trainer: Trainer) => void;
   onClearTrainer: () => void;
 }
 
@@ -118,7 +119,7 @@ async function buildTrainerPokemon(
   };
 }
 
-export function CalculatorTab({ adventureId, gameId, generation, catches, pokemonNames, calcTrainer, onClearTrainer }: CalculatorTabProps) {
+export function CalculatorTab({ adventureId, gameId, generation, catches, pokemonNames, calcTrainer, onSetTrainer, onClearTrainer }: CalculatorTabProps) {
   const [attacker, setAttacker] = useState<CalculatorPokemon | null>(null);
   const [defender, setDefender] = useState<CalculatorPokemon | null>(null);
   const [field, setField] = useState<FieldConditions>(DEFAULT_FIELD_CONDITIONS);
@@ -242,10 +243,12 @@ export function CalculatorTab({ adventureId, gameId, generation, catches, pokemo
   }, [catches, loadForSide]);
 
   const handleEnemyDrop = useCallback((e: React.DragEvent) => {
-    // This handles dropping a trainer onto the enemy tray — page.tsx handles it via onDrop on tab trigger
-    // but also accept it here if dropped directly on the enemy box
     e.preventDefault();
-  }, []);
+    const trainerJson = e.dataTransfer.getData("application/trainer-json");
+    if (trainerJson) {
+      onSetTrainer(JSON.parse(trainerJson));
+    }
+  }, [onSetTrainer]);
 
   return (
     <div className="h-full overflow-y-auto custom-scrollbar">

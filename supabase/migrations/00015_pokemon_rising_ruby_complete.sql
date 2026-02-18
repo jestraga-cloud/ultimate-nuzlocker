@@ -23,8 +23,21 @@ VALUES (
 );
 
 -- ===========================================
--- STEP 2: ALL ROUTES (95 total)
+-- STEP 2: ALL ROUTES (96 total)
 -- ===========================================
+
+-- Route: Littleroot Town
+INSERT INTO routes (game_id, name, slug, display_order, route_type, has_encounters, has_trainers, has_items)
+VALUES (
+  'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
+  'Littleroot Town',
+  'littleroot-town',
+  1,
+  'city',
+  true,
+  false,
+  false
+);
 
 -- Route: Route 101
 INSERT INTO routes (game_id, name, slug, display_order, route_type, has_encounters, has_trainers, has_items)
@@ -32,7 +45,7 @@ VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'Route 101',
   'route-101',
-  1,
+  2,
   'route',
   true,
   false,
@@ -45,19 +58,6 @@ VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'Route 103',
   'route-103',
-  2,
-  'route',
-  true,
-  true,
-  false
-);
-
--- Route: Rematches
-INSERT INTO routes (game_id, name, slug, display_order, route_type, has_encounters, has_trainers, has_items)
-VALUES (
-  'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
-  'Rematches',
-  'rematches',
   3,
   'route',
   true,
@@ -1196,13 +1196,26 @@ VALUES (
   false
 );
 
+-- Route: Pokemon League
+INSERT INTO routes (game_id, name, slug, display_order, route_type, has_encounters, has_trainers, has_items)
+VALUES (
+  'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
+  'Pokemon League',
+  'pokemon-league',
+  91,
+  'building',
+  false,
+  true,
+  false
+);
+
 -- Route: Credits
 INSERT INTO routes (game_id, name, slug, display_order, route_type, has_encounters, has_trainers, has_items)
 VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'Credits',
   'credits',
-  91,
+  92,
   'route',
   false,
   true,
@@ -1215,7 +1228,7 @@ VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'POST GAME',
   'post-game',
-  92,
+  93,
   'route',
   false,
   false,
@@ -1228,7 +1241,7 @@ VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'Rustboro City',
   'rustboro-city',
-  93,
+  94,
   'route',
   false,
   true,
@@ -1241,7 +1254,7 @@ VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'Sky Pillar',
   'sky-pillar',
-  94,
+  95,
   'route',
   true,
   true,
@@ -1254,7 +1267,7 @@ VALUES (
   'f1a2b3c4-d5e6-7890-ab12-cd3456789012',
   'Battle Resort',
   'battle-resort',
-  95,
+  96,
   'route',
   true,
   true,
@@ -1262,7 +1275,7 @@ VALUES (
 );
 
 -- ===========================================
--- STEP 3: ENCOUNTER DATA (1164 total)
+-- STEP 3: ENCOUNTER DATA (1098 total)
 -- ===========================================
 
 CREATE TEMP TABLE _enc (
@@ -1275,6 +1288,9 @@ CREATE TEMP TABLE _enc (
 );
 
 INSERT INTO _enc VALUES
+('littleroot-town', 252, 'gift', NULL, 5, 5),
+('littleroot-town', 255, 'gift', NULL, 5, 5),
+('littleroot-town', 258, 'gift', NULL, 5, 5),
 ('route-101', 16, 'walking', NULL, 5, 5),
 ('route-101', 19, 'walking', NULL, 5, 5),
 ('route-101', 161, 'walking', NULL, 5, 5),
@@ -1304,78 +1320,9 @@ INSERT INTO _enc VALUES
 ('route-103', 393, 'horde', NULL, 5, 5),
 ('route-103', 418, 'surfing', NULL, 25, 35),
 ('route-103', 419, 'surfing', NULL, 25, 35),
-('route-103', 60, 'fishing', NULL, 15, 15),
-('route-103', 60, 'fishing', NULL, 35, 35),
-('route-103', 61, 'fishing', NULL, 55, 55),
-('rematches', 12, 'walking', NULL, 45, 45),
-('rematches', 15, 'walking', NULL, 45, 45),
-('rematches', 166, 'walking', NULL, 45, 45),
-('rematches', 168, 'walking', NULL, 45, 45),
-('rematches', 402, 'walking', NULL, 45, 45),
-('rematches', 413, 'walking', NULL, 45, 45),
-('rematches', 542, 'dexnav', NULL, 50, 50),
-('rematches', 666, 'horde', NULL, 25, 25),
-('rematches', 284, 'surfing', NULL, 40, 45),
-('rematches', 211, 'fishing', NULL, 15, 15),
-('rematches', 211, 'fishing', NULL, 35, 35),
-('rematches', 211, 'fishing', NULL, 55, 55),
-('rematches', 17, 'walking', NULL, 45, 45),
-('rematches', 164, 'walking', NULL, 45, 45),
-('rematches', 397, 'walking', NULL, 45, 45),
-('rematches', 520, 'walking', NULL, 45, 45),
-('rematches', 662, 'walking', NULL, 45, 45),
-('rematches', 18, 'dexnav', NULL, 50, 50),
-('rematches', 662, 'horde', NULL, 30, 30),
-('rematches', 581, 'surfing', NULL, 40, 45),
-('rematches', 456, 'fishing', NULL, 15, 15),
-('rematches', 456, 'fishing', NULL, 35, 35),
-('rematches', 457, 'fishing', NULL, 55, 55),
-('rematches', 30, 'walking', NULL, 45, 45),
-('rematches', 33, 'walking', NULL, 45, 45),
-('rematches', 317, 'walking', NULL, 45, 45),
-('rematches', 454, 'walking', NULL, 45, 45),
-('rematches', 536, 'walking', NULL, 45, 45),
-('rematches', 537, 'dexnav', NULL, 50, 50),
-('rematches', 228, 'horde', NULL, 30, 30),
-('rematches', 423, 'surfing', NULL, 40, 45),
-('rematches', 339, 'fishing', NULL, 15, 15),
-('rematches', 339, 'fishing', NULL, 35, 35),
-('rematches', 340, 'fishing', NULL, 55, 55),
-('rematches', 185, 'walking', NULL, 45, 45),
-('rematches', 271, 'walking', NULL, 45, 45),
-('rematches', 274, 'walking', NULL, 45, 45),
-('rematches', 286, 'walking', NULL, 45, 45),
-('rematches', 673, 'walking', NULL, 45, 45),
-('rematches', 275, 'dexnav', NULL, 50, 50),
-('rematches', 360, 'horde', NULL, 30, 30),
-('rematches', 195, 'surfing', NULL, 40, 45),
-('rematches', 118, 'fishing', NULL, 15, 15),
-('rematches', 118, 'fishing', NULL, 35, 35),
-('rematches', 119, 'fishing', NULL, 55, 55),
-('rematches', 92, 'horde', NULL, 25, 25),
-('rematches', 93, 'horde', NULL, 30, 30),
-('rematches', 21, 'walking', NULL, 40, 40),
-('rematches', 37, 'walking', NULL, 40, 40),
-('rematches', 58, 'walking', NULL, 40, 40),
-('rematches', 163, 'walking', NULL, 40, 40),
-('rematches', 177, 'walking', NULL, 40, 40),
-('rematches', 198, 'walking', NULL, 40, 40),
-('rematches', 200, 'walking', NULL, 40, 40),
-('rematches', 307, 'walking', NULL, 40, 40),
-('rematches', 436, 'walking', NULL, 40, 40),
-('rematches', 433, 'walking', NULL, 40, 40),
-('rematches', 436, 'horde', NULL, 25, 25),
-('rematches', 22, 'walking', NULL, 45, 45),
-('rematches', 37, 'walking', NULL, 45, 45),
-('rematches', 58, 'walking', NULL, 45, 45),
-('rematches', 164, 'walking', NULL, 45, 45),
-('rematches', 178, 'walking', NULL, 45, 45),
-('rematches', 198, 'walking', NULL, 45, 45),
-('rematches', 200, 'walking', NULL, 45, 45),
-('rematches', 308, 'walking', NULL, 45, 45),
-('rematches', 358, 'walking', NULL, 45, 45),
-('rematches', 437, 'walking', NULL, 45, 45),
-('rematches', 436, 'horde', NULL, 30, 30),
+('route-103', 60, 'fishing_old', NULL, 15, 15),
+('route-103', 60, 'fishing_good', NULL, 35, 35),
+('route-103', 61, 'fishing_super', NULL, 55, 55),
 ('route-102', 10, 'walking', NULL, 6, 6),
 ('route-102', 13, 'walking', NULL, 6, 6),
 ('route-102', 69, 'walking', NULL, 6, 6),
@@ -1392,14 +1339,14 @@ INSERT INTO _enc VALUES
 ('route-102', 650, 'horde', NULL, 6, 6),
 ('route-102', 283, 'surfing', NULL, 25, 35),
 ('route-102', 284, 'surfing', NULL, 25, 35),
-('route-102', 341, 'fishing', NULL, 15, 15),
-('route-102', 341, 'fishing', NULL, 35, 35),
-('route-102', 342, 'fishing', NULL, 55, 55),
+('route-102', 341, 'fishing_old', NULL, 15, 15),
+('route-102', 341, 'fishing_good', NULL, 35, 35),
+('route-102', 342, 'fishing_super', NULL, 55, 55),
 ('petalburg-city', 183, 'surfing', NULL, 25, 35),
 ('petalburg-city', 184, 'surfing', NULL, 25, 35),
-('petalburg-city', 118, 'fishing', NULL, 15, 15),
-('petalburg-city', 118, 'fishing', NULL, 35, 35),
-('petalburg-city', 119, 'fishing', NULL, 55, 55),
+('petalburg-city', 118, 'fishing_old', NULL, 15, 15),
+('petalburg-city', 118, 'fishing_good', NULL, 35, 35),
+('petalburg-city', 119, 'fishing_super', NULL, 55, 55),
 ('route-104-south', 54, 'walking', NULL, 8, 8),
 ('route-104-south', 79, 'walking', NULL, 8, 8),
 ('route-104-south', 102, 'walking', NULL, 8, 8),
@@ -1415,9 +1362,9 @@ INSERT INTO _enc VALUES
 ('route-104-south', 158, 'horde', NULL, 8, 8),
 ('route-104-south', 501, 'horde', NULL, 8, 8),
 ('route-104-south', 278, 'surfing', NULL, 25, 35),
-('route-104-south', 370, 'fishing', NULL, 15, 15),
-('route-104-south', 370, 'fishing', NULL, 35, 35),
-('route-104-south', 370, 'fishing', NULL, 55, 55),
+('route-104-south', 370, 'fishing_old', NULL, 15, 15),
+('route-104-south', 370, 'fishing_good', NULL, 35, 35),
+('route-104-south', 370, 'fishing_super', NULL, 55, 55),
 ('petalburg-woods', 48, 'walking', NULL, 9, 9),
 ('petalburg-woods', 172, 'walking', NULL, 9, 9),
 ('petalburg-woods', 285, 'walking', NULL, 9, 9),
@@ -1447,9 +1394,9 @@ INSERT INTO _enc VALUES
 ('route-104-north', 387, 'horde', NULL, 10, 10),
 ('route-104-north', 656, 'horde', NULL, 10, 10),
 ('route-104-north', 550, 'surfing', NULL, 25, 35),
-('route-104-north', 550, 'fishing', NULL, 15, 15),
-('route-104-north', 550, 'fishing', NULL, 35, 35),
-('route-104-north', 550, 'fishing', NULL, 55, 55),
+('route-104-north', 550, 'fishing_old', NULL, 15, 15),
+('route-104-north', 550, 'fishing_good', NULL, 35, 35),
+('route-104-north', 550, 'fishing_super', NULL, 55, 55),
 ('route-116', 58, 'walking', NULL, 10, 10),
 ('route-116', 84, 'walking', NULL, 10, 10),
 ('route-116', 177, 'walking', NULL, 10, 10),
@@ -1473,51 +1420,51 @@ INSERT INTO _enc VALUES
 ('rusturf-tunnel', 529, 'walking', NULL, 10, 10),
 ('rusturf-tunnel', 532, 'walking', NULL, 10, 10),
 ('rusturf-tunnel', 595, 'walking', NULL, 10, 10),
-('rusturf-tunnel', 74, 'rock-smash', NULL, 20, 20),
-('rusturf-tunnel', 557, 'rock-smash', NULL, 20, 20),
 ('rusturf-tunnel', 155, 'horde', NULL, 10, 10),
 ('rusturf-tunnel', 390, 'horde', NULL, 10, 10),
+('rusturf-tunnel', 74, 'rock_smash', NULL, 20, 20),
+('rusturf-tunnel', 557, 'rock_smash', NULL, 20, 20),
 ('route-106', 594, 'dexnav', NULL, 50, 50),
 ('route-106', 278, 'surfing', NULL, 25, 35),
 ('route-106', 72, 'surfing', NULL, 25, 35),
 ('route-106', 592, 'surfing', NULL, 25, 35),
 ('route-106', 279, 'surfing', NULL, 25, 35),
-('route-106', 98, 'fishing', NULL, 15, 15),
-('route-106', 120, 'fishing', NULL, 15, 15),
-('route-106', 222, 'fishing', NULL, 15, 15),
-('route-106', 98, 'fishing', NULL, 35, 35),
-('route-106', 120, 'fishing', NULL, 35, 35),
-('route-106', 222, 'fishing', NULL, 35, 35),
-('route-106', 99, 'fishing', NULL, 55, 55),
-('route-106', 121, 'fishing', NULL, 55, 55),
-('route-106', 222, 'fishing', NULL, 55, 55),
+('route-106', 98, 'fishing_old', NULL, 15, 15),
+('route-106', 120, 'fishing_old', NULL, 15, 15),
+('route-106', 222, 'fishing_old', NULL, 15, 15),
+('route-106', 98, 'fishing_good', NULL, 35, 35),
+('route-106', 120, 'fishing_good', NULL, 35, 35),
+('route-106', 222, 'fishing_good', NULL, 35, 35),
+('route-106', 99, 'fishing_super', NULL, 55, 55),
+('route-106', 121, 'fishing_super', NULL, 55, 55),
+('route-106', 222, 'fishing_super', NULL, 55, 55),
 ('dewford-town', 278, 'surfing', NULL, 25, 35),
 ('dewford-town', 72, 'surfing', NULL, 25, 35),
 ('dewford-town', 592, 'surfing', NULL, 25, 35),
 ('dewford-town', 279, 'surfing', NULL, 25, 35),
-('dewford-town', 90, 'fishing', NULL, 15, 15),
-('dewford-town', 366, 'fishing', NULL, 15, 15),
-('dewford-town', 222, 'fishing', NULL, 15, 15),
-('dewford-town', 90, 'fishing', NULL, 35, 35),
-('dewford-town', 366, 'fishing', NULL, 35, 35),
-('dewford-town', 222, 'fishing', NULL, 35, 35),
-('dewford-town', 91, 'fishing', NULL, 55, 55),
-('dewford-town', 367, 'fishing', NULL, 55, 55),
-('dewford-town', 222, 'fishing', NULL, 55, 55),
+('dewford-town', 90, 'fishing_old', NULL, 15, 15),
+('dewford-town', 366, 'fishing_old', NULL, 15, 15),
+('dewford-town', 222, 'fishing_old', NULL, 15, 15),
+('dewford-town', 90, 'fishing_good', NULL, 35, 35),
+('dewford-town', 366, 'fishing_good', NULL, 35, 35),
+('dewford-town', 222, 'fishing_good', NULL, 35, 35),
+('dewford-town', 91, 'fishing_super', NULL, 55, 55),
+('dewford-town', 367, 'fishing_super', NULL, 55, 55),
+('dewford-town', 222, 'fishing_super', NULL, 55, 55),
 ('route-107', 594, 'dexnav', NULL, 50, 50),
 ('route-107', 278, 'surfing', NULL, 25, 35),
 ('route-107', 72, 'surfing', NULL, 25, 35),
 ('route-107', 592, 'surfing', NULL, 25, 35),
 ('route-107', 279, 'surfing', NULL, 25, 35),
-('route-107', 692, 'fishing', NULL, 15, 15),
-('route-107', 690, 'fishing', NULL, 15, 15),
-('route-107', 222, 'fishing', NULL, 15, 15),
-('route-107', 692, 'fishing', NULL, 35, 35),
-('route-107', 690, 'fishing', NULL, 35, 35),
-('route-107', 222, 'fishing', NULL, 35, 35),
-('route-107', 693, 'fishing', NULL, 55, 55),
-('route-107', 691, 'fishing', NULL, 55, 55),
-('route-107', 222, 'fishing', NULL, 55, 55),
+('route-107', 692, 'fishing_old', NULL, 15, 15),
+('route-107', 690, 'fishing_old', NULL, 15, 15),
+('route-107', 222, 'fishing_old', NULL, 15, 15),
+('route-107', 692, 'fishing_good', NULL, 35, 35),
+('route-107', 690, 'fishing_good', NULL, 35, 35),
+('route-107', 222, 'fishing_good', NULL, 35, 35),
+('route-107', 693, 'fishing_super', NULL, 55, 55),
+('route-107', 691, 'fishing_super', NULL, 55, 55),
+('route-107', 222, 'fishing_super', NULL, 55, 55),
 ('granite-cave-1f', 41, 'walking', NULL, 13, 13),
 ('granite-cave-1f', 63, 'walking', NULL, 13, 13),
 ('granite-cave-1f', 74, 'walking', NULL, 13, 13),
@@ -1535,25 +1482,25 @@ INSERT INTO _enc VALUES
 ('route-109', 72, 'surfing', NULL, 25, 35),
 ('route-109', 592, 'surfing', NULL, 25, 35),
 ('route-109', 279, 'surfing', NULL, 25, 35),
-('route-109', 456, 'fishing', NULL, 15, 15),
-('route-109', 170, 'fishing', NULL, 15, 15),
-('route-109', 222, 'fishing', NULL, 15, 15),
-('route-109', 456, 'fishing', NULL, 35, 35),
-('route-109', 170, 'fishing', NULL, 35, 35),
-('route-109', 222, 'fishing', NULL, 35, 35),
-('route-109', 457, 'fishing', NULL, 55, 55),
-('route-109', 171, 'fishing', NULL, 55, 55),
-('route-109', 222, 'fishing', NULL, 55, 55),
+('route-109', 456, 'fishing_old', NULL, 15, 15),
+('route-109', 170, 'fishing_old', NULL, 15, 15),
+('route-109', 222, 'fishing_old', NULL, 15, 15),
+('route-109', 456, 'fishing_good', NULL, 35, 35),
+('route-109', 170, 'fishing_good', NULL, 35, 35),
+('route-109', 222, 'fishing_good', NULL, 35, 35),
+('route-109', 457, 'fishing_super', NULL, 55, 55),
+('route-109', 171, 'fishing_super', NULL, 55, 55),
+('route-109', 222, 'fishing_super', NULL, 55, 55),
 ('slateport-city', 489, 'surfing', NULL, 40, 40),
-('slateport-city', 320, 'fishing', NULL, 15, 15),
-('slateport-city', 116, 'fishing', NULL, 15, 15),
-('slateport-city', 147, 'fishing', NULL, 15, 15),
-('slateport-city', 320, 'fishing', NULL, 35, 35),
-('slateport-city', 116, 'fishing', NULL, 35, 35),
-('slateport-city', 147, 'fishing', NULL, 35, 35),
-('slateport-city', 320, 'fishing', NULL, 55, 55),
-('slateport-city', 117, 'fishing', NULL, 55, 55),
-('slateport-city', 148, 'fishing', NULL, 55, 55),
+('slateport-city', 320, 'fishing_old', NULL, 15, 15),
+('slateport-city', 116, 'fishing_old', NULL, 15, 15),
+('slateport-city', 147, 'fishing_old', NULL, 15, 15),
+('slateport-city', 320, 'fishing_good', NULL, 35, 35),
+('slateport-city', 116, 'fishing_good', NULL, 35, 35),
+('slateport-city', 147, 'fishing_good', NULL, 35, 35),
+('slateport-city', 320, 'fishing_super', NULL, 55, 55),
+('slateport-city', 117, 'fishing_super', NULL, 55, 55),
+('slateport-city', 148, 'fishing_super', NULL, 55, 55),
 ('route-110', 43, 'walking', NULL, 17, 17),
 ('route-110', 81, 'walking', NULL, 17, 17),
 ('route-110', 100, 'walking', NULL, 17, 17),
@@ -1569,12 +1516,12 @@ INSERT INTO _enc VALUES
 ('route-110', 312, 'horde', NULL, 12, 12),
 ('route-110', 194, 'surfing', NULL, 25, 35),
 ('route-110', 195, 'surfing', NULL, 25, 35),
-('route-110', 223, 'fishing', NULL, 20, 20),
-('route-110', 211, 'fishing', NULL, 20, 20),
-('route-110', 223, 'fishing', NULL, 35, 35),
-('route-110', 211, 'fishing', NULL, 35, 35),
-('route-110', 224, 'fishing', NULL, 55, 55),
-('route-110', 211, 'fishing', NULL, 55, 55),
+('route-110', 223, 'fishing_old', NULL, 20, 20),
+('route-110', 211, 'fishing_old', NULL, 20, 20),
+('route-110', 223, 'fishing_good', NULL, 35, 35),
+('route-110', 211, 'fishing_good', NULL, 35, 35),
+('route-110', 224, 'fishing_super', NULL, 55, 55),
+('route-110', 211, 'fishing_super', NULL, 55, 55),
 ('route-117', 83, 'walking', NULL, 18, 18),
 ('route-117', 235, 'walking', NULL, 18, 18),
 ('route-117', 313, 'walking', NULL, 18, 18),
@@ -1590,9 +1537,9 @@ INSERT INTO _enc VALUES
 ('route-117', 440, 'horde', NULL, 12, 12),
 ('route-117', 580, 'surfing', NULL, 25, 35),
 ('route-117', 581, 'surfing', NULL, 25, 35),
-('route-117', 60, 'fishing', NULL, 20, 20),
-('route-117', 60, 'fishing', NULL, 35, 35),
-('route-117', 61, 'fishing', NULL, 55, 55),
+('route-117', 60, 'fishing_old', NULL, 20, 20),
+('route-117', 60, 'fishing_good', NULL, 35, 35),
+('route-117', 61, 'fishing_super', NULL, 55, 55),
 ('granite-cave-b1f', 64, 'walking', NULL, 18, 18),
 ('granite-cave-b1f', 95, 'walking', NULL, 18, 18),
 ('granite-cave-b1f', 104, 'walking', NULL, 18, 18),
@@ -1615,18 +1562,18 @@ INSERT INTO _enc VALUES
 ('granite-cave-b2f', 303, 'walking', NULL, 20, 20),
 ('granite-cave-b2f', 305, 'walking', NULL, 20, 20),
 ('granite-cave-b2f', 525, 'walking', NULL, 20, 20),
-('granite-cave-b2f', 299, 'rock-smash', NULL, 20, 20),
 ('granite-cave-b2f', 476, 'dexnav', NULL, 50, 50),
 ('granite-cave-b2f', 41, 'horde', NULL, 12, 12),
-('route-111', 74, 'rock-smash', NULL, 22, 22),
-('route-111', 688, 'rock-smash', NULL, 22, 22),
+('granite-cave-b2f', 299, 'rock_smash', NULL, 20, 20),
+('route-111', 74, 'rock_smash', NULL, 22, 22),
+('route-111', 688, 'rock_smash', NULL, 22, 22),
 ('route-111', 550, 'surfing', NULL, 25, 35),
-('route-111', 129, 'fishing', NULL, 20, 20),
-('route-111', 339, 'fishing', NULL, 20, 20),
-('route-111', 129, 'fishing', NULL, 35, 35),
-('route-111', 339, 'fishing', NULL, 35, 35),
-('route-111', 130, 'fishing', NULL, 55, 55),
-('route-111', 340, 'fishing', NULL, 55, 55),
+('route-111', 129, 'fishing_old', NULL, 20, 20),
+('route-111', 339, 'fishing_old', NULL, 20, 20),
+('route-111', 129, 'fishing_good', NULL, 35, 35),
+('route-111', 339, 'fishing_good', NULL, 35, 35),
+('route-111', 130, 'fishing_super', NULL, 55, 55),
+('route-111', 340, 'fishing_super', NULL, 55, 55),
 ('route-112-south', 52, 'walking', NULL, 23, 23),
 ('route-112-south', 77, 'walking', NULL, 23, 23),
 ('route-112-south', 123, 'walking', NULL, 23, 23),
@@ -1685,15 +1632,15 @@ INSERT INTO _enc VALUES
 ('route-114', 582, 'walking', NULL, 25, 25),
 ('route-114', 588, 'walking', NULL, 25, 25),
 ('route-114', 616, 'walking', NULL, 25, 25),
-('route-114', 75, 'rock-smash', NULL, 25, 25),
-('route-114', 525, 'rock-smash', NULL, 25, 25),
 ('route-114', 463, 'dexnav', NULL, 50, 50),
 ('route-114', 582, 'horde', NULL, 15, 15),
+('route-114', 75, 'rock_smash', NULL, 25, 25),
+('route-114', 525, 'rock_smash', NULL, 25, 25),
 ('route-114', 187, 'surfing', NULL, 25, 35),
 ('route-114', 188, 'surfing', NULL, 25, 35),
-('route-114', 211, 'fishing', NULL, 25, 25),
-('route-114', 211, 'fishing', NULL, 35, 35),
-('route-114', 211, 'fishing', NULL, 55, 55),
+('route-114', 211, 'fishing_old', NULL, 25, 25),
+('route-114', 211, 'fishing_good', NULL, 35, 35),
+('route-114', 211, 'fishing_super', NULL, 55, 55),
 ('meteor-falls-1f', 35, 'walking', NULL, 25, 25),
 ('meteor-falls-1f', 42, 'walking', NULL, 25, 25),
 ('meteor-falls-1f', 246, 'walking', NULL, 25, 25),
@@ -1708,9 +1655,9 @@ INSERT INTO _enc VALUES
 ('meteor-falls-1f', 36, 'dexnav', NULL, 50, 50),
 ('meteor-falls-1f', 173, 'horde', NULL, 16, 16),
 ('meteor-falls-1f', 42, 'surfing', NULL, 25, 35),
-('meteor-falls-1f', 147, 'fishing', NULL, 25, 25),
-('meteor-falls-1f', 147, 'fishing', NULL, 35, 35),
-('meteor-falls-1f', 148, 'fishing', NULL, 55, 55),
+('meteor-falls-1f', 147, 'fishing_old', NULL, 25, 25),
+('meteor-falls-1f', 147, 'fishing_good', NULL, 35, 35),
+('meteor-falls-1f', 148, 'fishing_super', NULL, 55, 55),
 ('jagged-pass', 57, 'walking', NULL, 28, 28),
 ('jagged-pass', 190, 'walking', NULL, 28, 28),
 ('jagged-pass', 198, 'walking', NULL, 28, 28),
@@ -1741,46 +1688,46 @@ INSERT INTO _enc VALUES
 ('route-105', 72, 'surfing', NULL, 25, 35),
 ('route-105', 592, 'surfing', NULL, 25, 35),
 ('route-105', 279, 'surfing', NULL, 25, 35),
-('route-105', 98, 'fishing', NULL, 15, 15),
-('route-105', 120, 'fishing', NULL, 15, 15),
-('route-105', 222, 'fishing', NULL, 15, 15),
-('route-105', 98, 'fishing', NULL, 35, 35),
-('route-105', 120, 'fishing', NULL, 35, 35),
-('route-105', 222, 'fishing', NULL, 35, 35),
-('route-105', 99, 'fishing', NULL, 55, 55),
-('route-105', 121, 'fishing', NULL, 55, 55),
-('route-105', 222, 'fishing', NULL, 55, 55),
+('route-105', 98, 'fishing_old', NULL, 15, 15),
+('route-105', 120, 'fishing_old', NULL, 15, 15),
+('route-105', 222, 'fishing_old', NULL, 15, 15),
+('route-105', 98, 'fishing_good', NULL, 35, 35),
+('route-105', 120, 'fishing_good', NULL, 35, 35),
+('route-105', 222, 'fishing_good', NULL, 35, 35),
+('route-105', 99, 'fishing_super', NULL, 55, 55),
+('route-105', 121, 'fishing_super', NULL, 55, 55),
+('route-105', 222, 'fishing_super', NULL, 55, 55),
 ('route-108', 594, 'dexnav', NULL, 50, 50),
 ('route-108', 458, 'surfing', NULL, 25, 40),
 ('route-108', 226, 'surfing', NULL, 25, 40),
 ('route-108', 73, 'surfing', NULL, 25, 40),
 ('route-108', 593, 'surfing', NULL, 25, 40),
-('route-108', 456, 'fishing', NULL, 15, 15),
-('route-108', 170, 'fishing', NULL, 15, 15),
-('route-108', 222, 'fishing', NULL, 15, 15),
-('route-108', 456, 'fishing', NULL, 35, 35),
-('route-108', 170, 'fishing', NULL, 35, 35),
-('route-108', 222, 'fishing', NULL, 35, 35),
-('route-108', 457, 'fishing', NULL, 55, 55),
-('route-108', 171, 'fishing', NULL, 55, 55),
-('route-108', 222, 'fishing', NULL, 55, 55),
+('route-108', 456, 'fishing_old', NULL, 15, 15),
+('route-108', 170, 'fishing_old', NULL, 15, 15),
+('route-108', 222, 'fishing_old', NULL, 15, 15),
+('route-108', 456, 'fishing_good', NULL, 35, 35),
+('route-108', 170, 'fishing_good', NULL, 35, 35),
+('route-108', 222, 'fishing_good', NULL, 35, 35),
+('route-108', 457, 'fishing_super', NULL, 55, 55),
+('route-108', 171, 'fishing_super', NULL, 55, 55),
+('route-108', 222, 'fishing_super', NULL, 55, 55),
 ('sea-mauville-outside', 86, 'surfing', NULL, 25, 40),
 ('sea-mauville-outside', 363, 'surfing', NULL, 25, 40),
 ('sea-mauville-outside', 87, 'surfing', NULL, 25, 40),
 ('sea-mauville-outside', 131, 'surfing', NULL, 25, 40),
-('sea-mauville-outside', 90, 'fishing', NULL, 15, 15),
-('sea-mauville-outside', 320, 'fishing', NULL, 15, 15),
-('sea-mauville-outside', 90, 'fishing', NULL, 35, 35),
-('sea-mauville-outside', 320, 'fishing', NULL, 35, 35),
-('sea-mauville-outside', 90, 'fishing', NULL, 55, 55),
-('sea-mauville-outside', 320, 'fishing', NULL, 55, 55),
+('sea-mauville-outside', 90, 'fishing_old', NULL, 15, 15),
+('sea-mauville-outside', 320, 'fishing_old', NULL, 15, 15),
+('sea-mauville-outside', 90, 'fishing_good', NULL, 35, 35),
+('sea-mauville-outside', 320, 'fishing_good', NULL, 35, 35),
+('sea-mauville-outside', 90, 'fishing_super', NULL, 55, 55),
+('sea-mauville-outside', 320, 'fishing_super', NULL, 55, 55),
 ('sea-mauville-inside', 615, 'surfing', NULL, 30, 40),
-('sea-mauville-inside', 90, 'fishing', NULL, 15, 15),
-('sea-mauville-inside', 320, 'fishing', NULL, 15, 15),
-('sea-mauville-inside', 90, 'fishing', NULL, 35, 35),
-('sea-mauville-inside', 320, 'fishing', NULL, 35, 35),
-('sea-mauville-inside', 90, 'fishing', NULL, 55, 55),
-('sea-mauville-inside', 320, 'fishing', NULL, 55, 55),
+('sea-mauville-inside', 90, 'fishing_old', NULL, 15, 15),
+('sea-mauville-inside', 320, 'fishing_old', NULL, 15, 15),
+('sea-mauville-inside', 90, 'fishing_good', NULL, 35, 35),
+('sea-mauville-inside', 320, 'fishing_good', NULL, 35, 35),
+('sea-mauville-inside', 90, 'fishing_super', NULL, 55, 55),
+('sea-mauville-inside', 320, 'fishing_super', NULL, 55, 55),
 ('route-115', 39, 'walking', NULL, 35, 35),
 ('route-115', 132, 'walking', NULL, 35, 35),
 ('route-115', 114, 'walking', NULL, 35, 35),
@@ -1796,9 +1743,9 @@ INSERT INTO _enc VALUES
 ('route-115', 132, 'horde', NULL, 22, 22),
 ('route-115', 72, 'surfing', NULL, 25, 35),
 ('route-115', 73, 'surfing', NULL, 25, 35),
-('route-115', 129, 'fishing', NULL, 15, 15),
-('route-115', 129, 'fishing', NULL, 35, 35),
-('route-115', 130, 'fishing', NULL, 55, 55),
+('route-115', 129, 'fishing_old', NULL, 15, 15),
+('route-115', 129, 'fishing_good', NULL, 35, 35),
+('route-115', 130, 'fishing_super', NULL, 55, 55),
 ('new-mauville', 25, 'walking', NULL, 35, 35),
 ('new-mauville', 82, 'walking', NULL, 35, 35),
 ('new-mauville', 89, 'walking', NULL, 35, 35),
@@ -1836,11 +1783,11 @@ INSERT INTO _enc VALUES
 ('route-118', 259, 'horde', NULL, 30, 30),
 ('route-118', 278, 'surfing', NULL, 25, 35),
 ('route-118', 279, 'surfing', NULL, 25, 35),
-('route-118', 318, 'fishing', NULL, 20, 20),
-('route-118', 349, 'fishing', NULL, 20, 20),
-('route-118', 318, 'fishing', NULL, 35, 35),
-('route-118', 349, 'fishing', NULL, 35, 35),
-('route-118', 319, 'fishing', NULL, 55, 55),
+('route-118', 318, 'fishing_old', NULL, 20, 20),
+('route-118', 349, 'fishing_old', NULL, 20, 20),
+('route-118', 318, 'fishing_good', NULL, 35, 35),
+('route-118', 349, 'fishing_good', NULL, 35, 35),
+('route-118', 319, 'fishing_super', NULL, 55, 55),
 ('southern-island', 24, 'walking', NULL, 36, 36),
 ('southern-island', 44, 'walking', NULL, 36, 36),
 ('southern-island', 70, 'walking', NULL, 36, 36),
@@ -1854,10 +1801,10 @@ INSERT INTO _enc VALUES
 ('southern-island', 253, 'horde', NULL, 30, 30),
 ('southern-island', 704, 'surfing', NULL, 30, 40),
 ('southern-island', 618, 'surfing', NULL, 30, 40),
-('southern-island', 349, 'fishing', NULL, 15, 15),
-('southern-island', 349, 'fishing', NULL, 35, 35),
-('southern-island', 349, 'fishing', NULL, 55, 55),
-('southern-island', 350, 'fishing', NULL, 55, 55),
+('southern-island', 349, 'fishing_old', NULL, 15, 15),
+('southern-island', 349, 'fishing_good', NULL, 35, 35),
+('southern-island', 349, 'fishing_super', NULL, 55, 55),
+('southern-island', 350, 'fishing_super', NULL, 55, 55),
 ('weather-institute', 24, 'walking', NULL, 38, 38),
 ('weather-institute', 44, 'walking', NULL, 38, 38),
 ('weather-institute', 70, 'walking', NULL, 38, 38),
@@ -1871,10 +1818,10 @@ INSERT INTO _enc VALUES
 ('weather-institute', 253, 'horde', NULL, 30, 30),
 ('weather-institute', 704, 'surfing', NULL, 30, 40),
 ('weather-institute', 618, 'surfing', NULL, 30, 40),
-('weather-institute', 349, 'fishing', NULL, 15, 15),
-('weather-institute', 349, 'fishing', NULL, 35, 35),
-('weather-institute', 349, 'fishing', NULL, 55, 55),
-('weather-institute', 350, 'fishing', NULL, 55, 55),
+('weather-institute', 349, 'fishing_old', NULL, 15, 15),
+('weather-institute', 349, 'fishing_good', NULL, 35, 35),
+('weather-institute', 349, 'fishing_super', NULL, 55, 55),
+('weather-institute', 350, 'fishing_super', NULL, 55, 55),
 ('fortree-city', 334, 'walking', NULL, 38, 38),
 ('fortree-city', 359, 'walking', NULL, 38, 38),
 ('fortree-city', 426, 'walking', NULL, 38, 38),
@@ -1888,9 +1835,9 @@ INSERT INTO _enc VALUES
 ('fortree-city', 256, 'horde', NULL, 30, 30),
 ('fortree-city', 418, 'surfing', NULL, 30, 40),
 ('fortree-city', 419, 'surfing', NULL, 30, 40),
-('fortree-city', 339, 'fishing', NULL, 15, 15),
-('fortree-city', 339, 'fishing', NULL, 35, 35),
-('fortree-city', 340, 'fishing', NULL, 55, 55),
+('fortree-city', 339, 'fishing_old', NULL, 15, 15),
+('fortree-city', 339, 'fishing_good', NULL, 35, 35),
+('fortree-city', 340, 'fishing_super', NULL, 55, 55),
 ('scorched-slab', 41, 'walking', NULL, 35, 35),
 ('scorched-slab', 95, 'walking', NULL, 35, 35),
 ('scorched-slab', 111, 'walking', NULL, 35, 35),
@@ -1904,9 +1851,9 @@ INSERT INTO _enc VALUES
 ('scorched-slab', 41, 'horde', NULL, 25, 25),
 ('scorched-slab', 41, 'surfing', NULL, 30, 40),
 ('scorched-slab', 42, 'surfing', NULL, 30, 40),
-('scorched-slab', 60, 'fishing', NULL, 15, 15),
-('scorched-slab', 60, 'fishing', NULL, 35, 35),
-('scorched-slab', 61, 'fishing', NULL, 55, 55),
+('scorched-slab', 60, 'fishing_old', NULL, 15, 15),
+('scorched-slab', 60, 'fishing_good', NULL, 35, 35),
+('scorched-slab', 61, 'fishing_super', NULL, 55, 55),
 ('scorched-slab-basement', 42, 'walking', NULL, 40, 40),
 ('scorched-slab-basement', 112, 'walking', NULL, 40, 40),
 ('scorched-slab-basement', 208, 'walking', NULL, 40, 40),
@@ -1920,9 +1867,9 @@ INSERT INTO _enc VALUES
 ('scorched-slab-basement', 42, 'horde', NULL, 25, 25),
 ('scorched-slab-basement', 418, 'surfing', NULL, 35, 45),
 ('scorched-slab-basement', 419, 'surfing', NULL, 35, 45),
-('scorched-slab-basement', 339, 'fishing', NULL, 15, 15),
-('scorched-slab-basement', 339, 'fishing', NULL, 35, 35),
-('scorched-slab-basement', 340, 'fishing', NULL, 55, 55),
+('scorched-slab-basement', 339, 'fishing_old', NULL, 15, 15),
+('scorched-slab-basement', 339, 'fishing_good', NULL, 35, 35),
+('scorched-slab-basement', 340, 'fishing_super', NULL, 55, 55),
 ('fortree-gym', 334, 'walking', NULL, 44, 44),
 ('fortree-gym', 359, 'walking', NULL, 44, 44),
 ('fortree-gym', 426, 'walking', NULL, 44, 44),
@@ -1936,9 +1883,9 @@ INSERT INTO _enc VALUES
 ('fortree-gym', 624, 'horde', NULL, 25, 25),
 ('fortree-gym', 418, 'surfing', NULL, 35, 45),
 ('fortree-gym', 419, 'surfing', NULL, 35, 45),
-('fortree-gym', 339, 'fishing', NULL, 15, 15),
-('fortree-gym', 339, 'fishing', NULL, 35, 35),
-('fortree-gym', 340, 'fishing', NULL, 55, 55),
+('fortree-gym', 339, 'fishing_old', NULL, 15, 15),
+('fortree-gym', 339, 'fishing_good', NULL, 35, 35),
+('fortree-gym', 340, 'fishing_super', NULL, 55, 55),
 ('route-121', 52, 'walking', NULL, 40, 40),
 ('route-121', 77, 'walking', NULL, 40, 40),
 ('route-121', 84, 'walking', NULL, 40, 40),
@@ -1954,58 +1901,58 @@ INSERT INTO _enc VALUES
 ('route-122', 594, 'dexnav', NULL, 50, 50),
 ('route-122', 592, 'surfing', NULL, 35, 45),
 ('route-122', 593, 'surfing', NULL, 35, 45),
-('route-122', 456, 'fishing', NULL, 15, 15),
-('route-122', 456, 'fishing', NULL, 35, 35),
-('route-122', 457, 'fishing', NULL, 55, 55),
+('route-122', 456, 'fishing_old', NULL, 15, 15),
+('route-122', 456, 'fishing_good', NULL, 35, 35),
+('route-122', 457, 'fishing_super', NULL, 55, 55),
 ('route-123', 66, 'horde', NULL, 30, 30),
 ('route-123', 183, 'surfing', NULL, 35, 45),
 ('route-123', 184, 'surfing', NULL, 35, 45),
-('route-123', 341, 'fishing', NULL, 15, 15),
-('route-123', 341, 'fishing', NULL, 35, 35),
-('route-123', 342, 'fishing', NULL, 55, 55),
-('lilycove-city', 213, 'rock-smash', NULL, 45, 45),
-('lilycove-city', 558, 'rock-smash', NULL, 45, 45),
-('lilycove-city', 689, 'rock-smash', NULL, 45, 45),
+('route-123', 341, 'fishing_old', NULL, 15, 15),
+('route-123', 341, 'fishing_good', NULL, 35, 35),
+('route-123', 342, 'fishing_super', NULL, 55, 55),
+('lilycove-city', 213, 'rock_smash', NULL, 45, 45),
+('lilycove-city', 558, 'rock_smash', NULL, 45, 45),
+('lilycove-city', 689, 'rock_smash', NULL, 45, 45),
 ('lilycove-city', 594, 'surfing', NULL, 40, 50),
-('lilycove-city', 120, 'fishing', NULL, 15, 15),
-('lilycove-city', 366, 'fishing', NULL, 15, 15),
-('lilycove-city', 222, 'fishing', NULL, 15, 15),
-('lilycove-city', 120, 'fishing', NULL, 35, 35),
-('lilycove-city', 366, 'fishing', NULL, 35, 35),
-('lilycove-city', 222, 'fishing', NULL, 35, 35),
-('lilycove-city', 121, 'fishing', NULL, 55, 55),
-('lilycove-city', 368, 'fishing', NULL, 55, 55),
-('lilycove-city', 222, 'fishing', NULL, 55, 55),
+('lilycove-city', 120, 'fishing_old', NULL, 15, 15),
+('lilycove-city', 366, 'fishing_old', NULL, 15, 15),
+('lilycove-city', 222, 'fishing_old', NULL, 15, 15),
+('lilycove-city', 120, 'fishing_good', NULL, 35, 35),
+('lilycove-city', 366, 'fishing_good', NULL, 35, 35),
+('lilycove-city', 222, 'fishing_good', NULL, 35, 35),
+('lilycove-city', 121, 'fishing_super', NULL, 55, 55),
+('lilycove-city', 368, 'fishing_super', NULL, 55, 55),
+('lilycove-city', 222, 'fishing_super', NULL, 55, 55),
 ('magma-hideout', 72, 'surfing', NULL, 40, 50),
 ('magma-hideout', 73, 'surfing', NULL, 40, 50),
-('magma-hideout', 320, 'fishing', NULL, 15, 15),
-('magma-hideout', 320, 'fishing', NULL, 35, 35),
-('magma-hideout', 320, 'fishing', NULL, 55, 55),
+('magma-hideout', 320, 'fishing_old', NULL, 15, 15),
+('magma-hideout', 320, 'fishing_good', NULL, 35, 35),
+('magma-hideout', 320, 'fishing_super', NULL, 55, 55),
 ('aqua-hideout', 72, 'surfing', NULL, 40, 50),
 ('aqua-hideout', 73, 'surfing', NULL, 40, 50),
-('aqua-hideout', 320, 'fishing', NULL, 15, 15),
-('aqua-hideout', 320, 'fishing', NULL, 35, 35),
-('aqua-hideout', 320, 'fishing', NULL, 55, 55),
+('aqua-hideout', 320, 'fishing_old', NULL, 15, 15),
+('aqua-hideout', 320, 'fishing_good', NULL, 35, 35),
+('aqua-hideout', 320, 'fishing_super', NULL, 55, 55),
 ('route-124', 594, 'dexnav', NULL, 50, 50),
 ('route-124', 458, 'surfing', NULL, 40, 50),
 ('route-124', 226, 'surfing', NULL, 40, 50),
-('route-124', 170, 'fishing', NULL, 15, 15),
-('route-124', 369, 'fishing', NULL, 15, 15),
-('route-124', 170, 'fishing', NULL, 35, 35),
-('route-124', 369, 'fishing', NULL, 35, 35),
-('route-124', 170, 'fishing', NULL, 55, 55),
-('route-124', 369, 'fishing', NULL, 55, 55),
+('route-124', 170, 'fishing_old', NULL, 15, 15),
+('route-124', 369, 'fishing_old', NULL, 15, 15),
+('route-124', 170, 'fishing_good', NULL, 35, 35),
+('route-124', 369, 'fishing_good', NULL, 35, 35),
+('route-124', 170, 'fishing_super', NULL, 55, 55),
+('route-124', 369, 'fishing_super', NULL, 55, 55),
 ('mossdeep-city', 594, 'surfing', NULL, 40, 50),
-('mossdeep-city', 318, 'fishing', NULL, 15, 15),
-('mossdeep-city', 318, 'fishing', NULL, 35, 35),
-('mossdeep-city', 319, 'fishing', NULL, 55, 55),
+('mossdeep-city', 318, 'fishing_old', NULL, 15, 15),
+('mossdeep-city', 318, 'fishing_good', NULL, 35, 35),
+('mossdeep-city', 319, 'fishing_super', NULL, 55, 55),
 ('route-125', 594, 'dexnav', NULL, 50, 50),
 ('route-125', 86, 'surfing', NULL, 40, 50),
 ('route-125', 87, 'surfing', NULL, 40, 50),
 ('route-125', 131, 'surfing', NULL, 40, 50),
-('route-125', 90, 'fishing', NULL, 15, 15),
-('route-125', 90, 'fishing', NULL, 35, 35),
-('route-125', 91, 'fishing', NULL, 55, 55),
+('route-125', 90, 'fishing_old', NULL, 15, 15),
+('route-125', 90, 'fishing_good', NULL, 35, 35),
+('route-125', 91, 'fishing_super', NULL, 55, 55),
 ('shoal-cave-1f', 215, 'walking', NULL, 40, 40),
 ('shoal-cave-1f', 220, 'walking', NULL, 40, 40),
 ('shoal-cave-1f', 225, 'walking', NULL, 40, 40),
@@ -2016,13 +1963,6 @@ INSERT INTO _enc VALUES
 ('shoal-cave-1f', 582, 'walking', NULL, 40, 40),
 ('shoal-cave-1f', 613, 'walking', NULL, 40, 40),
 ('shoal-cave-1f', 712, 'walking', NULL, 40, 40),
-('shoal-cave-1f', 461, 'dexnav', NULL, 50, 50),
-('shoal-cave-1f', 712, 'horde', NULL, 25, 25),
-('shoal-cave-1f', 86, 'surfing', NULL, 40, 50),
-('shoal-cave-1f', 87, 'surfing', NULL, 40, 50),
-('shoal-cave-1f', 90, 'fishing', NULL, 15, 15),
-('shoal-cave-1f', 90, 'fishing', NULL, 35, 35),
-('shoal-cave-1f', 91, 'fishing', NULL, 55, 55),
 ('shoal-cave-1f', 124, 'walking', NULL, 50, 50),
 ('shoal-cave-1f', 215, 'walking', NULL, 50, 50),
 ('shoal-cave-1f', 221, 'walking', NULL, 50, 50),
@@ -2033,15 +1973,22 @@ INSERT INTO _enc VALUES
 ('shoal-cave-1f', 583, 'walking', NULL, 50, 50),
 ('shoal-cave-1f', 614, 'walking', NULL, 50, 50),
 ('shoal-cave-1f', 713, 'walking', NULL, 50, 50),
-('shoal-cave-1f', 75, 'rock-smash', NULL, 50, 50),
-('shoal-cave-1f', 525, 'rock-smash', NULL, 50, 50),
 ('shoal-cave-1f', 461, 'dexnav', NULL, 50, 50),
+('shoal-cave-1f', 461, 'dexnav', NULL, 50, 50),
+('shoal-cave-1f', 712, 'horde', NULL, 25, 25),
 ('shoal-cave-1f', 712, 'horde', NULL, 32, 32),
+('shoal-cave-1f', 75, 'rock_smash', NULL, 50, 50),
+('shoal-cave-1f', 525, 'rock_smash', NULL, 50, 50),
 ('shoal-cave-1f', 86, 'surfing', NULL, 40, 50),
 ('shoal-cave-1f', 87, 'surfing', NULL, 40, 50),
-('shoal-cave-1f', 90, 'fishing', NULL, 15, 15),
-('shoal-cave-1f', 90, 'fishing', NULL, 35, 35),
-('shoal-cave-1f', 91, 'fishing', NULL, 55, 55),
+('shoal-cave-1f', 86, 'surfing', NULL, 40, 50),
+('shoal-cave-1f', 87, 'surfing', NULL, 40, 50),
+('shoal-cave-1f', 90, 'fishing_old', NULL, 15, 15),
+('shoal-cave-1f', 90, 'fishing_old', NULL, 15, 15),
+('shoal-cave-1f', 90, 'fishing_good', NULL, 35, 35),
+('shoal-cave-1f', 90, 'fishing_good', NULL, 35, 35),
+('shoal-cave-1f', 91, 'fishing_super', NULL, 55, 55),
+('shoal-cave-1f', 91, 'fishing_super', NULL, 55, 55),
 ('shoal-cave-ice-room', 124, 'walking', NULL, 55, 55),
 ('shoal-cave-ice-room', 215, 'walking', NULL, 55, 55),
 ('shoal-cave-ice-room', 221, 'walking', NULL, 55, 55),
@@ -2057,94 +2004,94 @@ INSERT INTO _enc VALUES
 ('route-126', 594, 'dexnav', NULL, 50, 50),
 ('route-126', 278, 'surfing', NULL, 40, 50),
 ('route-126', 279, 'surfing', NULL, 40, 50),
-('route-126', 366, 'fishing', NULL, 15, 15),
-('route-126', 369, 'fishing', NULL, 15, 15),
-('route-126', 366, 'fishing', NULL, 35, 35),
-('route-126', 369, 'fishing', NULL, 35, 35),
-('route-126', 366, 'fishing', NULL, 55, 55),
-('route-126', 369, 'fishing', NULL, 55, 55),
+('route-126', 366, 'fishing_old', NULL, 15, 15),
+('route-126', 369, 'fishing_old', NULL, 15, 15),
+('route-126', 366, 'fishing_good', NULL, 35, 35),
+('route-126', 369, 'fishing_good', NULL, 35, 35),
+('route-126', 366, 'fishing_super', NULL, 55, 55),
+('route-126', 369, 'fishing_super', NULL, 55, 55),
 ('route-127', 594, 'dexnav', NULL, 50, 50),
 ('route-127', 72, 'surfing', NULL, 40, 50),
 ('route-127', 73, 'surfing', NULL, 40, 50),
-('route-127', 690, 'fishing', NULL, 15, 15),
-('route-127', 369, 'fishing', NULL, 15, 15),
-('route-127', 690, 'fishing', NULL, 35, 35),
-('route-127', 369, 'fishing', NULL, 35, 35),
-('route-127', 691, 'fishing', NULL, 55, 55),
-('route-127', 369, 'fishing', NULL, 55, 55),
+('route-127', 690, 'fishing_old', NULL, 15, 15),
+('route-127', 369, 'fishing_old', NULL, 15, 15),
+('route-127', 690, 'fishing_good', NULL, 35, 35),
+('route-127', 369, 'fishing_good', NULL, 35, 35),
+('route-127', 691, 'fishing_super', NULL, 55, 55),
+('route-127', 369, 'fishing_super', NULL, 55, 55),
 ('route-128', 594, 'dexnav', NULL, 50, 50),
 ('route-128', 592, 'surfing', NULL, 40, 50),
 ('route-128', 593, 'surfing', NULL, 40, 50),
-('route-128', 370, 'fishing', NULL, 15, 15),
-('route-128', 369, 'fishing', NULL, 15, 15),
-('route-128', 370, 'fishing', NULL, 35, 35),
-('route-128', 369, 'fishing', NULL, 35, 35),
-('route-128', 370, 'fishing', NULL, 55, 55),
-('route-128', 369, 'fishing', NULL, 55, 55),
+('route-128', 370, 'fishing_old', NULL, 15, 15),
+('route-128', 369, 'fishing_old', NULL, 15, 15),
+('route-128', 370, 'fishing_good', NULL, 35, 35),
+('route-128', 369, 'fishing_good', NULL, 35, 35),
+('route-128', 370, 'fishing_super', NULL, 55, 55),
+('route-128', 369, 'fishing_super', NULL, 55, 55),
 ('ever-grande-city', 279, 'surfing', NULL, 45, 55),
 ('ever-grande-city', 73, 'surfing', NULL, 45, 55),
 ('ever-grande-city', 593, 'surfing', NULL, 45, 55),
-('ever-grande-city', 370, 'fishing', NULL, 15, 15),
-('ever-grande-city', 222, 'fishing', NULL, 15, 15),
-('ever-grande-city', 370, 'fishing', NULL, 35, 35),
-('ever-grande-city', 222, 'fishing', NULL, 35, 35),
-('ever-grande-city', 370, 'fishing', NULL, 55, 55),
-('ever-grande-city', 222, 'fishing', NULL, 55, 55),
+('ever-grande-city', 370, 'fishing_old', NULL, 15, 15),
+('ever-grande-city', 222, 'fishing_old', NULL, 15, 15),
+('ever-grande-city', 370, 'fishing_good', NULL, 35, 35),
+('ever-grande-city', 222, 'fishing_good', NULL, 35, 35),
+('ever-grande-city', 370, 'fishing_super', NULL, 55, 55),
+('ever-grande-city', 222, 'fishing_super', NULL, 55, 55),
 ('route-129', 594, 'dexnav', NULL, 50, 50),
 ('route-129', 320, 'surfing', NULL, 40, 50),
 ('route-129', 321, 'surfing', NULL, 40, 50),
-('route-129', 320, 'fishing', NULL, 15, 15),
-('route-129', 369, 'fishing', NULL, 15, 15),
-('route-129', 320, 'fishing', NULL, 35, 35),
-('route-129', 369, 'fishing', NULL, 35, 35),
-('route-129', 320, 'fishing', NULL, 55, 55),
-('route-129', 369, 'fishing', NULL, 55, 55),
+('route-129', 320, 'fishing_old', NULL, 15, 15),
+('route-129', 369, 'fishing_old', NULL, 15, 15),
+('route-129', 320, 'fishing_good', NULL, 35, 35),
+('route-129', 369, 'fishing_good', NULL, 35, 35),
+('route-129', 320, 'fishing_super', NULL, 55, 55),
+('route-129', 369, 'fishing_super', NULL, 55, 55),
 ('route-130', 594, 'dexnav', NULL, 50, 50),
 ('route-130', 72, 'surfing', NULL, 40, 50),
 ('route-130', 73, 'surfing', NULL, 40, 50),
-('route-130', 690, 'fishing', NULL, 15, 15),
-('route-130', 369, 'fishing', NULL, 15, 15),
-('route-130', 690, 'fishing', NULL, 35, 35),
-('route-130', 369, 'fishing', NULL, 35, 35),
-('route-130', 691, 'fishing', NULL, 55, 55),
-('route-130', 369, 'fishing', NULL, 55, 55),
+('route-130', 690, 'fishing_old', NULL, 15, 15),
+('route-130', 369, 'fishing_old', NULL, 15, 15),
+('route-130', 690, 'fishing_good', NULL, 35, 35),
+('route-130', 369, 'fishing_good', NULL, 35, 35),
+('route-130', 691, 'fishing_super', NULL, 55, 55),
+('route-130', 369, 'fishing_super', NULL, 55, 55),
 ('route-131', 594, 'dexnav', NULL, 50, 50),
 ('route-131', 278, 'surfing', NULL, 40, 50),
 ('route-131', 279, 'surfing', NULL, 40, 50),
-('route-131', 692, 'fishing', NULL, 15, 15),
-('route-131', 222, 'fishing', NULL, 15, 15),
-('route-131', 692, 'fishing', NULL, 35, 35),
-('route-131', 222, 'fishing', NULL, 35, 35),
-('route-131', 693, 'fishing', NULL, 55, 55),
-('route-131', 222, 'fishing', NULL, 55, 55),
+('route-131', 692, 'fishing_old', NULL, 15, 15),
+('route-131', 222, 'fishing_old', NULL, 15, 15),
+('route-131', 692, 'fishing_good', NULL, 35, 35),
+('route-131', 222, 'fishing_good', NULL, 35, 35),
+('route-131', 693, 'fishing_super', NULL, 55, 55),
+('route-131', 222, 'fishing_super', NULL, 55, 55),
 ('pacifidlog-town', 222, 'surfing', NULL, 40, 50),
-('pacifidlog-town', 222, 'fishing', NULL, 15, 15),
-('pacifidlog-town', 222, 'fishing', NULL, 35, 35),
-('pacifidlog-town', 222, 'fishing', NULL, 55, 55),
+('pacifidlog-town', 222, 'fishing_old', NULL, 15, 15),
+('pacifidlog-town', 222, 'fishing_good', NULL, 35, 35),
+('pacifidlog-town', 222, 'fishing_super', NULL, 55, 55),
 ('route-132', 230, 'dexnav', NULL, 50, 50),
 ('route-132', 489, 'surfing', NULL, 40, 40),
-('route-132', 116, 'fishing', NULL, 15, 15),
-('route-132', 147, 'fishing', NULL, 15, 15),
-('route-132', 116, 'fishing', NULL, 35, 35),
-('route-132', 147, 'fishing', NULL, 35, 35),
-('route-132', 117, 'fishing', NULL, 55, 55),
-('route-132', 148, 'fishing', NULL, 55, 55),
+('route-132', 116, 'fishing_old', NULL, 15, 15),
+('route-132', 147, 'fishing_old', NULL, 15, 15),
+('route-132', 116, 'fishing_good', NULL, 35, 35),
+('route-132', 147, 'fishing_good', NULL, 35, 35),
+('route-132', 117, 'fishing_super', NULL, 55, 55),
+('route-132', 148, 'fishing_super', NULL, 55, 55),
 ('route-133', 230, 'dexnav', NULL, 50, 50),
 ('route-133', 489, 'surfing', NULL, 40, 40),
-('route-133', 116, 'fishing', NULL, 15, 15),
-('route-133', 147, 'fishing', NULL, 15, 15),
-('route-133', 116, 'fishing', NULL, 35, 35),
-('route-133', 147, 'fishing', NULL, 35, 35),
-('route-133', 117, 'fishing', NULL, 55, 55),
-('route-133', 148, 'fishing', NULL, 55, 55),
+('route-133', 116, 'fishing_old', NULL, 15, 15),
+('route-133', 147, 'fishing_old', NULL, 15, 15),
+('route-133', 116, 'fishing_good', NULL, 35, 35),
+('route-133', 147, 'fishing_good', NULL, 35, 35),
+('route-133', 117, 'fishing_super', NULL, 55, 55),
+('route-133', 148, 'fishing_super', NULL, 55, 55),
 ('route-134', 230, 'dexnav', NULL, 50, 50),
 ('route-134', 489, 'surfing', NULL, 40, 40),
-('route-134', 116, 'fishing', NULL, 15, 15),
-('route-134', 147, 'fishing', NULL, 15, 15),
-('route-134', 116, 'fishing', NULL, 35, 35),
-('route-134', 147, 'fishing', NULL, 35, 35),
-('route-134', 117, 'fishing', NULL, 55, 55),
-('route-134', 148, 'fishing', NULL, 55, 55),
+('route-134', 116, 'fishing_old', NULL, 15, 15),
+('route-134', 147, 'fishing_old', NULL, 15, 15),
+('route-134', 116, 'fishing_good', NULL, 35, 35),
+('route-134', 147, 'fishing_good', NULL, 35, 35),
+('route-134', 117, 'fishing_super', NULL, 55, 55),
+('route-134', 148, 'fishing_super', NULL, 55, 55),
 ('underwater-107', 73, 'walking', NULL, 55, 55),
 ('underwater-107', 117, 'walking', NULL, 55, 55),
 ('underwater-107', 121, 'walking', NULL, 55, 55),
@@ -2206,9 +2153,9 @@ INSERT INTO _enc VALUES
 ('underwater-130', 593, 'walking', NULL, 55, 55),
 ('underwater-130', 691, 'walking', NULL, 55, 55),
 ('seafloor-cavern-out', 42, 'surfing', NULL, 45, 55),
-('seafloor-cavern-out', 369, 'fishing', NULL, 15, 15),
-('seafloor-cavern-out', 369, 'fishing', NULL, 35, 35),
-('seafloor-cavern-out', 369, 'fishing', NULL, 55, 55),
+('seafloor-cavern-out', 369, 'fishing_old', NULL, 15, 15),
+('seafloor-cavern-out', 369, 'fishing_good', NULL, 35, 35),
+('seafloor-cavern-out', 369, 'fishing_super', NULL, 55, 55),
 ('seafloor-cavern-front-rooms', 138, 'walking', NULL, 44, 44),
 ('seafloor-cavern-front-rooms', 140, 'walking', NULL, 44, 44),
 ('seafloor-cavern-front-rooms', 347, 'walking', NULL, 44, 44),
@@ -2219,8 +2166,8 @@ INSERT INTO _enc VALUES
 ('seafloor-cavern-front-rooms', 566, 'walking', NULL, 44, 44),
 ('seafloor-cavern-front-rooms', 696, 'walking', NULL, 44, 44),
 ('seafloor-cavern-front-rooms', 698, 'walking', NULL, 44, 44),
-('seafloor-cavern-front-rooms', 213, 'rock-smash', NULL, 44, 44),
 ('seafloor-cavern-front-rooms', 41, 'horde', NULL, 30, 30),
+('seafloor-cavern-front-rooms', 213, 'rock_smash', NULL, 44, 44),
 ('seafloor-cavern-water-rooms', 42, 'walking', NULL, 56, 56),
 ('seafloor-cavern-water-rooms', 142, 'walking', NULL, 56, 56),
 ('seafloor-cavern-water-rooms', 528, 'walking', NULL, 56, 56),
@@ -2230,9 +2177,9 @@ INSERT INTO _enc VALUES
 ('seafloor-cavern-water-rooms', 42, 'horde', NULL, 35, 35),
 ('seafloor-cavern-water-rooms', 73, 'surfing', NULL, 45, 55),
 ('seafloor-cavern-water-rooms', 593, 'surfing', NULL, 45, 55),
-('seafloor-cavern-water-rooms', 369, 'fishing', NULL, 15, 15),
-('seafloor-cavern-water-rooms', 369, 'fishing', NULL, 35, 35),
-('seafloor-cavern-water-rooms', 369, 'fishing', NULL, 55, 55),
+('seafloor-cavern-water-rooms', 369, 'fishing_old', NULL, 15, 15),
+('seafloor-cavern-water-rooms', 369, 'fishing_good', NULL, 35, 35),
+('seafloor-cavern-water-rooms', 369, 'fishing_super', NULL, 55, 55),
 ('seafloor-cavern-back-rooms', 139, 'walking', NULL, 56, 56),
 ('seafloor-cavern-back-rooms', 141, 'walking', NULL, 56, 56),
 ('seafloor-cavern-back-rooms', 348, 'walking', NULL, 56, 56),
@@ -2243,16 +2190,16 @@ INSERT INTO _enc VALUES
 ('seafloor-cavern-back-rooms', 567, 'walking', NULL, 56, 56),
 ('seafloor-cavern-back-rooms', 697, 'walking', NULL, 56, 56),
 ('seafloor-cavern-back-rooms', 699, 'walking', NULL, 56, 56),
-('seafloor-cavern-back-rooms', 213, 'rock-smash', NULL, 56, 56),
 ('seafloor-cavern-back-rooms', 42, 'horde', NULL, 35, 35),
+('seafloor-cavern-back-rooms', 213, 'rock_smash', NULL, 56, 56),
 ('sootopolis-city', 129, 'surfing', NULL, 45, 55),
 ('sootopolis-city', 130, 'surfing', NULL, 45, 55),
-('sootopolis-city', 129, 'fishing', NULL, 15, 15),
-('sootopolis-city', 130, 'fishing', NULL, 15, 15),
-('sootopolis-city', 129, 'fishing', NULL, 35, 35),
-('sootopolis-city', 130, 'fishing', NULL, 35, 35),
-('sootopolis-city', 129, 'fishing', NULL, 55, 55),
-('sootopolis-city', 130, 'fishing', NULL, 55, 55),
+('sootopolis-city', 129, 'fishing_old', NULL, 15, 15),
+('sootopolis-city', 130, 'fishing_old', NULL, 15, 15),
+('sootopolis-city', 129, 'fishing_good', NULL, 35, 35),
+('sootopolis-city', 130, 'fishing_good', NULL, 35, 35),
+('sootopolis-city', 129, 'fishing_super', NULL, 55, 55),
+('sootopolis-city', 130, 'fishing_super', NULL, 55, 55),
 ('cave-of-origin-1f', 42, 'walking', NULL, 57, 57),
 ('cave-of-origin-1f', 142, 'walking', NULL, 57, 57),
 ('cave-of-origin-1f', 302, 'walking', NULL, 57, 57),
@@ -2288,9 +2235,20 @@ INSERT INTO _enc VALUES
 ('sootopolis-gym', 35, 'horde', NULL, 37, 37),
 ('sootopolis-gym', 42, 'surfing', NULL, 55, 65),
 ('sootopolis-gym', 338, 'surfing', NULL, 55, 65),
-('sootopolis-gym', 147, 'fishing', NULL, 15, 15),
-('sootopolis-gym', 147, 'fishing', NULL, 35, 35),
-('sootopolis-gym', 148, 'fishing', NULL, 55, 55),
+('sootopolis-gym', 147, 'fishing_old', NULL, 15, 15),
+('sootopolis-gym', 147, 'fishing_good', NULL, 35, 35),
+('sootopolis-gym', 148, 'fishing_super', NULL, 55, 55),
+('meteor-falls-b1f', 35, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 42, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 247, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 337, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 338, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 372, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 375, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 598, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 621, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 634, 'walking', NULL, 59, 59),
+('meteor-falls-b1f', 703, 'walking', NULL, 59, 59),
 ('meteor-falls-b1f', 35, 'walking', NULL, 59, 59),
 ('meteor-falls-b1f', 42, 'walking', NULL, 59, 59),
 ('meteor-falls-b1f', 247, 'walking', NULL, 59, 59),
@@ -2303,29 +2261,18 @@ INSERT INTO _enc VALUES
 ('meteor-falls-b1f', 634, 'walking', NULL, 59, 59),
 ('meteor-falls-b1f', 703, 'walking', NULL, 59, 59),
 ('meteor-falls-b1f', 169, 'dexnav', NULL, 60, 60),
-('meteor-falls-b1f', 35, 'horde', NULL, 37, 37),
-('meteor-falls-b1f', 42, 'surfing', NULL, 55, 65),
-('meteor-falls-b1f', 337, 'surfing', NULL, 55, 65),
-('meteor-falls-b1f', 147, 'fishing', NULL, 15, 15),
-('meteor-falls-b1f', 147, 'fishing', NULL, 35, 35),
-('meteor-falls-b1f', 148, 'fishing', NULL, 55, 55),
-('meteor-falls-b1f', 35, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 42, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 247, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 337, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 338, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 372, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 375, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 598, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 621, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 634, 'walking', NULL, 59, 59),
-('meteor-falls-b1f', 703, 'walking', NULL, 59, 59),
 ('meteor-falls-b1f', 373, 'dexnav', NULL, 60, 60),
+('meteor-falls-b1f', 35, 'horde', NULL, 37, 37),
 ('meteor-falls-b1f', 371, 'horde', NULL, 37, 37),
 ('meteor-falls-b1f', 42, 'surfing', NULL, 55, 65),
-('meteor-falls-b1f', 147, 'fishing', NULL, 15, 15),
-('meteor-falls-b1f', 147, 'fishing', NULL, 35, 35),
-('meteor-falls-b1f', 148, 'fishing', NULL, 55, 55),
+('meteor-falls-b1f', 337, 'surfing', NULL, 55, 65),
+('meteor-falls-b1f', 42, 'surfing', NULL, 55, 65),
+('meteor-falls-b1f', 147, 'fishing_old', NULL, 15, 15),
+('meteor-falls-b1f', 147, 'fishing_old', NULL, 15, 15),
+('meteor-falls-b1f', 147, 'fishing_good', NULL, 35, 35),
+('meteor-falls-b1f', 147, 'fishing_good', NULL, 35, 35),
+('meteor-falls-b1f', 148, 'fishing_super', NULL, 55, 55),
+('meteor-falls-b1f', 148, 'fishing_super', NULL, 55, 55),
 ('victory-road-1f', 42, 'walking', NULL, 59, 59),
 ('victory-road-1f', 75, 'walking', NULL, 59, 59),
 ('victory-road-1f', 105, 'walking', NULL, 59, 59),
@@ -2339,12 +2286,12 @@ INSERT INTO _enc VALUES
 ('victory-road-1f', 294, 'horde', NULL, 37, 37),
 ('victory-road-1f', 419, 'surfing', NULL, 55, 65),
 ('victory-road-1f', 184, 'surfing', NULL, 55, 65),
-('victory-road-1f', 60, 'fishing', NULL, 15, 15),
-('victory-road-1f', 550, 'fishing', NULL, 15, 15),
-('victory-road-1f', 61, 'fishing', NULL, 35, 35),
-('victory-road-1f', 550, 'fishing', NULL, 35, 35),
-('victory-road-1f', 61, 'fishing', NULL, 55, 55),
-('victory-road-1f', 550, 'fishing', NULL, 55, 55),
+('victory-road-1f', 60, 'fishing_old', NULL, 15, 15),
+('victory-road-1f', 550, 'fishing_old', NULL, 15, 15),
+('victory-road-1f', 61, 'fishing_good', NULL, 35, 35),
+('victory-road-1f', 550, 'fishing_good', NULL, 35, 35),
+('victory-road-1f', 61, 'fishing_super', NULL, 55, 55),
+('victory-road-1f', 550, 'fishing_super', NULL, 55, 55),
 ('victory-road-b1f', 64, 'walking', NULL, 59, 59),
 ('victory-road-b1f', 67, 'walking', NULL, 59, 59),
 ('victory-road-b1f', 93, 'walking', NULL, 59, 59),
@@ -2359,20 +2306,20 @@ INSERT INTO _enc VALUES
 ('victory-road-b1f', 596, 'horde', NULL, 37, 37),
 ('victory-road-b1f', 419, 'surfing', NULL, 55, 65),
 ('victory-road-b1f', 184, 'surfing', NULL, 55, 65),
-('victory-road-b1f', 60, 'fishing', NULL, 15, 15),
-('victory-road-b1f', 550, 'fishing', NULL, 15, 15),
-('victory-road-b1f', 61, 'fishing', NULL, 35, 35),
-('victory-road-b1f', 550, 'fishing', NULL, 35, 35),
-('victory-road-b1f', 61, 'fishing', NULL, 55, 55),
-('victory-road-b1f', 550, 'fishing', NULL, 55, 55),
+('victory-road-b1f', 60, 'fishing_old', NULL, 15, 15),
+('victory-road-b1f', 550, 'fishing_old', NULL, 15, 15),
+('victory-road-b1f', 61, 'fishing_good', NULL, 35, 35),
+('victory-road-b1f', 550, 'fishing_good', NULL, 35, 35),
+('victory-road-b1f', 61, 'fishing_super', NULL, 55, 55),
+('victory-road-b1f', 550, 'fishing_super', NULL, 55, 55),
 ('victory-road-2f', 419, 'surfing', NULL, 55, 65),
 ('victory-road-2f', 184, 'surfing', NULL, 55, 65),
-('victory-road-2f', 60, 'fishing', NULL, 15, 15),
-('victory-road-2f', 550, 'fishing', NULL, 15, 15),
-('victory-road-2f', 61, 'fishing', NULL, 35, 35),
-('victory-road-2f', 550, 'fishing', NULL, 35, 35),
-('victory-road-2f', 61, 'fishing', NULL, 55, 55),
-('victory-road-2f', 550, 'fishing', NULL, 55, 55),
+('victory-road-2f', 60, 'fishing_old', NULL, 15, 15),
+('victory-road-2f', 550, 'fishing_old', NULL, 15, 15),
+('victory-road-2f', 61, 'fishing_good', NULL, 35, 35),
+('victory-road-2f', 550, 'fishing_good', NULL, 35, 35),
+('victory-road-2f', 61, 'fishing_super', NULL, 55, 55),
+('victory-road-2f', 550, 'fishing_super', NULL, 55, 55),
 ('sky-pillar', 20, 'walking', NULL, 67, 67),
 ('sky-pillar', 168, 'walking', NULL, 67, 67),
 ('sky-pillar', 334, 'walking', NULL, 67, 67),
@@ -2384,13 +2331,6 @@ INSERT INTO _enc VALUES
 ('sky-pillar', 623, 'walking', NULL, 67, 67),
 ('sky-pillar', 715, 'walking', NULL, 67, 67),
 ('sky-pillar', 334, 'horde', NULL, 43, 43),
-('battle-resort', 279, 'surfing', NULL, 65, 75),
-('battle-resort', 73, 'surfing', NULL, 65, 75),
-('battle-resort', 226, 'surfing', NULL, 65, 75),
-('battle-resort', 593, 'surfing', NULL, 65, 75),
-('battle-resort', 370, 'fishing', NULL, 1, 100),
-('battle-resort', 370, 'fishing', NULL, 1, 100),
-('battle-resort', 370, 'fishing', NULL, 1, 100),
 ('battle-resort', 243, 'walking', NULL, 65, 70),
 ('battle-resort', 244, 'walking', NULL, 65, 70),
 ('battle-resort', 245, 'walking', NULL, 65, 70),
@@ -2402,7 +2342,6 @@ INSERT INTO _enc VALUES
 ('battle-resort', 647, 'walking', NULL, 65, 70),
 ('battle-resort', 648, 'walking', NULL, 65, 70),
 ('battle-resort', 716, 'walking', NULL, 65, 70),
-('battle-resort', 132, 'rock-smash', NULL, 60, 60),
 ('battle-resort', 150, 'walking', NULL, 65, 70),
 ('battle-resort', 382, 'walking', NULL, 65, 70),
 ('battle-resort', 383, 'walking', NULL, 65, 70),
@@ -2414,7 +2353,6 @@ INSERT INTO _enc VALUES
 ('battle-resort', 718, 'walking', NULL, 65, 70),
 ('battle-resort', 719, 'walking', NULL, 65, 70),
 ('battle-resort', 721, 'walking', NULL, 65, 70),
-('battle-resort', 132, 'rock-smash', NULL, 60, 60),
 ('battle-resort', 144, 'walking', NULL, 65, 80),
 ('battle-resort', 145, 'walking', NULL, 65, 80),
 ('battle-resort', 146, 'walking', NULL, 65, 80),
@@ -2426,7 +2364,6 @@ INSERT INTO _enc VALUES
 ('battle-resort', 643, 'walking', NULL, 65, 80),
 ('battle-resort', 644, 'walking', NULL, 65, 80),
 ('battle-resort', 717, 'walking', NULL, 65, 80),
-('battle-resort', 132, 'rock-smash', NULL, 60, 60),
 ('battle-resort', 151, 'walking', NULL, 65, 68),
 ('battle-resort', 380, 'walking', NULL, 65, 68),
 ('battle-resort', 381, 'walking', NULL, 65, 68),
@@ -2438,7 +2375,17 @@ INSERT INTO _enc VALUES
 ('battle-resort', 642, 'walking', NULL, 65, 68),
 ('battle-resort', 645, 'walking', NULL, 65, 68),
 ('battle-resort', 720, 'walking', NULL, 65, 68),
-('battle-resort', 132, 'rock-smash', NULL, 50, 50);
+('battle-resort', 132, 'rock_smash', NULL, 60, 60),
+('battle-resort', 132, 'rock_smash', NULL, 60, 60),
+('battle-resort', 132, 'rock_smash', NULL, 60, 60),
+('battle-resort', 132, 'rock_smash', NULL, 50, 50),
+('battle-resort', 279, 'surfing', NULL, 65, 75),
+('battle-resort', 73, 'surfing', NULL, 65, 75),
+('battle-resort', 226, 'surfing', NULL, 65, 75),
+('battle-resort', 593, 'surfing', NULL, 65, 75),
+('battle-resort', 370, 'fishing_old', NULL, 1, 100),
+('battle-resort', 370, 'fishing_good', NULL, 1, 100),
+('battle-resort', 370, 'fishing_super', NULL, 1, 100);
 
 -- Insert encounters from temp table
 INSERT INTO public.encounters (route_id, pokemon_national_dex_id, method, encounter_rate, level_min, level_max)
@@ -2448,7 +2395,7 @@ FROM _enc e JOIN public.routes r ON r.slug = e.slug AND r.game_id = 'f1a2b3c4-d5
 DROP TABLE _enc;
 
 -- ===========================================
--- STEP 4: TRAINERS (529 total)
+-- STEP 4: TRAINERS (493 total)
 -- ===========================================
 
 DO $$
@@ -2456,6 +2403,8 @@ DECLARE
   v_trainer_id UUID;
   v_route_id UUID;
 BEGIN
+
+
 
   -- Aroma Lady Daisy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-103' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2470,6 +2419,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 406, 19, 3, '[]'::jsonb);
 
+
   -- Twins Amy & Liv
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-103' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2480,6 +2430,7 @@ BEGIN
   VALUES (v_trainer_id, 35, 20, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 39, 20, 2, '[]'::jsonb);
+
 
   -- Poké Fan Miguel
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-103' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2498,6 +2449,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 25, 18, 5, '[]'::jsonb);
 
+
   -- Fisherman Andrew
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-103' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2510,6 +2462,7 @@ BEGIN
   VALUES (v_trainer_id, 690, 19, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 120, 19, 3, '[]'::jsonb);
+
 
   -- Youngster Calvin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-102' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2524,6 +2477,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 263, 7, 3, '[]'::jsonb);
 
+
   -- Bug Catcher Rick
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-102' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2536,6 +2490,7 @@ BEGIN
   VALUES (v_trainer_id, 13, 7, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 265, 7, 3, '[]'::jsonb);
+
 
   -- Youngster Allen
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-102' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2550,6 +2505,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 519, 7, 3, '[]'::jsonb);
 
+
   -- Lass Tiana
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-102' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2563,6 +2519,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 574, 7, 3, '[]'::jsonb);
 
+
   -- Rich Boy Winston
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-104-south' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2573,6 +2530,7 @@ BEGIN
   VALUES (v_trainer_id, 58, 10, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 506, 10, 2, '[]'::jsonb);
+
 
   -- Bug Catcher Lyle
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-woods' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2587,6 +2545,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 540, 10, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-woods' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2598,6 +2557,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 318, 11, 2, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-woods' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2608,6 +2568,7 @@ BEGIN
   VALUES (v_trainer_id, 261, 11, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 322, 11, 2, '[]'::jsonb);
+
 
   -- Bug Catcher James
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-woods' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2622,6 +2583,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 283, 10, 3, '[]'::jsonb);
 
+
   -- Lady Cindy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-104-north' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2632,6 +2594,7 @@ BEGIN
   VALUES (v_trainer_id, 37, 12, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 427, 12, 2, '[]'::jsonb);
+
 
   -- Lass Haley
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-104-north' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2645,6 +2608,7 @@ BEGIN
   VALUES (v_trainer_id, 133, 11, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 285, 11, 3, '[]'::jsonb);
+
 
   -- Twins Gina & Mia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-104-north' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2661,6 +2625,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 548, 10, 4, '[]'::jsonb);
 
+
   -- Fisherman Ivan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-104-north' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2671,6 +2636,7 @@ BEGIN
   VALUES (v_trainer_id, 550, 12, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 550, 12, 2, '[]'::jsonb);
+
 
   -- Youngster Josh
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2685,6 +2651,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 408, 12, 3, '[]'::jsonb);
 
+
   -- Youngster Tommy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2698,6 +2665,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 698, 12, 3, '[]'::jsonb);
 
+
   -- Schoolkid Georgia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2710,6 +2678,7 @@ BEGIN
   VALUES (v_trainer_id, 140, 12, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 564, 12, 3, '[]'::jsonb);
+
 
   -- Leader Roxanne
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2730,6 +2699,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 299, 16, 6, '[]'::jsonb);
 
+
   -- Bug Catcher Jose
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-116' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2745,6 +2715,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 412, 11, 4, '[]'::jsonb);
 
+
   -- Lass Janice
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-116' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2757,6 +2728,7 @@ BEGIN
   VALUES (v_trainer_id, 179, 12, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 300, 12, 3, '[]'::jsonb);
+
 
   -- Hiker Clark
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-116' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2771,6 +2743,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 304, 12, 3, '[]'::jsonb);
 
+
   -- Schoolkid Jerry
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-116' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2780,6 +2753,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 280, 14, 1, '[]'::jsonb);
 
+
   -- Schoolkid Karen
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-116' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2788,6 +2762,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 175, 14, 1, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rusturf-tunnel' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2802,6 +2777,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 320, 14, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rusturf-tunnel' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2814,6 +2790,7 @@ BEGIN
   VALUES (v_trainer_id, 322, 14, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 218, 14, 3, '[]'::jsonb);
+
 
   -- Hiker Mike
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rusturf-tunnel' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2828,6 +2805,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 246, 22, 3, '[]'::jsonb);
 
+
   -- Fisherman Elliot
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-106' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2840,6 +2818,7 @@ BEGIN
   VALUES (v_trainer_id, 72, 15, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 339, 15, 3, '[]'::jsonb);
+
 
   -- Backpacker Graeme
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-106' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2854,6 +2833,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 504, 15, 3, '[]'::jsonb);
 
+
   -- Swimmer Nicole
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-106' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2866,6 +2846,7 @@ BEGIN
   VALUES (v_trainer_id, 87, 36, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 394, 36, 3, '[]'::jsonb);
+
 
   -- Triathlete Caleb
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-106' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2880,6 +2861,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 117, 36, 3, '[]'::jsonb);
 
+
   -- Swimmer Douglas
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-106' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2893,6 +2875,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 340, 36, 3, '[]'::jsonb);
 
+
   -- Battle Girl Laura
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'dewford-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2903,6 +2886,7 @@ BEGIN
   VALUES (v_trainer_id, 56, 17, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 453, 17, 2, '[]'::jsonb);
+
 
   -- Black Belt Hideki
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'dewford-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2915,6 +2899,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 236, 17, 2, '[]'::jsonb);
 
+
   -- Battle Girl Tessa
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'dewford-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2925,6 +2910,7 @@ BEGIN
   VALUES (v_trainer_id, 532, 17, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 447, 17, 2, '[]'::jsonb);
+
 
   -- Leader Brawly
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'dewford-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2945,6 +2931,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 297, 19, 6, '[]'::jsonb);
 
+
   -- Swimmer Beth
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2958,6 +2945,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 226, 36, 3, '[]'::jsonb);
 
+
   -- Swimmer Denise
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2968,6 +2956,7 @@ BEGIN
   VALUES (v_trainer_id, 657, 37, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 368, 37, 2, '[]'::jsonb);
+
 
   -- Swimmer Darrin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -2980,6 +2969,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 367, 37, 2, '[]'::jsonb);
 
+
   -- Sis & Bro Lisa and Ray
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -2991,6 +2981,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 342, 39, 2, '[]'::jsonb);
 
+
   -- Swimmer Tony
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3001,6 +2992,7 @@ BEGIN
   VALUES (v_trainer_id, 592, 37, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 592, 37, 2, '[]'::jsonb);
+
 
   -- Sailor Huey
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3015,6 +3007,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 422, 17, 3, '[]'::jsonb);
 
+
   -- Sailor Edmond
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3028,6 +3021,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 116, 17, 3, '[]'::jsonb);
 
+
   -- Tuber Ricky
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3039,6 +3033,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 458, 17, 2, '[]'::jsonb);
 
+
   -- Tuber Lola
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3049,6 +3044,7 @@ BEGIN
   VALUES (v_trainer_id, 54, 17, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 298, 17, 2, '[]'::jsonb);
+
 
   -- Tuber Simon
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3065,6 +3061,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 158, 15, 4, '[]'::jsonb);
 
+
   -- Delinquent Destinee
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3075,6 +3072,7 @@ BEGIN
   VALUES (v_trainer_id, 509, 19, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 302, 19, 2, '[]'::jsonb);
+
 
   -- Street Thug Blair
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3087,6 +3085,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 198, 19, 2, '[]'::jsonb);
 
+
   -- Beauty Johanna
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3095,6 +3094,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 303, 19, 1, '[]'::jsonb);
+
 
   -- Sailor Dwayne
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3109,6 +3109,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 79, 17, 3, '[]'::jsonb);
 
+
   -- Tuber Gwen
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3118,6 +3119,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 184, 37, 1, '[]'::jsonb);
 
+
   -- Tuber Carmen
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3126,6 +3128,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 419, 37, 1, '[]'::jsonb);
+
 
   -- Swimmer Alice
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3138,6 +3141,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 423, 37, 2, '[]'::jsonb);
 
+
   -- Swimmer David
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3148,6 +3152,7 @@ BEGIN
   VALUES (v_trainer_id, 224, 37, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 91, 37, 2, '[]'::jsonb);
+
 
   -- Young Couple Mel & Paul
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3160,6 +3165,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 313, 38, 2, '[]'::jsonb);
 
+
   -- Fisherman Carter
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3168,6 +3174,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 211, 38, 1, '[]'::jsonb);
+
 
   -- Ace Trainer Portia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-109' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3182,6 +3189,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 282, 38, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3195,6 +3203,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 88, 19, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3205,6 +3214,7 @@ BEGIN
   VALUES (v_trainer_id, 41, 20, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 510, 20, 2, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3219,6 +3229,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 109, 19, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3229,6 +3240,7 @@ BEGIN
   VALUES (v_trainer_id, 41, 20, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 262, 20, 2, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3243,6 +3255,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 110, 51, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3255,6 +3268,7 @@ BEGIN
   VALUES (v_trainer_id, 229, 51, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 500, 51, 3, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3269,6 +3283,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 89, 51, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'slateport-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3281,6 +3296,7 @@ BEGIN
   VALUES (v_trainer_id, 73, 51, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 160, 51, 3, '[]'::jsonb);
+
 
   -- Poké Fan Isabel
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3295,6 +3311,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 702, 20, 3, '[]'::jsonb);
 
+
   -- Youngster Timmy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3307,6 +3324,7 @@ BEGIN
   VALUES (v_trainer_id, 568, 20, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 527, 20, 3, '[]'::jsonb);
+
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3323,6 +3341,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 253, 24, 4, '[]'::jsonb);
 
+
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3337,6 +3356,7 @@ BEGIN
   VALUES (v_trainer_id, 285, 22, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 256, 24, 4, '[]'::jsonb);
+
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3353,6 +3373,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 259, 24, 4, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3367,6 +3388,7 @@ BEGIN
   VALUES (v_trainer_id, 320, 22, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 253, 24, 4, '[]'::jsonb);
+
 
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3383,6 +3405,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 256, 24, 4, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3398,6 +3421,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 259, 24, 4, '[]'::jsonb);
 
+
   -- Collector Edwin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3410,6 +3434,7 @@ BEGIN
   VALUES (v_trainer_id, 271, 20, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 274, 20, 3, '[]'::jsonb);
+
 
   -- Psychic Edward
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3424,6 +3449,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 64, 20, 3, '[]'::jsonb);
 
+
   -- Fisherman Dale
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-110' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3437,189 +3463,6 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 366, 20, 3, '[]'::jsonb);
 
-  -- Beauty Melissa
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Beauty Melissa', 'Trainer', false, 1)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 456, 22, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 431, 22, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 495, 22, 3, '[]'::jsonb);
-
-  -- Triathelete Sloan
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Triathelete Sloan', 'Trainer', false, 2)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 180, 24, 1, '[]'::jsonb);
-
-  -- Triathlete Jacob
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Triathlete Jacob', 'Trainer', false, 3)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 172, 22, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 172, 22, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 25, 22, 3, '[]'::jsonb);
-
-  -- Triathlete Anthony
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Triathlete Anthony', 'Trainer', false, 4)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 311, 24, 1, '[]'::jsonb);
-
-  -- Triathlete Benjamin
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Triathlete Benjamin', 'Trainer', false, 5)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 100, 23, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 599, 23, 2, '[]'::jsonb);
-
-  -- Triathlete Dolph
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Triathlete Dolph', 'Trainer', false, 6)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 312, 24, 1, '[]'::jsonb);
-
-  -- Lass Sally
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Lass Sally', 'Trainer', false, 7)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 656, 20, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 653, 20, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 650, 20, 3, '[]'::jsonb);
-
-  -- Battle Girl Cora
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Battle Girl Cora', 'Trainer', false, 8)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 214, 23, 1, '[]'::jsonb);
-
-  -- Youngster Eddie
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Youngster Eddie', 'Trainer', false, 9)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 387, 20, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 390, 20, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 393, 20, 3, '[]'::jsonb);
-
-  -- Black Belt Yuji
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Black Belt Yuji', 'Trainer', false, 10)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 701, 27, 1, '[]'::jsonb);
-
-  -- Schoolkid Georgie
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Schoolkid Georgie', 'Trainer', false, 11)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 513, 24, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 17, 24, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 4, 24, 3, '[]'::jsonb);
-
-  -- PKMN Ranger Sebastian
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'PKMN Ranger Sebastian', 'Trainer', false, 12)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 585, 25, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 70, 25, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 77, 25, 3, '[]'::jsonb);
-
-  -- PKMN Ranger Sophia
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'PKMN Ranger Sophia', 'Trainer', false, 13)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 672, 25, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 44, 25, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 216, 25, 3, '[]'::jsonb);
-
-  -- Lass Robin
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Lass Robin', 'Trainer', false, 14)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 46, 24, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 541, 24, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 511, 24, 3, '[]'::jsonb);
-
-  -- Ace Duo Pike & Shiel
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Ace Duo Pike & Shiel', 'Trainer', false, 15)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 134, 28, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 136, 28, 2, '[]'::jsonb);
-
-  -- Schoolkid Ted
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Schoolkid Ted', 'Trainer', false, 16)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 515, 24, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 193, 24, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 505, 24, 3, '[]'::jsonb);
 
   -- PKMN Trainer Wally
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mauville-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3636,6 +3479,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 281, 25, 4, '[]'::jsonb);
 
+
   -- Guitarist Kirk
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mauville-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3648,6 +3492,7 @@ BEGIN
   VALUES (v_trainer_id, 100, 23, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 694, 23, 3, '[]'::jsonb);
+
 
   -- Youngster Ben
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mauville-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3662,6 +3507,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 618, 23, 3, '[]'::jsonb);
 
+
   -- Battle Girl Vivian
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mauville-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3672,6 +3518,7 @@ BEGIN
   VALUES (v_trainer_id, 239, 25, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 125, 25, 2, '[]'::jsonb);
+
 
   -- Guitarist Shawn
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mauville-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3685,6 +3532,7 @@ BEGIN
   VALUES (v_trainer_id, 170, 23, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 135, 23, 3, '[]'::jsonb);
+
 
   -- Leader Wattson
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mauville-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3705,6 +3553,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 310, 28, 6, '[]'::jsonb);
 
+
   -- Teammates Anna & Meg
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-117' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3716,6 +3565,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 507, 24, 2, '[]'::jsonb);
 
+
   -- Triathlete Dylan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-117' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3726,6 +3576,7 @@ BEGIN
   VALUES (v_trainer_id, 252, 23, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 84, 23, 2, '[]'::jsonb);
+
 
   -- PKMN Breeder Lydia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-117' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3746,6 +3597,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 458, 19, 6, '[]'::jsonb);
 
+
   -- PKMN Breeder Isaac
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-117' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3765,6 +3617,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 446, 19, 6, '[]'::jsonb);
 
+
   -- Bug Maniac Derek
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-117' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3777,6 +3630,7 @@ BEGIN
   VALUES (v_trainer_id, 166, 23, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 414, 23, 3, '[]'::jsonb);
+
 
   -- Ruin Maniac Omari
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'granite-cave-b2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3791,6 +3645,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 436, 22, 3, '[]'::jsonb);
 
+
   -- Hiker Davian
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'granite-cave-b2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3801,6 +3656,7 @@ BEGIN
   VALUES (v_trainer_id, 95, 23, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 185, 23, 2, '[]'::jsonb);
+
 
   -- The Winstrates' Victor
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3813,6 +3669,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 40, 25, 2, '[]'::jsonb);
 
+
   -- The Winstrates' Victoria
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3823,6 +3680,7 @@ BEGIN
   VALUES (v_trainer_id, 182, 25, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 407, 25, 2, '[]'::jsonb);
+
 
   -- The Winstrates' Vivi
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3835,6 +3693,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 121, 25, 2, '[]'::jsonb);
 
+
   -- The Winstrates' Vicky
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3843,6 +3702,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 68, 28, 1, '[]'::jsonb);
+
 
   -- Interviewers Gabby & Ty
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3859,6 +3719,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 479, 25, 4, '[]'::jsonb);
 
+
   -- Picknicker Irene
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3871,6 +3732,7 @@ BEGIN
   VALUES (v_trainer_id, 677, 24, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 163, 24, 3, '[]'::jsonb);
+
 
   -- Camper Travis
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3887,6 +3749,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 624, 23, 4, '[]'::jsonb);
 
+
   -- Backpacker Emory
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3897,6 +3760,7 @@ BEGIN
   VALUES (v_trainer_id, 631, 25, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 455, 25, 2, '[]'::jsonb);
+
 
   -- Ace Trainer Wilton
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3911,6 +3775,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 195, 29, 3, '[]'::jsonb);
 
+
   -- Fairy Tale Girl Cece
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3921,6 +3786,7 @@ BEGIN
   VALUES (v_trainer_id, 209, 28, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 122, 28, 2, '[]'::jsonb);
+
 
   -- Backpacker Deon
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3935,6 +3801,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 660, 27, 3, '[]'::jsonb);
 
+
   -- Ace Trainer Brooke
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-111' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3947,6 +3814,7 @@ BEGIN
   VALUES (v_trainer_id, 241, 29, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 542, 29, 3, '[]'::jsonb);
+
 
   -- Camper Larry
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-112-south' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3961,6 +3829,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 451, 25, 3, '[]'::jsonb);
 
+
   -- Picknicker Carol
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-112-south' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3974,6 +3843,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 316, 25, 3, '[]'::jsonb);
 
+
   -- Hiker Brice
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-112-south' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -3984,6 +3854,7 @@ BEGIN
   VALUES (v_trainer_id, 622, 26, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 51, 26, 2, '[]'::jsonb);
+
 
   -- Hiker Trent
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-112-south' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -3998,6 +3869,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 208, 25, 3, '[]'::jsonb);
 
+
   -- Street Thug Jaylin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-112-north' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4010,6 +3882,7 @@ BEGIN
   VALUES (v_trainer_id, 30, 27, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 33, 27, 3, '[]'::jsonb);
+
 
   -- Youngster Neal
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-113' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4024,6 +3897,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 597, 28, 3, '[]'::jsonb);
 
+
   -- Ninja Boy Lao
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-113' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4036,6 +3910,7 @@ BEGIN
   VALUES (v_trainer_id, 616, 28, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 544, 28, 3, '[]'::jsonb);
+
 
   -- Parasol Lady Madeline
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-113' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4050,6 +3925,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 517, 28, 3, '[]'::jsonb);
 
+
   -- Youngster Dillion
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-113' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4062,6 +3938,7 @@ BEGIN
   VALUES (v_trainer_id, 325, 28, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 434, 28, 3, '[]'::jsonb);
+
 
   -- Ninja Boy Lung
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-113' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4076,6 +3953,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 291, 28, 3, '[]'::jsonb);
 
+
   -- Fairy Tale Girl Franny
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-113' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4089,6 +3967,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 176, 28, 3, '[]'::jsonb);
 
+
   -- Fisherman Claude
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4098,6 +3977,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 457, 31, 1, '[]'::jsonb);
 
+
   -- Fisherman Nolan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4106,6 +3986,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 130, 31, 1, '[]'::jsonb);
+
 
   -- Teammates Tyra & Ivy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4117,6 +3998,7 @@ BEGIN
   VALUES (v_trainer_id, 315, 31, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 184, 32, 2, '[]'::jsonb);
+
 
   -- Poké Maniac Steve
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4133,6 +4015,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 633, 28, 4, '[]'::jsonb);
 
+
   -- Camper Shane
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4148,6 +4031,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 554, 28, 4, '[]'::jsonb);
 
+
   -- Kindler Bernie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4159,6 +4043,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 279, 30, 2, '[]'::jsonb);
 
+
   -- Hiker Lucas
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4169,6 +4054,7 @@ BEGIN
   VALUES (v_trainer_id, 703, 30, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 213, 30, 2, '[]'::jsonb);
+
 
   -- Hiker Lenny
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-114' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4183,6 +4069,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 105, 29, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4195,6 +4082,7 @@ BEGIN
   VALUES (v_trainer_id, 322, 30, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 95, 30, 3, '[]'::jsonb);
+
 
   -- Magma Admin Tabitha
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4209,6 +4097,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 555, 35, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4221,6 +4110,7 @@ BEGIN
   VALUES (v_trainer_id, 318, 30, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 114, 30, 3, '[]'::jsonb);
+
 
   -- Aqua Admin Shelly
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4235,6 +4125,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 593, 35, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4245,6 +4136,7 @@ BEGIN
   VALUES (v_trainer_id, 42, 32, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 305, 32, 2, '[]'::jsonb);
+
 
   -- Magma Admin Tabitha
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4260,6 +4152,7 @@ BEGIN
   VALUES (v_trainer_id, 143, 33, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 555, 35, 4, '[]'::jsonb);
+
 
   -- Magma Leader Maxie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4278,6 +4171,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 323, 36, 5, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4288,6 +4182,7 @@ BEGIN
   VALUES (v_trainer_id, 42, 32, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 457, 32, 2, '[]'::jsonb);
+
 
   -- Aqua Admin Shelly
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4303,6 +4198,7 @@ BEGIN
   VALUES (v_trainer_id, 131, 33, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 593, 35, 4, '[]'::jsonb);
+
 
   -- Aqua Leader Archie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4321,6 +4217,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 36, 5, '[]'::jsonb);
 
+
   -- Expert Shelby
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'jagged-pass' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4331,6 +4228,7 @@ BEGIN
   VALUES (v_trainer_id, 57, 35, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 448, 35, 2, '[]'::jsonb);
+
 
   -- Hiker Eric
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'jagged-pass' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4345,6 +4243,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 205, 32, 3, '[]'::jsonb);
 
+
   -- Camper Ethan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'jagged-pass' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4357,6 +4256,7 @@ BEGIN
   VALUES (v_trainer_id, 317, 32, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 24, 32, 3, '[]'::jsonb);
+
 
   -- Fairy Tale Girl Nellie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'jagged-pass' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4371,6 +4271,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 707, 32, 3, '[]'::jsonb);
 
+
   -- Picknicker Diana
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'jagged-pass' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4384,6 +4285,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 153, 32, 3, '[]'::jsonb);
 
+
   -- Kindler Cole
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4394,6 +4296,7 @@ BEGIN
   VALUES (v_trainer_id, 126, 34, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 5, 34, 2, '[]'::jsonb);
+
 
   -- Kindler Axle
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4408,6 +4311,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 514, 33, 3, '[]'::jsonb);
 
+
   -- Battle Girl Sadie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4420,6 +4324,7 @@ BEGIN
   VALUES (v_trainer_id, 499, 34, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 256, 34, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Zane
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4434,6 +4339,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 555, 35, 3, '[]'::jsonb);
 
+
   -- Kindler Andy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4446,6 +4352,7 @@ BEGIN
   VALUES (v_trainer_id, 136, 33, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 607, 33, 3, '[]'::jsonb);
+
 
   -- Ninja Boy Shoji
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4460,6 +4367,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 662, 33, 3, '[]'::jsonb);
 
+
   -- Ninja Boy Hiromichi
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4468,6 +4376,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 435, 35, 1, '[]'::jsonb);
+
 
   -- Leader Flannery
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4488,6 +4397,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 324, 38, 6, '[]'::jsonb);
 
+
   -- Camper Cliff
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4500,6 +4410,7 @@ BEGIN
   VALUES (v_trainer_id, 28, 35, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 332, 35, 3, '[]'::jsonb);
+
 
   -- Picnicker Heidi
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4514,6 +4425,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 450, 35, 3, '[]'::jsonb);
 
+
   -- Camper Drew
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4527,6 +4439,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 695, 35, 3, '[]'::jsonb);
 
+
   -- Picnicker Becky
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4537,6 +4450,7 @@ BEGIN
   VALUES (v_trainer_id, 558, 36, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 573, 36, 2, '[]'::jsonb);
+
 
   -- Black Belt Daisuke
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4549,6 +4463,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 308, 37, 2, '[]'::jsonb);
 
+
   -- Ruin Maniac Dusty
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lavaridge-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4559,6 +4474,7 @@ BEGIN
   VALUES (v_trainer_id, 561, 36, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 344, 36, 2, '[]'::jsonb);
+
 
   -- Ace Trainer Randall
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4573,6 +4489,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 428, 37, 3, '[]'::jsonb);
 
+
   -- Ace Trainer Mary
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4585,6 +4502,7 @@ BEGIN
   VALUES (v_trainer_id, 531, 37, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 233, 37, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Parker
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4599,6 +4517,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 234, 37, 3, '[]'::jsonb);
 
+
   -- Ace Trainer Lori
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4611,6 +4530,7 @@ BEGIN
   VALUES (v_trainer_id, 241, 37, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 676, 37, 3, '[]'::jsonb);
+
 
   -- Ace Trainer George
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4625,6 +4545,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 242, 37, 3, '[]'::jsonb);
 
+
   -- Ace Trainer Jody
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4638,6 +4559,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 115, 37, 3, '[]'::jsonb);
 
+
   -- Ace Trainer Berke
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4650,6 +4572,7 @@ BEGIN
   VALUES (v_trainer_id, 235, 37, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 463, 37, 3, '[]'::jsonb);
+
 
   -- Leader Norman
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4670,6 +4593,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 289, 42, 6, '[]'::jsonb);
 
+
   -- Swimmer Beverly
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-105' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4682,6 +4606,7 @@ BEGIN
   VALUES (v_trainer_id, 61, 36, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 55, 36, 3, '[]'::jsonb);
+
 
   -- Triathlete Vin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-105' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4696,6 +4621,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 364, 36, 3, '[]'::jsonb);
 
+
   -- Swimmer Dawn
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-105' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4709,6 +4635,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 594, 36, 3, '[]'::jsonb);
 
+
   -- Ruin Maniac Foster
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-105' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4720,6 +4647,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 369, 37, 2, '[]'::jsonb);
 
+
   -- Swimmer Luis
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-105' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4730,6 +4658,7 @@ BEGIN
   VALUES (v_trainer_id, 418, 37, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 419, 37, 2, '[]'::jsonb);
+
 
   -- Swimmer Austin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-105' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4744,6 +4673,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 279, 36, 3, '[]'::jsonb);
 
+
   -- Swimmer Jerome
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-108' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4757,6 +4687,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 36, 3, '[]'::jsonb);
 
+
   -- Swimmer Missy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-108' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4766,6 +4697,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 350, 38, 1, '[]'::jsonb);
 
+
   -- Swimmer Tara
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-108' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4774,6 +4706,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 134, 38, 1, '[]'::jsonb);
+
 
   -- Ace Trainer Constance
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-108' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4788,6 +4721,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 583, 38, 3, '[]'::jsonb);
 
+
   -- Ace Trainer Neville
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-108' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4801,6 +4735,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 693, 38, 3, '[]'::jsonb);
 
+
   -- Swimmer Matthew
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-108' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4812,6 +4747,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 199, 37, 2, '[]'::jsonb);
 
+
   -- Sailor Duncan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sea-mauville-outside' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4821,6 +4757,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 689, 38, 1, '[]'::jsonb);
 
+
   -- Tuber Charlie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sea-mauville-outside' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4829,6 +4766,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 171, 38, 1, '[]'::jsonb);
+
 
   -- Young Couple Lois & Hal
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sea-mauville-inside' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4841,6 +4779,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 545, 38, 2, '[]'::jsonb);
 
+
   -- Mysterious Sisters Scall & Ion
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sea-mauville-inside' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4851,6 +4790,7 @@ BEGIN
   VALUES (v_trainer_id, 354, 60, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 122, 59, 2, '[]'::jsonb);
+
 
   -- Battle Girl Cyndy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4863,6 +4803,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 286, 33, 2, '[]'::jsonb);
 
+
   -- Black Belt Nob
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4873,6 +4814,7 @@ BEGIN
   VALUES (v_trainer_id, 539, 33, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 675, 33, 2, '[]'::jsonb);
+
 
   -- Collector Hector (Ru)
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4887,6 +4829,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 336, 31, 3, '[]'::jsonb);
 
+
   -- Collector Hector (As)
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4899,6 +4842,7 @@ BEGIN
   VALUES (v_trainer_id, 335, 31, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 336, 31, 3, '[]'::jsonb);
+
 
   -- Black Belt Koichi
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4913,6 +4857,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 652, 37, 3, '[]'::jsonb);
 
+
   -- Expert Timothy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4925,6 +4870,7 @@ BEGIN
   VALUES (v_trainer_id, 107, 38, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 237, 38, 3, '[]'::jsonb);
+
 
   -- Ruin Maniac Hayes
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-115' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4939,6 +4885,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 142, 36, 3, '[]'::jsonb);
 
+
   -- Aroma Lady Rose
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-118' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4951,6 +4898,7 @@ BEGIN
   VALUES (v_trainer_id, 152, 22, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 315, 22, 3, '[]'::jsonb);
+
 
   -- Guitarist Dalton
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-118' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -4965,6 +4913,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 441, 22, 3, '[]'::jsonb);
 
+
   -- Fisherman Wade
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-118' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -4976,55 +4925,6 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 211, 23, 2, '[]'::jsonb);
 
-  -- Fisherman Barny
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Fisherman Barny', 'Trainer', false, 17)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 349, 38, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 349, 38, 2, '[]'::jsonb);
-
-  -- Bird Keeper Chester
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Bird Keeper Chester', 'Trainer', false, 18)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 397, 37, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 22, 37, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 629, 37, 3, '[]'::jsonb);
-
-  -- Bird Keeper Perry
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Bird Keeper Perry', 'Trainer', false, 19)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 520, 37, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 164, 37, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 627, 37, 3, '[]'::jsonb);
-
-  -- Delinquent Miley
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Delinquent Miley', 'Trainer', false, 20)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 262, 38, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 510, 38, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 571, 38, 3, '[]'::jsonb);
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5039,6 +4939,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 335, 39, 3, '[]'::jsonb);
 
+
   -- Magma Admin Courtney
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5051,6 +4952,7 @@ BEGIN
   VALUES (v_trainer_id, 668, 42, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 6, 44, 3, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5065,6 +4967,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 336, 39, 3, '[]'::jsonb);
 
+
   -- Aqua Admin Matt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5077,6 +4980,7 @@ BEGIN
   VALUES (v_trainer_id, 689, 42, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 9, 44, 3, '[]'::jsonb);
+
 
   -- Bug Maniac Donald
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5091,6 +4995,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 214, 40, 3, '[]'::jsonb);
 
+
   -- Bug Catcher Doug
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5103,6 +5008,7 @@ BEGIN
   VALUES (v_trainer_id, 47, 39, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 291, 39, 3, '[]'::jsonb);
+
 
   -- Bug Catcher Kent
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5117,6 +5023,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 413, 39, 3, '[]'::jsonb);
 
+
   -- Bug Catcher Greg
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5129,6 +5036,7 @@ BEGIN
   VALUES (v_trainer_id, 666, 39, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 15, 39, 3, '[]'::jsonb);
+
 
   -- Bug Maniac Taylor
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5143,6 +5051,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 348, 40, 3, '[]'::jsonb);
 
+
   -- Bug Maniac Brent
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5155,6 +5064,7 @@ BEGIN
   VALUES (v_trainer_id, 632, 40, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 589, 40, 3, '[]'::jsonb);
+
 
   -- PKMN Ranger Catherine
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5169,6 +5079,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 530, 40, 3, '[]'::jsonb);
 
+
   -- Brains & Brawn Jael & Kael
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5179,6 +5090,7 @@ BEGIN
   VALUES (v_trainer_id, 65, 43, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 534, 43, 2, '[]'::jsonb);
+
 
   -- PKMN Ranger Jackson
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5193,6 +5105,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 357, 40, 3, '[]'::jsonb);
 
+
   -- Bird Keeper Hugh
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5204,6 +5117,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 277, 41, 2, '[]'::jsonb);
 
+
   -- Ninja Boy Takashi
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5212,6 +5126,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 617, 42, 1, '[]'::jsonb);
+
 
   -- Bird Keeper Phil
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'southern-island' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5226,6 +5141,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 178, 40, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5234,6 +5150,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 262, 43, 1, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5244,6 +5161,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 208, 43, 1, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5253,6 +5171,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 323, 43, 1, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5261,6 +5180,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 42, 43, 1, '[]'::jsonb);
+
 
   -- Magma Admin Tabitha
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5281,6 +5201,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 555, 48, 6, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5289,6 +5210,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 510, 43, 1, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5299,6 +5221,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 465, 43, 1, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5308,6 +5231,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 43, 1, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5316,6 +5240,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 42, 43, 1, '[]'::jsonb);
+
 
   -- Aqua Admin Shelly
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5336,6 +5261,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 593, 48, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5352,6 +5278,7 @@ BEGIN
   VALUES (v_trainer_id, 321, 47, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 254, 49, 5, '[]'::jsonb);
+
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5370,6 +5297,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 49, 5, '[]'::jsonb);
 
+
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5386,6 +5314,7 @@ BEGIN
   VALUES (v_trainer_id, 78, 47, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 49, 5, '[]'::jsonb);
+
 
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5404,6 +5333,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 254, 49, 5, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5420,6 +5350,7 @@ BEGIN
   VALUES (v_trainer_id, 286, 47, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 49, 5, '[]'::jsonb);
+
 
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5438,6 +5369,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 49, 5, '[]'::jsonb);
 
+
   -- Ninja Boy Yasu
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5449,6 +5381,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 110, 43, 2, '[]'::jsonb);
 
+
   -- Ninja Boy Hideo
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5457,6 +5390,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 658, 44, 1, '[]'::jsonb);
+
 
   -- Fisherman Eugene
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'weather-institute' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5467,6 +5401,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 618, 44, 1, '[]'::jsonb);
 
+
   -- Secret Base Expert Aarune
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5475,6 +5410,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 330, 48, 1, '[]'::jsonb);
+
 
   -- Parasol Lady Clarissa
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5485,6 +5421,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 351, 46, 1, '[]'::jsonb);
 
+
   -- Bird Keeper Robert
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5494,6 +5431,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 18, 46, 1, '[]'::jsonb);
 
+
   -- Bird Keeper Colin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5502,6 +5440,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 398, 46, 1, '[]'::jsonb);
+
 
   -- Bird Keeper Jared
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5516,6 +5455,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 581, 45, 3, '[]'::jsonb);
 
+
   -- Picnicker Kylee
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5528,6 +5468,7 @@ BEGIN
   VALUES (v_trainer_id, 468, 45, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 189, 45, 3, '[]'::jsonb);
+
 
   -- Camper Terrell
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5542,6 +5483,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 528, 45, 3, '[]'::jsonb);
 
+
   -- Bird Keeper Will
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5555,6 +5497,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 225, 45, 3, '[]'::jsonb);
 
+
   -- Bird Keeper Bran
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5567,6 +5510,7 @@ BEGIN
   VALUES (v_trainer_id, 178, 45, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 630, 45, 3, '[]'::jsonb);
+
 
   -- Leader Winona
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5587,6 +5531,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 334, 50, 6, '[]'::jsonb);
 
+
   -- Ninja Boy Tsunao
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5599,6 +5544,7 @@ BEGIN
   VALUES (v_trainer_id, 454, 46, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 452, 46, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Jennifer
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5615,6 +5561,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 26, 47, 4, '[]'::jsonb);
 
+
   -- Parasol Lady Angelica
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5630,6 +5577,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 421, 45, 4, '[]'::jsonb);
 
+
   -- Bug Maniac Brandon
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5642,6 +5590,7 @@ BEGIN
   VALUES (v_trainer_id, 168, 47, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 205, 47, 3, '[]'::jsonb);
+
 
   -- Street Thug Gomez
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5656,6 +5605,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 34, 47, 3, '[]'::jsonb);
 
+
   -- Delinquent Sharlene
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5668,6 +5618,7 @@ BEGIN
   VALUES (v_trainer_id, 31, 47, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 461, 47, 3, '[]'::jsonb);
+
 
   -- Ruin Maniac Chip
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5684,6 +5635,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 697, 45, 4, '[]'::jsonb);
 
+
   -- Ninja Boy Keigo
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5694,6 +5646,7 @@ BEGIN
   VALUES (v_trainer_id, 291, 47, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 435, 47, 2, '[]'::jsonb);
+
 
   -- PKMN Ranger Carlos
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'fortree-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5710,6 +5663,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 55, 46, 4, '[]'::jsonb);
 
+
   -- Hex Maniac Tammy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-121' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5722,6 +5676,7 @@ BEGIN
   VALUES (v_trainer_id, 200, 47, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 354, 47, 3, '[]'::jsonb);
+
 
   -- Beauty Jessica
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-121' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5736,6 +5691,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 359, 47, 3, '[]'::jsonb);
 
+
   -- Gentleman Walter
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-121' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5748,6 +5704,7 @@ BEGIN
   VALUES (v_trainer_id, 59, 47, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 181, 47, 3, '[]'::jsonb);
+
 
   -- Poké Fan Vanessa
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-121' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5762,6 +5719,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 471, 47, 3, '[]'::jsonb);
 
+
   -- Teammates Kate & Joy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-121' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5772,6 +5730,7 @@ BEGIN
   VALUES (v_trainer_id, 327, 49, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 289, 50, 2, '[]'::jsonb);
+
 
   -- Aroma Lady Violet
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5786,6 +5745,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 182, 39, 3, '[]'::jsonb);
 
+
   -- Twins Miu & Yuki
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5796,6 +5756,7 @@ BEGIN
   VALUES (v_trainer_id, 514, 41, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 512, 41, 2, '[]'::jsonb);
+
 
   -- Psychic Cameron
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5810,6 +5771,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 518, 50, 3, '[]'::jsonb);
 
+
   -- Picnicker Martha
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5822,6 +5784,7 @@ BEGIN
   VALUES (v_trainer_id, 221, 49, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 705, 49, 3, '[]'::jsonb);
+
 
   -- Street Thug Hannibal
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5836,6 +5799,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 569, 50, 3, '[]'::jsonb);
 
+
   -- Delinquent Kylie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5848,6 +5812,7 @@ BEGIN
   VALUES (v_trainer_id, 197, 50, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 625, 50, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Clyde
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5864,6 +5829,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 94, 50, 4, '[]'::jsonb);
 
+
   -- Ace Trainer Julie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5878,6 +5844,7 @@ BEGIN
   VALUES (v_trainer_id, 601, 50, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 549, 50, 4, '[]'::jsonb);
+
 
   -- Ace Trainer Wendy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5894,6 +5861,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 407, 50, 4, '[]'::jsonb);
 
+
   -- Fisherman Timin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5902,6 +5870,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 119, 51, 1, '[]'::jsonb);
+
 
   -- Fisherman Fisher
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -5912,6 +5881,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 340, 51, 1, '[]'::jsonb);
 
+
   -- Fisherman Finley
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-123' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -5921,214 +5891,6 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 342, 51, 1, '[]'::jsonb);
 
-  -- Hex Manaic Valerie
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Hex Manaic Valerie', 'Trainer', false, 21)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 356, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 563, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 608, 49, 3, '[]'::jsonb);
-
-  -- Poké Maniac Mark
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Poké Maniac Mark', 'Trainer', false, 22)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 232, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 112, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 306, 49, 3, '[]'::jsonb);
-
-  -- Psychic William
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Psychic William', 'Trainer', false, 23)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 358, 50, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 124, 50, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 97, 50, 3, '[]'::jsonb);
-
-  -- Black Belt Atsushi
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Black Belt Atsushi', 'Trainer', false, 24)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 620, 51, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 68, 51, 2, '[]'::jsonb);
-
-  -- Young Couple Dez & Luke
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Young Couple Dez & Luke', 'Trainer', false, 25)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 683, 51, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 685, 51, 2, '[]'::jsonb);
-
-  -- Fairy Tale Girl Momo
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Fairy Tale Girl Momo', 'Trainer', false, 26)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 40, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 36, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 671, 49, 3, '[]'::jsonb);
-
-  -- Mysterious Sisters Elle & Aya
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Mysterious Sisters Elle & Aya', 'Trainer', false, 27)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 671, 51, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 711, 52, 2, '[]'::jsonb);
-
-  -- Hex Maniac Tasha
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Hex Maniac Tasha', 'Trainer', false, 28)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 709, 50, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 609, 50, 2, '[]'::jsonb);
-
-  -- Backpacker Darnell
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Backpacker Darnell', 'Trainer', false, 29)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 51, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 460, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 203, 49, 3, '[]'::jsonb);
-
-  -- Team Magma Grunt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Team Magma Grunt', 'Trainer', false, 30)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 262, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 42, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 323, 49, 3, '[]'::jsonb);
-
-  -- Team Magma Grunt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Team Magma Grunt', 'Trainer', false, 31)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 555, 51, 1, '[]'::jsonb);
-
-  -- Team Magma Grunt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Team Magma Grunt', 'Trainer', false, 32)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 228, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 246, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 229, 49, 3, '[]'::jsonb);
-
-  -- Magma Admin Courtney
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Magma Admin Courtney', 'Trainer', false, 33)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 78, 53, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 668, 53, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 464, 53, 3, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 6, 55, 4, '[]'::jsonb);
-
-  -- Team Aqua Grunt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Team Aqua Grunt', 'Trainer', false, 34)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 510, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 42, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 319, 49, 3, '[]'::jsonb);
-
-  -- Team Aqua Grunt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Team Aqua Grunt', 'Trainer', false, 35)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 593, 51, 1, '[]'::jsonb);
-
-  -- Team Aqua Grunt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Team Aqua Grunt', 'Trainer', false, 36)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 72, 49, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 147, 49, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 73, 49, 3, '[]'::jsonb);
-
-  -- Aqua Admin Matt
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rematches' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
-  INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Aqua Admin Matt', 'Trainer', false, 37)
-  RETURNING id INTO v_trainer_id;
-
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 55, 53, 1, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 689, 53, 2, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 598, 53, 3, '[]'::jsonb);
-  INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
-  VALUES (v_trainer_id, 9, 55, 4, '[]'::jsonb);
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lilycove-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6149,6 +5911,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 254, 55, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lilycove-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6167,6 +5930,7 @@ BEGIN
   VALUES (v_trainer_id, 286, 53, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 55, 6, '[]'::jsonb);
+
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lilycove-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6187,6 +5951,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 55, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lilycove-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6205,6 +5970,7 @@ BEGIN
   VALUES (v_trainer_id, 321, 53, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 254, 55, 6, '[]'::jsonb);
+
 
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lilycove-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6225,6 +5991,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 55, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'lilycove-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6244,6 +6011,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 55, 6, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6252,6 +6020,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 262, 54, 1, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6266,6 +6035,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 555, 52, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6274,6 +6044,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 76, 54, 1, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6288,6 +6059,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 112, 52, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6297,6 +6069,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 335, 54, 1, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6305,6 +6078,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 306, 54, 1, '[]'::jsonb);
+
 
   -- Team Magma Grunts
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6322,6 +6096,7 @@ BEGIN
   VALUES (v_trainer_id, 136, 39, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 136, 39, 5, '[]'::jsonb);
+
 
   -- Magma Admin Courtney
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6342,6 +6117,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 6, 57, 6, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6350,6 +6126,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 262, 54, 1, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6364,6 +6141,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 593, 52, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6372,6 +6150,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 45, 54, 1, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6386,6 +6165,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 598, 52, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6395,6 +6175,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 336, 54, 1, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6403,6 +6184,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 71, 54, 1, '[]'::jsonb);
+
 
   -- Team Aqua Grunts
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6420,6 +6202,7 @@ BEGIN
   VALUES (v_trainer_id, 134, 39, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 134, 39, 5, '[]'::jsonb);
+
 
   -- Aqua Admin Matt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6440,6 +6223,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 9, 57, 6, '[]'::jsonb);
 
+
   -- Swimmer Jenny
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6452,6 +6236,7 @@ BEGIN
   VALUES (v_trainer_id, 222, 53, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 594, 53, 3, '[]'::jsonb);
+
 
   -- Swimmer Roland
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6466,6 +6251,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 224, 53, 3, '[]'::jsonb);
 
+
   -- Swimmer Grace
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6477,6 +6263,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 186, 54, 2, '[]'::jsonb);
 
+
   -- Sis & Bro Rita & Sam
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6487,6 +6274,7 @@ BEGIN
   VALUES (v_trainer_id, 395, 55, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 503, 56, 2, '[]'::jsonb);
+
 
   -- Swimmer Spencer
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6501,6 +6289,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 340, 53, 3, '[]'::jsonb);
 
+
   -- Swimmer Chad
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6513,6 +6302,7 @@ BEGIN
   VALUES (v_trainer_id, 199, 53, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 400, 53, 3, '[]'::jsonb);
+
 
   -- Sailor Ernest
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-125' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6527,6 +6317,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 20, 54, 3, '[]'::jsonb);
 
+
   -- Teammates Kim & Iris
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-125' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6537,6 +6328,7 @@ BEGIN
   VALUES (v_trainer_id, 334, 56, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 6, 57, 2, '[]'::jsonb);
+
 
   -- Swimmer Stan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-125' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6549,6 +6341,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 693, 55, 2, '[]'::jsonb);
 
+
   -- Swimmer Tanya
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-125' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6560,6 +6353,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 226, 55, 2, '[]'::jsonb);
 
+
   -- Swimmer Sharon
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-125' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6568,6 +6362,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 131, 56, 1, '[]'::jsonb);
+
 
   -- Swimmer Cody
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-125' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6580,6 +6375,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 272, 55, 2, '[]'::jsonb);
 
+
   -- Triathlete Denzel
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6591,6 +6387,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 55, 2, '[]'::jsonb);
 
+
   -- Swimmer Barry
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6599,6 +6396,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 130, 56, 1, '[]'::jsonb);
+
 
   -- Swimmer Dean
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6610,6 +6408,7 @@ BEGIN
   VALUES (v_trainer_id, 321, 55, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 689, 55, 2, '[]'::jsonb);
+
 
   -- Ace Trainer Harriet
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6626,6 +6425,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 230, 55, 4, '[]'::jsonb);
 
+
   -- Ace Trainer Leopold
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6641,6 +6441,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 615, 55, 4, '[]'::jsonb);
 
+
   -- Swimmer Brenda
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6651,6 +6452,7 @@ BEGIN
   VALUES (v_trainer_id, 284, 55, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 368, 55, 2, '[]'::jsonb);
+
 
   -- Swimmer Nikki
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6665,6 +6467,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 581, 54, 3, '[]'::jsonb);
 
+
   -- Bird Keeper Byron
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6677,6 +6480,7 @@ BEGIN
   VALUES (v_trainer_id, 561, 54, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 521, 54, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Hisato
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6693,6 +6497,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 230, 55, 4, '[]'::jsonb);
 
+
   -- Ace Trainer Claudia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6708,6 +6513,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 614, 55, 4, '[]'::jsonb);
 
+
   -- Fisherman Jonah
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6716,6 +6522,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 369, 56, 1, '[]'::jsonb);
+
 
   -- Fisherman Henry
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6726,6 +6533,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 171, 56, 1, '[]'::jsonb);
 
+
   -- Fisherman Roger
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6734,6 +6542,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 99, 56, 1, '[]'::jsonb);
+
 
   -- Black Belt Koji
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6748,6 +6557,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 500, 55, 3, '[]'::jsonb);
 
+
   -- Triathlete Jaylon
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6756,6 +6566,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 419, 56, 1, '[]'::jsonb);
+
 
   -- Ace Trainer Cornelius
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-128' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6772,6 +6583,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 604, 55, 4, '[]'::jsonb);
 
+
   -- Fisherman Wayne
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-128' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6780,6 +6592,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 321, 56, 1, '[]'::jsonb);
+
 
   -- Triathlete Isaiah
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-128' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6790,6 +6603,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 457, 56, 1, '[]'::jsonb);
 
+
   -- Tuber Delmar
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-128' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6798,6 +6612,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 536, 56, 1, '[]'::jsonb);
+
 
   -- Tuber Marlene
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-128' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6808,6 +6623,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 61, 56, 1, '[]'::jsonb);
 
+
   -- Fisherman Fisk
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6817,6 +6633,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 691, 56, 1, '[]'::jsonb);
 
+
   -- Fisherman Sheaffer
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6825,6 +6642,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 211, 56, 1, '[]'::jsonb);
+
 
   -- Swimmer Reed
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6838,6 +6656,7 @@ BEGIN
   VALUES (v_trainer_id, 340, 54, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 195, 54, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Honor
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6854,6 +6673,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 139, 55, 4, '[]'::jsonb);
 
+
   -- Swimmer Tisha
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6865,6 +6685,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 516, 55, 2, '[]'::jsonb);
 
+
   -- Triathlete Chase
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6873,6 +6694,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 230, 56, 1, '[]'::jsonb);
+
 
   -- Swimmer Katie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-130' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6885,6 +6707,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 226, 55, 2, '[]'::jsonb);
 
+
   -- Triathlete Karsen
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-130' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6893,6 +6716,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 184, 56, 1, '[]'::jsonb);
+
 
   -- Swimmer Rodney
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-130' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6907,6 +6731,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 342, 54, 3, '[]'::jsonb);
 
+
   -- Swimmer Kara
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-131' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6919,6 +6744,7 @@ BEGIN
   VALUES (v_trainer_id, 593, 54, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 368, 54, 3, '[]'::jsonb);
+
 
   -- Swimmer Herman
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-131' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6933,6 +6759,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 55, 54, 3, '[]'::jsonb);
 
+
   -- Swimmer Susie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-131' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6945,6 +6772,7 @@ BEGIN
   VALUES (v_trainer_id, 134, 54, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 87, 54, 3, '[]'::jsonb);
+
 
   -- Swimmer Richard
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-131' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6959,6 +6787,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 91, 54, 3, '[]'::jsonb);
 
+
   -- Sis & Bro Rell & Ian
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-131' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6969,6 +6798,7 @@ BEGIN
   VALUES (v_trainer_id, 80, 56, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 199, 57, 2, '[]'::jsonb);
+
 
   -- Psychic Preston
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -6983,6 +6813,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 678, 59, 3, '[]'::jsonb);
 
+
   -- Psychic Joshua
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -6995,6 +6826,7 @@ BEGIN
   VALUES (v_trainer_id, 196, 59, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 103, 59, 3, '[]'::jsonb);
+
 
   -- Psychic Fritz
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7009,6 +6841,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 65, 59, 3, '[]'::jsonb);
 
+
   -- Hex Maniac Kindra
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7021,6 +6854,7 @@ BEGIN
   VALUES (v_trainer_id, 576, 59, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 344, 59, 3, '[]'::jsonb);
+
 
   -- Hex Manaic Patricia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7035,6 +6869,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 655, 59, 3, '[]'::jsonb);
 
+
   -- Psychic Virgil
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7047,6 +6882,7 @@ BEGIN
   VALUES (v_trainer_id, 518, 59, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 203, 59, 3, '[]'::jsonb);
+
 
   -- Leaders Liza & Tate
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7067,6 +6903,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 282, 62, 6, '[]'::jsonb);
 
+
   -- Black Belt Kiyo
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-132' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7080,6 +6917,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 297, 58, 3, '[]'::jsonb);
 
+
   -- Fisherman Ronald
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-132' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7091,6 +6929,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 550, 58, 2, '[]'::jsonb);
 
+
   -- Swimmer Gilbert
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-132' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7099,6 +6938,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 62, 59, 1, '[]'::jsonb);
+
 
   -- Swimmer Debra
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7109,6 +6949,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 222, 59, 1, '[]'::jsonb);
 
+
   -- Swimmer Franklin
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7117,6 +6958,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 340, 59, 1, '[]'::jsonb);
+
 
   -- Swimmer Linda
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7127,6 +6969,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 119, 59, 1, '[]'::jsonb);
 
+
   -- Swimmer Sheryl
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7135,6 +6978,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 199, 59, 1, '[]'::jsonb);
+
 
   -- Bird Keeper Beck
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7148,6 +6992,7 @@ BEGIN
   VALUES (v_trainer_id, 334, 57, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 430, 57, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Warren
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7164,6 +7009,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 65, 58, 4, '[]'::jsonb);
 
+
   -- Backpacker Grayson
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7173,6 +7019,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 132, 59, 1, '[]'::jsonb);
 
+
   -- Fisherman River
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-133' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7181,6 +7028,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 230, 59, 1, '[]'::jsonb);
+
 
   -- Bird Keeper Alex
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-134' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7195,6 +7043,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 18, 57, 3, '[]'::jsonb);
 
+
   -- Swimmer Jack
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-134' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7204,6 +7053,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 59, 1, '[]'::jsonb);
 
+
   -- Swimmer Laurel
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-134' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7212,6 +7062,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 134, 59, 1, '[]'::jsonb);
+
 
   -- Dragon Tamer Aaron
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-134' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7225,6 +7076,7 @@ BEGIN
   VALUES (v_trainer_id, 634, 59, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 148, 59, 3, '[]'::jsonb);
+
 
   -- Ace Trainer Elaine
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-134' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7241,6 +7093,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 497, 58, 4, '[]'::jsonb);
 
+
   -- Black Belt Hitoshi
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-134' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7254,6 +7107,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 286, 58, 3, '[]'::jsonb);
 
+
   -- Scuba Diver Keaton
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7262,6 +7116,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 321, 60, 1, '[]'::jsonb);
+
 
   -- Free Diver Hollie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-107' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7272,6 +7127,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 171, 60, 1, '[]'::jsonb);
 
+
   -- Scuba Diver Kylan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7280,6 +7136,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 230, 60, 1, '[]'::jsonb);
+
 
   -- Free Diver Rischel
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7290,6 +7147,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 119, 60, 1, '[]'::jsonb);
 
+
   -- Scuba Diver Dmitry
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7298,6 +7156,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 121, 60, 1, '[]'::jsonb);
+
 
   -- Free Diver Arzu
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-124' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7310,6 +7169,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 368, 59, 2, '[]'::jsonb);
 
+
   -- Scuba Diver Tristan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7318,6 +7178,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 693, 60, 1, '[]'::jsonb);
+
 
   -- Scuba Diver Yukata
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7328,6 +7189,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 279, 60, 1, '[]'::jsonb);
 
+
   -- Free Diver Jillian
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-126' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7336,6 +7198,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 184, 60, 1, '[]'::jsonb);
+
 
   -- Scuba Diver Javier
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7346,6 +7209,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 369, 60, 1, '[]'::jsonb);
 
+
   -- Free Diver Kailyn
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7354,6 +7218,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 594, 60, 1, '[]'::jsonb);
+
 
   -- Free Diver Aileen
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-127' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7364,6 +7229,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 365, 60, 1, '[]'::jsonb);
 
+
   -- Free Diver Mayu
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-128' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7372,6 +7238,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 370, 60, 1, '[]'::jsonb);
+
 
   -- Scuba Diver Colten
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7382,6 +7249,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 55, 60, 1, '[]'::jsonb);
 
+
   -- Scuba Diver Jason
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7390,6 +7258,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 130, 60, 1, '[]'::jsonb);
+
 
   -- Free Diver Coral
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-129' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7400,6 +7269,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 73, 60, 1, '[]'::jsonb);
 
+
   -- Scuba Diver Silas
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-130' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7409,6 +7279,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 340, 60, 1, '[]'::jsonb);
 
+
   -- Free Diver Cordura
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'underwater-130' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7417,6 +7288,7 @@ BEGIN
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 222, 60, 1, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7429,6 +7301,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 219, 60, 2, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7439,6 +7312,7 @@ BEGIN
   VALUES (v_trainer_id, 208, 60, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 110, 60, 2, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7451,6 +7325,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 335, 60, 2, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7461,6 +7336,7 @@ BEGIN
   VALUES (v_trainer_id, 34, 60, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 555, 60, 2, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7473,6 +7349,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 78, 60, 2, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7483,6 +7360,7 @@ BEGIN
   VALUES (v_trainer_id, 45, 60, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 457, 60, 2, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7495,6 +7373,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 89, 60, 2, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7505,6 +7384,7 @@ BEGIN
   VALUES (v_trainer_id, 689, 60, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 336, 60, 2, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7517,6 +7397,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 593, 60, 2, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-front-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7527,6 +7408,7 @@ BEGIN
   VALUES (v_trainer_id, 407, 60, 1, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 55, 60, 2, '[]'::jsonb);
+
 
   -- Magma Leader Maxie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-back-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7547,6 +7429,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 323, 65, 6, '[]'::jsonb);
 
+
   -- Aqua Leader Archie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'seafloor-cavern-back-rooms' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7566,6 +7449,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 65, 6, '[]'::jsonb);
 
+
   -- Lass Andrea
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7578,6 +7462,7 @@ BEGIN
   VALUES (v_trainer_id, 134, 62, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 321, 62, 3, '[]'::jsonb);
+
 
   -- Beauty Tiffany
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7592,6 +7477,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 91, 62, 3, '[]'::jsonb);
 
+
   -- Beauty Bridget
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7604,6 +7490,7 @@ BEGIN
   VALUES (v_trainer_id, 73, 62, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 195, 62, 3, '[]'::jsonb);
+
 
   -- Beauty Connie
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7618,6 +7505,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 340, 62, 3, '[]'::jsonb);
 
+
   -- Beauty Olivia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7630,6 +7518,7 @@ BEGIN
   VALUES (v_trainer_id, 581, 62, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 689, 62, 3, '[]'::jsonb);
+
 
   -- Lady Brianna
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7644,6 +7533,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 279, 62, 3, '[]'::jsonb);
 
+
   -- Poké Fan Marissa
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7657,6 +7547,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 184, 62, 3, '[]'::jsonb);
 
+
   -- Lass Crissy
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7669,6 +7560,7 @@ BEGIN
   VALUES (v_trainer_id, 160, 62, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 319, 62, 3, '[]'::jsonb);
+
 
   -- Leader Wallace
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7689,6 +7581,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 67, 6, '[]'::jsonb);
 
+
   -- Dragon Tamer Nicolas
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7705,6 +7598,7 @@ BEGIN
   VALUES (v_trainer_id, 697, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 142, 65, 5, '[]'::jsonb);
+
 
   -- Old Couple John & Jay
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sootopolis-gym' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7723,6 +7617,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 448, 65, 5, '[]'::jsonb);
 
+
   -- Battle Girl Tess
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7739,6 +7634,7 @@ BEGIN
   VALUES (v_trainer_id, 454, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 214, 65, 5, '[]'::jsonb);
+
 
   -- Dragon Tamer Dray
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'meteor-falls-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7757,6 +7653,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 181, 65, 5, '[]'::jsonb);
 
+
   -- Ace Trainer Albert
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7773,6 +7670,7 @@ BEGIN
   VALUES (v_trainer_id, 135, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 18, 65, 5, '[]'::jsonb);
+
 
   -- Ace Trainer Hope
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7791,6 +7689,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 531, 65, 5, '[]'::jsonb);
 
+
   -- Ace Trainer Edgar
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7807,6 +7706,7 @@ BEGIN
   VALUES (v_trainer_id, 292, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 303, 65, 5, '[]'::jsonb);
+
 
   -- Street Thug Regan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7825,6 +7725,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 15, 65, 5, '[]'::jsonb);
 
+
   -- Brains & Brawn Aden & Finn
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7841,6 +7742,7 @@ BEGIN
   VALUES (v_trainer_id, 675, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 308, 65, 5, '[]'::jsonb);
+
 
   -- Expert Bryn
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7859,6 +7761,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 428, 65, 5, '[]'::jsonb);
 
+
   -- Ace Duo Jude & Rory
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7875,6 +7778,7 @@ BEGIN
   VALUES (v_trainer_id, 467, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 212, 65, 5, '[]'::jsonb);
+
 
   -- Expert Theodore
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7893,6 +7797,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 65, 5, '[]'::jsonb);
 
+
   -- Ace Trainer Vito
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7910,6 +7815,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 65, 65, 5, '[]'::jsonb);
 
+
   -- Dragon Tamer Egon
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-b1f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -7926,6 +7832,7 @@ BEGIN
   VALUES (v_trainer_id, 24, 65, 4, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 6, 65, 5, '[]'::jsonb);
+
 
   -- PKMN Trainer Wally
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -7946,10 +7853,11 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 475, 72, 6, '[]'::jsonb);
 
+
   -- Elite Four Sidney
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
+  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'pokemon-league' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Elite Four Sidney', 'Trainer', false, 2)
+  VALUES (v_route_id, 'Elite Four Sidney', 'Trainer', false, 1)
   RETURNING id INTO v_trainer_id;
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
@@ -7965,10 +7873,11 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 359, 72, 6, '[]'::jsonb);
 
+
   -- Elite Four Phoebe
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
+  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'pokemon-league' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Elite Four Phoebe', 'Trainer', false, 3)
+  VALUES (v_route_id, 'Elite Four Phoebe', 'Trainer', false, 2)
   RETURNING id INTO v_trainer_id;
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
@@ -7984,10 +7893,11 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 302, 73, 6, '[]'::jsonb);
 
+
   -- Elite Four Glacia
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
+  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'pokemon-league' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Elite Four Glacia', 'Trainer', false, 4)
+  VALUES (v_route_id, 'Elite Four Glacia', 'Trainer', false, 3)
   RETURNING id INTO v_trainer_id;
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
@@ -8003,10 +7913,11 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 362, 74, 6, '[]'::jsonb);
 
+
   -- Elite Four Drake
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
+  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'pokemon-league' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Elite Four Drake', 'Trainer', false, 5)
+  VALUES (v_route_id, 'Elite Four Drake', 'Trainer', false, 4)
   RETURNING id INTO v_trainer_id;
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
@@ -8022,10 +7933,11 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 373, 75, 6, '[]'::jsonb);
 
+
   -- Champion Steven
-  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'victory-road-2f' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
+  SELECT id INTO v_route_id FROM public.routes WHERE slug = 'pokemon-league' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
-  VALUES (v_route_id, 'Champion Steven', 'Trainer', false, 6)
+  VALUES (v_route_id, 'Champion Steven', 'Trainer', false, 5)
   RETURNING id INTO v_trainer_id;
 
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
@@ -8040,6 +7952,7 @@ BEGIN
   VALUES (v_trainer_id, 719, 77, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 376, 79, 6, '[]'::jsonb);
+
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'credits' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8060,6 +7973,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 254, 77, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'credits' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8078,6 +7992,7 @@ BEGIN
   VALUES (v_trainer_id, 286, 75, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 77, 6, '[]'::jsonb);
+
 
   -- PKMN Trainer Brendan
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'credits' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8098,6 +8013,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 77, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'credits' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8116,6 +8032,7 @@ BEGIN
   VALUES (v_trainer_id, 321, 75, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 254, 77, 6, '[]'::jsonb);
+
 
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'credits' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8136,6 +8053,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 257, 77, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer May
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'credits' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8154,6 +8072,7 @@ BEGIN
   VALUES (v_trainer_id, 78, 75, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 77, 6, '[]'::jsonb);
+
 
   -- Magma Admin Courtney
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8174,6 +8093,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 6, 77, 6, '[]'::jsonb);
 
+
   -- Aqua Admin Matt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8193,6 +8113,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 9, 77, 6, '[]'::jsonb);
 
+
   -- Lorekeeper Zinnia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'petalburg-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8208,6 +8129,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 373, 78, 4, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8220,6 +8142,7 @@ BEGIN
   VALUES (v_trainer_id, 601, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 467, 75, 3, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8234,6 +8157,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 359, 75, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8246,6 +8170,7 @@ BEGIN
   VALUES (v_trainer_id, 262, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 528, 75, 3, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8260,6 +8185,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 121, 75, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8273,6 +8199,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 359, 75, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'rustboro-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8285,6 +8212,7 @@ BEGIN
   VALUES (v_trainer_id, 510, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 528, 75, 3, '[]'::jsonb);
+
 
   -- Team Magma Grunts
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8303,6 +8231,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 136, 59, 5, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8316,6 +8245,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 500, 75, 3, '[]'::jsonb);
 
+
   -- Magma Admin Courtney
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8328,6 +8258,7 @@ BEGIN
   VALUES (v_trainer_id, 668, 77, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 34, 77, 3, '[]'::jsonb);
+
 
   -- Team Aqua Grunts
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8346,6 +8277,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 134, 59, 5, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8358,6 +8290,7 @@ BEGIN
   VALUES (v_trainer_id, 89, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 160, 75, 3, '[]'::jsonb);
+
 
   -- Aqua Admin Matt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'mossdeep-city' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8372,6 +8305,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 31, 77, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8384,6 +8318,7 @@ BEGIN
   VALUES (v_trainer_id, 348, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 219, 75, 3, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8398,6 +8333,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 295, 75, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8410,6 +8346,7 @@ BEGIN
   VALUES (v_trainer_id, 335, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 514, 75, 3, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8424,6 +8361,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 28, 75, 3, '[]'::jsonb);
 
+
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8436,6 +8374,7 @@ BEGIN
   VALUES (v_trainer_id, 169, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 110, 75, 3, '[]'::jsonb);
+
 
   -- Team Magma Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'magma-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8450,6 +8389,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 78, 75, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8462,6 +8402,7 @@ BEGIN
   VALUES (v_trainer_id, 346, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 457, 75, 3, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8476,6 +8417,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 295, 75, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8488,6 +8430,7 @@ BEGIN
   VALUES (v_trainer_id, 336, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 516, 75, 3, '[]'::jsonb);
+
 
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8502,6 +8445,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 224, 75, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8515,6 +8459,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 89, 75, 3, '[]'::jsonb);
 
+
   -- Team Aqua Grunt
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'aqua-hideout' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8527,6 +8472,7 @@ BEGIN
   VALUES (v_trainer_id, 131, 75, 2, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 55, 75, 3, '[]'::jsonb);
+
 
   -- Sootopolitan Wallace
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'route-131' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8547,6 +8493,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 79, 6, '[]'::jsonb);
 
+
   -- Lorekeeper Zinnia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8566,6 +8513,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 373, 81, 6, '[]'::jsonb);
 
+
   -- Gentleman Tucker
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8580,6 +8528,7 @@ BEGIN
   VALUES (v_trainer_id, 586, 75, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 523, 75, 4, '[]'::jsonb);
+
 
   -- Rich Boy Garret
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8596,6 +8545,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 676, 75, 4, '[]'::jsonb);
 
+
   -- Young Couple Lea & Jed
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8610,6 +8560,7 @@ BEGIN
   VALUES (v_trainer_id, 31, 75, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 34, 75, 4, '[]'::jsonb);
+
 
   -- Poké Fan Colton
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8626,6 +8577,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 53, 75, 4, '[]'::jsonb);
 
+
   -- Lady Anette
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8640,6 +8592,7 @@ BEGIN
   VALUES (v_trainer_id, 556, 75, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 542, 75, 4, '[]'::jsonb);
+
 
   -- Gentleman Thomas
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8656,6 +8609,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 581, 75, 4, '[]'::jsonb);
 
+
   -- Sailor Philip
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8671,6 +8625,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 73, 75, 4, '[]'::jsonb);
 
+
   -- Sailor Leonard
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'sky-pillar' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8685,6 +8640,7 @@ BEGIN
   VALUES (v_trainer_id, 693, 75, 3, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 675, 75, 4, '[]'::jsonb);
+
 
   -- Ace Trainer Carnation [Cynthia]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8705,6 +8661,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 445, 88, 6, '[]'::jsonb);
 
+
   -- Leader Carnation [Roxanne]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8723,6 +8680,7 @@ BEGIN
   VALUES (v_trainer_id, 346, 77, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 142, 79, 6, '[]'::jsonb);
+
 
   -- Leader Carnation [Roxanne]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8743,6 +8701,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 142, 79, 6, '[]'::jsonb);
 
+
   -- Leader Carnation [Flannery]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8761,6 +8720,7 @@ BEGIN
   VALUES (v_trainer_id, 324, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 323, 79, 6, '[]'::jsonb);
+
 
   -- Leader Carnation [Flannery]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8781,6 +8741,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 323, 79, 6, '[]'::jsonb);
 
+
   -- Leader Carnation [Winona]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8799,6 +8760,7 @@ BEGIN
   VALUES (v_trainer_id, 663, 77, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 334, 79, 6, '[]'::jsonb);
+
 
   -- Leader Carnation [Winona]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8819,6 +8781,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 334, 79, 6, '[]'::jsonb);
 
+
   -- Dragon Tamer Antonin [Lance]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8837,6 +8800,7 @@ BEGIN
   VALUES (v_trainer_id, 6, 86, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 149, 88, 6, '[]'::jsonb);
+
 
   -- Leader Antonin [Brawly]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8857,6 +8821,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 308, 79, 6, '[]'::jsonb);
 
+
   -- Leader Antonin [Brawly]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8875,6 +8840,7 @@ BEGIN
   VALUES (v_trainer_id, 297, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 308, 79, 6, '[]'::jsonb);
+
 
   -- Leader Antonin [Wattson]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8895,6 +8861,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 310, 79, 6, '[]'::jsonb);
 
+
   -- Leader Antonin [Wattson]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8913,6 +8880,7 @@ BEGIN
   VALUES (v_trainer_id, 26, 77, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 310, 79, 6, '[]'::jsonb);
+
 
   -- Leader Antonin [Norman]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8933,6 +8901,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 115, 79, 6, '[]'::jsonb);
 
+
   -- Leader Antonin [Norman]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8951,6 +8920,7 @@ BEGIN
   VALUES (v_trainer_id, 289, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 115, 79, 6, '[]'::jsonb);
+
 
   -- Champion Josephine [Diantha]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -8971,6 +8941,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 282, 88, 6, '[]'::jsonb);
 
+
   -- Leader Josephine [Liza]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -8989,6 +8960,7 @@ BEGIN
   VALUES (v_trainer_id, 337, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 282, 79, 6, '[]'::jsonb);
+
 
   -- Leader Josephine [Liza]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9009,6 +8981,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 282, 79, 6, '[]'::jsonb);
 
+
   -- Leader Josephine [Tate]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9027,6 +9000,7 @@ BEGIN
   VALUES (v_trainer_id, 338, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 475, 79, 6, '[]'::jsonb);
+
 
   -- Leader Josephine [Tate]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9047,6 +9021,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 475, 79, 6, '[]'::jsonb);
 
+
   -- Leader Josephine [Wallace]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9065,6 +9040,7 @@ BEGIN
   VALUES (v_trainer_id, 130, 77, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 79, 6, '[]'::jsonb);
+
 
   -- Leader Josephine [Wallace]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9085,6 +9061,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 260, 79, 6, '[]'::jsonb);
 
+
   -- Ace Trainer Kelvin [Blue]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9103,6 +9080,7 @@ BEGIN
   VALUES (v_trainer_id, 103, 86, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 248, 88, 6, '[]'::jsonb);
+
 
   -- Leader Kelvin [Grant]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9123,6 +9101,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 142, 79, 6, '[]'::jsonb);
 
+
   -- Leader Kelvin [Ramos]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9141,6 +9120,7 @@ BEGIN
   VALUES (v_trainer_id, 673, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 3, 79, 6, '[]'::jsonb);
+
 
   -- Leader Kelvin [Clemont]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9161,6 +9141,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 181, 79, 6, '[]'::jsonb);
 
+
   -- Leader Kelvin [Wulfric]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9179,6 +9160,7 @@ BEGIN
   VALUES (v_trainer_id, 713, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 460, 79, 6, '[]'::jsonb);
+
 
   -- Leader Kelvin [Wikstrom]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9199,6 +9181,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 212, 84, 6, '[]'::jsonb);
 
+
   -- Leader Kelvin [Siebold]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9217,6 +9200,7 @@ BEGIN
   VALUES (v_trainer_id, 689, 84, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 9, 84, 6, '[]'::jsonb);
+
 
   -- Furisode Girl Felix [Iris]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9237,6 +9221,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 612, 88, 6, '[]'::jsonb);
 
+
   -- Leader Felix [Viola]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9255,6 +9240,7 @@ BEGIN
   VALUES (v_trainer_id, 666, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 127, 79, 6, '[]'::jsonb);
+
 
   -- Leader Felix [Korrina]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9275,6 +9261,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 448, 79, 6, '[]'::jsonb);
 
+
   -- Leader Felix [Valerie]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9293,6 +9280,7 @@ BEGIN
   VALUES (v_trainer_id, 700, 79, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 303, 79, 6, '[]'::jsonb);
+
 
   -- Leader Felix [Olympia]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9313,6 +9301,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 65, 79, 6, '[]'::jsonb);
 
+
   -- Leader Felix [Malva]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9331,6 +9320,7 @@ BEGIN
   VALUES (v_trainer_id, 663, 84, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 229, 84, 6, '[]'::jsonb);
+
 
   -- Leader Felix [Drasna]
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9351,6 +9341,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 445, 84, 6, '[]'::jsonb);
 
+
   -- PKMN Trainer Wally
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9369,6 +9360,7 @@ BEGIN
   VALUES (v_trainer_id, 445, 81, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 475, 83, 6, '[]'::jsonb);
+
 
   -- PKMN Trainer Wally
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9389,6 +9381,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 475, 99, 6, '[]'::jsonb);
 
+
   -- Elite Four Sidney
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9407,6 +9400,7 @@ BEGIN
   VALUES (v_trainer_id, 359, 82, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 248, 82, 6, '[]'::jsonb);
+
 
   -- Elite Four Phoebe
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9427,6 +9421,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 94, 83, 6, '[]'::jsonb);
 
+
   -- Elite Four Glacia
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9445,6 +9440,7 @@ BEGIN
   VALUES (v_trainer_id, 362, 84, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 460, 84, 6, '[]'::jsonb);
+
 
   -- Elite Four Drake
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
@@ -9465,6 +9461,7 @@ BEGIN
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 381, 85, 6, '[]'::jsonb);
 
+
   -- Champion Steven
   SELECT id INTO v_route_id FROM public.routes WHERE slug = 'battle-resort' AND game_id = 'f1a2b3c4-d5e6-7890-ab12-cd3456789012';
   INSERT INTO public.trainers (route_id, name, trainer_class, is_boss, display_order)
@@ -9483,6 +9480,7 @@ BEGIN
   VALUES (v_trainer_id, 376, 89, 5, '[]'::jsonb);
   INSERT INTO public.trainer_pokemon (trainer_id, pokemon_national_dex_id, level, slot_order, moves)
   VALUES (v_trainer_id, 719, 89, 6, '[]'::jsonb);
+
 
 END $$;
 
