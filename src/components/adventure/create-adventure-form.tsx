@@ -77,6 +77,18 @@ export function CreateAdventureForm({
         });
         const data = await res.json();
         if (data.id) {
+          createAdventure({
+            id: data.id,
+            gameId: selectedGame.id,
+            gameName: selectedGame.name,
+            gameSlug: selectedGame.slug,
+            gameGeneration: selectedGame.generation,
+            gameSpriteUrl: selectedGame.spriteUrl,
+            name,
+            status: "active",
+            rules: {},
+            createdAt: new Date().toISOString(),
+          });
           router.push(`/adventure/${data.id}`);
         }
       } catch {
