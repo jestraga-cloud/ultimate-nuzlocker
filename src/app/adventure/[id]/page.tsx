@@ -19,6 +19,12 @@ import { Map, Backpack, Calculator } from "lucide-react";
 import { CalculatorTab } from "@/components/adventure/calculator-tab";
 import { getEncounterState } from "@/components/tracker/encounter-shared";
 import type { Route, Encounter, RouteItem, Trainer, RouteDetail as RouteDetailType } from "@/types/game";
+import type { LocalCatch, LocalRouteProgress } from "@/lib/store/types";
+
+// Stable fallback references — avoids useSyncExternalStore tearing loop
+// when the adventureId key doesn't exist in the store (before hydration).
+const EMPTY_CATCHES: LocalCatch[] = [];
+const EMPTY_PROGRESS: Record<string, LocalRouteProgress> = {};
 
 export default function AdventurePage() {
   const params = useParams();
@@ -26,8 +32,8 @@ export default function AdventurePage() {
   const hydrated = useStoreHydration();
 
   const adventure = useStore((s) => s.adventures[adventureId]);
-  const catches = useStore((s) => s.catches[adventureId] || []);
-  const routeProgress = useStore((s) => s.routeProgress[adventureId] || {});
+  const catches = useStore((s) => s.catches[adventureId] ?? EMPTY_CATCHES);
+  const routeProgress = useStore((s) => s.routeProgress[adventureId] ?? EMPTY_PROGRESS);
   const addCatch = useStore((s) => s.addCatch);
   const setRouteVisited = useStore((s) => s.setRouteVisited);
   const setEncounterUsed = useStore((s) => s.setEncounterUsed);
