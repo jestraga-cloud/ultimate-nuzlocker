@@ -48,7 +48,9 @@ export default function AdventurePage() {
     Record<number, { name: string; types: string[] }>
   >({});
   const pokemonNamesRef = useRef(pokemonNames);
-  pokemonNamesRef.current = pokemonNames;
+  useEffect(() => {
+    pokemonNamesRef.current = pokemonNames;
+  }, [pokemonNames]);
 
   // Fetch routes for the game
   useEffect(() => {
@@ -302,6 +304,8 @@ export default function AdventurePage() {
     [adventureId, selectedRouteId, addCatch, setEncounterUsed, setRouteVisited]
   );
 
+  const handleClearTrainer = useCallback(() => setCalcTrainer(null), []);
+
   const currentEncounterState = useMemo(() => {
     if (!selectedRouteId) return "null" as const;
     const progress = routeProgress[selectedRouteId];
@@ -480,7 +484,7 @@ export default function AdventurePage() {
               pokemonNames={pokemonNames}
               calcTrainer={calcTrainer}
               onSetTrainer={setCalcTrainer}
-              onClearTrainer={() => setCalcTrainer(null)}
+              onClearTrainer={handleClearTrainer}
             />
           </TabsContent>
         </Tabs>
