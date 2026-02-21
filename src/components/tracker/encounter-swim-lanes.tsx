@@ -116,8 +116,8 @@ function MethodGroup({
             const card = (
               <div
                 key={enc.id}
-                className={`w-[200px] relative
-                  rounded-lg border bg-card p-3 flex flex-col items-center gap-1.5
+                className={`w-[160px] relative
+                  rounded-lg border bg-card p-2 flex flex-col items-center gap-1
                   transition-all duration-150
                   ${isLocked ? "" : "cursor-pointer hover:scale-105 hover:shadow-lg"}
                   ${isRare && !isLocked ? "encounter-rare-pulse" : ""}
@@ -132,13 +132,13 @@ function MethodGroup({
                 onClick={isLocked ? () => onPokemonClick?.(enc.pokemonDexId) : undefined}
               >
                 {encounterState === "caught" && (
-                  <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-green-500 flex items-center justify-center">
-                    <Check className="h-3 w-3 text-white" />
+                  <div className="absolute top-1 right-1 w-4.5 h-4.5 rounded-full bg-green-500 flex items-center justify-center">
+                    <Check className="h-2.5 w-2.5 text-white" />
                   </div>
                 )}
                 {encounterState === "missed" && (
-                  <div className="absolute top-1.5 right-1.5 w-5 h-5 rounded-full bg-muted-foreground/50 flex items-center justify-center">
-                    <X className="h-3 w-3 text-white" />
+                  <div className="absolute top-1 right-1 w-4.5 h-4.5 rounded-full bg-muted-foreground/50 flex items-center justify-center">
+                    <X className="h-2.5 w-2.5 text-white" />
                   </div>
                 )}
 
@@ -148,22 +148,19 @@ function MethodGroup({
                   name={name}
                 />
 
-                <span className="text-xs font-medium truncate w-full text-center">
+                <span className="text-[10px] font-medium truncate w-full text-center">
                   {name}
                 </span>
 
-                <div className="flex gap-1">
+                <div className="flex gap-0.5">
                   {types.map((t) => (
                     <TypeBadge key={t} type={t} size="sm" />
                   ))}
                 </div>
 
-                <span className="text-[10px] text-muted-foreground font-mono">
-                  {formatLevel(enc.levelMin, enc.levelMax)}
-                </span>
-
                 <span className="text-[10px] text-muted-foreground font-mono tabular-nums">
-                  {enc.encounterRate !== null ? `${enc.encounterRate}%` : "??%"}
+                  {formatLevel(enc.levelMin, enc.levelMax)}
+                  {enc.encounterRate !== null ? ` · ${enc.encounterRate}%` : ""}
                 </span>
               </div>
             );

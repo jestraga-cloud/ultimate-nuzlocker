@@ -8,6 +8,7 @@ export const createUISlice: StateCreator<UISlice, [], [], UISlice> = (
   sidebarOpen: true,
   expandedSections: {},
   colorTheme: "warm-adventure",
+  detailPaneMode: "collapsed",
 
   setSelectedRoute: (routeId) => set({ selectedRouteId: routeId }),
 
@@ -25,4 +26,5 @@ export const createUISlice: StateCreator<UISlice, [], [], UISlice> = (
     })),
 
   setColorTheme: (theme) => set({ colorTheme: theme }),
+  setDetailPaneMode: (mode) => set({ detailPaneMode: mode }),
 });

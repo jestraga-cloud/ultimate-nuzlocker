@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 import { AdventureHeader } from "@/components/adventure/adventure-header";
 import { RouteSidebar } from "@/components/tracker/route-sidebar";
 import { RouteDetail } from "@/components/tracker/route-detail";
+import { SplitPane } from "@/components/tracker/split-pane";
 import { CatchModal } from "@/components/adventure/catch-modal";
 import { MyPokemonPanel } from "@/components/adventure/my-pokemon-panel";
 import { PokemonDetailModal } from "@/components/pokemon/pokemon-detail-modal";
@@ -15,11 +16,14 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Map, Backpack, Calculator } from "lucide-react";
+import { Map, Backpack, Calculator, BookOpen, ChevronLeft } from "lucide-react";
 import { CalculatorTab } from "@/components/adventure/calculator-tab";
+import { PokemonChangesTab } from "@/components/adventure/pokemon-changes-tab";
+import { hasPokemonChanges } from "@/data/pokemon-changes";
 import { getEncounterState } from "@/components/tracker/encounter-shared";
 import type { Route, Encounter, RouteItem, Trainer, RouteDetail as RouteDetailType } from "@/types/game";
 import type { LocalCatch, LocalRouteProgress } from "@/lib/store/types";
+import type { EncounterState } from "@/components/tracker/encounter-shared";
 
 // Stable fallback references — avoids useSyncExternalStore tearing loop
 // when the adventureId key doesn't exist in the store (before hydration).
@@ -38,6 +42,10 @@ export default function AdventurePage() {
   const setRouteVisited = useStore((s) => s.setRouteVisited);
   const setEncounterUsed = useStore((s) => s.setEncounterUsed);
 
+  // Split-pane state from Zustand
+  const detailPaneMode = useStore((s) => s.detailPaneMode);
+  const setDetailPaneMode = useStore((s) => s.setDetailPaneMode);
+
   const [routes, setRoutes] = useState<Route[]>([]);
   const [selectedRouteId, setSelectedRouteId] = useState<string | null>(null);
   const [routeDetail, setRouteDetail] = useState<RouteDetailType | null>(null);
@@ -48,6 +56,7 @@ export default function AdventurePage() {
   const [activeTab, setActiveTab] = useState<string>("routes");
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [calcTrainer, setCalcTrainer] = useState<Trainer | null>(null);
+  const [encountersByRoute, setEncountersByRoute] = useState<Record<string, Encounter[]>>({});
 
   // Pokemon names cache — use ref to avoid stale closures in fetchPokemonNames
   const [pokemonNames, setPokemonNames] = useState<
@@ -58,47 +67,87 @@ export default function AdventurePage() {
     pokemonNamesRef.current = pokemonNames;
   }, [pokemonNames]);
 
-  // Fetch routes for the game
+  // Fetch routes and all encounters for the game
   useEffect(() => {
     if (!adventure?.gameId) return;
 
-    const fetchRoutes = async () => {
+    const fetchRoutesAndEncounters = async () => {
       const supabase = createClient();
       if (!supabase) {
         setLoading(false);
         return;
       }
-      const { data, error } = await supabase
+
+      const { data: routeData, error: routeError } = await supabase
         .from("routes")
         .select("*")
         .eq("game_id", adventure.gameId)
         .order("display_order", { ascending: true });
 
-      if (error) {
-        console.error("Error fetching routes:", error);
+      if (routeError) {
+        console.error("Error fetching routes:", routeError);
       }
 
-      if (data) {
-        setRoutes(
-          data.map((r: Record<string, unknown>) => ({
-            id: r.id as string,
-            gameId: r.game_id as string,
-            name: r.name as string,
-            slug: r.slug as string,
-            displayOrder: r.display_order as number,
-            routeType: r.route_type as Route["routeType"],
-            hasEncounters: r.has_encounters as boolean,
-            hasTrainers: r.has_trainers as boolean,
-            hasItems: r.has_items as boolean,
-            notes: r.notes as string | null,
-          }))
-        );
+      const mappedRoutes: Route[] = (routeData || []).map((r: Record<string, unknown>) => ({
+        id: r.id as string,
+        gameId: r.game_id as string,
+        name: r.name as string,
+        slug: r.slug as string,
+        displayOrder: r.display_order as number,
+        routeType: r.route_type as Route["routeType"],
+        hasEncounters: r.has_encounters as boolean,
+        hasTrainers: r.has_trainers as boolean,
+        hasItems: r.has_items as boolean,
+        notes: r.notes as string | null,
+      }));
+      setRoutes(mappedRoutes);
+
+      // Prefetch all encounters for the game (powers Quick-Catch)
+      const routeIds = mappedRoutes.map((r) => r.id);
+      if (routeIds.length > 0) {
+        const { data: encData, error: encError } = await supabase
+          .from("encounters")
+          .select("*")
+          .in("route_id", routeIds)
+          .order("method")
+          .order("encounter_rate", { ascending: false, nullsFirst: false });
+
+        if (encError) {
+          console.error("Error prefetching encounters:", encError);
+        }
+
+        if (encData) {
+          const byRoute: Record<string, Encounter[]> = {};
+          const allDexIds = new Set<number>();
+
+          for (const r of encData as Record<string, unknown>[]) {
+            const routeId = r.route_id as string;
+            if (!byRoute[routeId]) byRoute[routeId] = [];
+            const enc: Encounter = {
+              id: r.id as string,
+              routeId,
+              pokemonDexId: r.pokemon_national_dex_id as number,
+              method: r.method as Encounter["method"],
+              encounterRate: r.encounter_rate as number | null,
+              levelMin: r.level_min as number | null,
+              levelMax: r.level_max as number | null,
+              conditions: r.conditions as string | null,
+              versionExclusive: r.version_exclusive as string | null,
+            };
+            byRoute[routeId].push(enc);
+            allDexIds.add(enc.pokemonDexId);
+          }
+
+          setEncountersByRoute(byRoute);
+          fetchPokemonNames(Array.from(allDexIds));
+        }
       }
+
       setLoading(false);
     };
 
-    fetchRoutes();
-  }, [adventure?.gameId]);
+    fetchRoutesAndEncounters();
+  }, [adventure?.gameId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Stable pokemon name fetcher — uses ref so it never causes re-render loops
   const fetchPokemonNames = useCallback(async (dexIds: number[]) => {
@@ -133,7 +182,8 @@ export default function AdventurePage() {
     setPokemonNames((prev) => ({ ...prev, ...results }));
   }, []);
 
-  // Fetch route detail when a route is selected
+  // Fetch route detail (items + trainers) when a route is selected
+  // Encounters come from prefetched data, so we only fetch items + trainers
   useEffect(() => {
     if (!selectedRouteId) {
       setRouteDetail(null);
@@ -148,13 +198,7 @@ export default function AdventurePage() {
         return;
       }
 
-      const [encountersRes, itemsRes, trainersRes] = await Promise.all([
-        supabase
-          .from("encounters")
-          .select("*")
-          .eq("route_id", selectedRouteId)
-          .order("method")
-          .order("encounter_rate", { ascending: false, nullsFirst: false }),
+      const [itemsRes, trainersRes] = await Promise.all([
         supabase
           .from("route_items")
           .select("*")
@@ -168,7 +212,6 @@ export default function AdventurePage() {
           .order("display_order"),
       ]);
 
-      if (encountersRes.error) console.error("Error fetching encounters:", encountersRes.error);
       if (itemsRes.error) console.error("Error fetching items:", itemsRes.error);
       if (trainersRes.error) console.error("Error fetching trainers:", trainersRes.error);
 
@@ -178,19 +221,8 @@ export default function AdventurePage() {
         return;
       }
 
-      const encounters: Encounter[] = (encountersRes.data || []).map(
-        (r: Record<string, unknown>) => ({
-          id: r.id as string,
-          routeId: r.route_id as string,
-          pokemonDexId: r.pokemon_national_dex_id as number,
-          method: r.method as Encounter["method"],
-          encounterRate: r.encounter_rate as number | null,
-          levelMin: r.level_min as number | null,
-          levelMax: r.level_max as number | null,
-          conditions: r.conditions as string | null,
-          versionExclusive: r.version_exclusive as string | null,
-        })
-      );
+      // Use prefetched encounters
+      const encounters = encountersByRoute[selectedRouteId] || [];
 
       const items: RouteItem[] = (itemsRes.data || []).map(
         (r: Record<string, unknown>) => ({
@@ -238,18 +270,16 @@ export default function AdventurePage() {
       setRouteDetail({ route, encounters, items, trainers });
       setDetailLoading(false);
 
-      // Fetch pokemon names for encounters and trainers
-      const dexIds = new Set<number>();
-      encounters.forEach((e) => dexIds.add(e.pokemonDexId));
+      // Fetch pokemon names for trainers (encounters already prefetched)
+      const trainerDexIds = new Set<number>();
       trainers.forEach((t) =>
-        t.pokemon.forEach((tp) => dexIds.add(tp.pokemonDexId))
+        t.pokemon.forEach((tp) => trainerDexIds.add(tp.pokemonDexId))
       );
-
-      fetchPokemonNames(Array.from(dexIds));
+      fetchPokemonNames(Array.from(trainerDexIds));
     };
 
     fetchDetail();
-  }, [selectedRouteId, routes, fetchPokemonNames]);
+  }, [selectedRouteId, routes, encountersByRoute, fetchPokemonNames]);
 
   const visitedRoutes = useMemo(
     () => new Set(Object.keys(routeProgress).filter((id) => routeProgress[id]?.visited)),
@@ -268,7 +298,22 @@ export default function AdventurePage() {
     return map;
   }, [catches, pokemonNames]);
 
+  // Compute encounter states for all routes (for sidebar indicators)
+  const routeEncounterStates = useMemo(() => {
+    const states: Record<string, EncounterState> = {};
+    for (const route of routes) {
+      const progress = routeProgress[route.id];
+      states[route.id] = getEncounterState(
+        route.id,
+        progress?.encounterUsed || false,
+        catches
+      );
+    }
+    return states;
+  }, [routes, routeProgress, catches]);
+
   const [preselectedDexId, setPreselectedDexId] = useState<number | null>(null);
+  const [quickCatchRouteId, setQuickCatchRouteId] = useState<string | null>(null);
 
   const handleEncounterCaught = useCallback(
     (encounter: Encounter) => {
@@ -284,13 +329,47 @@ export default function AdventurePage() {
     setRouteVisited(adventureId, selectedRouteId, true);
   }, [adventureId, selectedRouteId, setEncounterUsed, setRouteVisited]);
 
+  // Quick-catch: triggered from route list popover
+  const handleQuickCatch = useCallback(
+    (routeId: string, encounter: Encounter) => {
+      setSelectedRouteId(routeId);
+      setQuickCatchRouteId(routeId);
+      setPreselectedDexId(encounter.pokemonDexId);
+      setCatchModalOpen(true);
+    },
+    []
+  );
+
+  // Quick-miss: triggered from route list popover
+  const handleQuickMiss = useCallback(
+    (routeId: string) => {
+      setEncounterUsed(adventureId, routeId, true);
+      setRouteVisited(adventureId, routeId, true);
+    },
+    [adventureId, setEncounterUsed, setRouteVisited]
+  );
+
+  // Handle detail view open (from sidebar details button)
+  const handleOpenDetail = useCallback(
+    (routeId: string) => {
+      setSelectedRouteId(routeId);
+      setActiveTab("routes");
+      if (detailPaneMode === "collapsed") {
+        setDetailPaneMode("split");
+      }
+      setMobileSidebarOpen(false);
+    },
+    [detailPaneMode, setDetailPaneMode]
+  );
+
   const handleCatch = useCallback(
     (data: { pokemonDexId: number; nickname: string | null; level: number | null }) => {
-      if (!selectedRouteId) return;
+      const routeId = quickCatchRouteId || selectedRouteId;
+      if (!routeId) return;
       addCatch({
         id: crypto.randomUUID(),
         adventureId,
-        routeId: selectedRouteId,
+        routeId,
         pokemonDexId: data.pokemonDexId,
         currentEvolutionDexId: null,
         nickname: data.nickname,
@@ -304,10 +383,11 @@ export default function AdventurePage() {
         diedAt: null,
         deathDetails: null,
       });
-      setEncounterUsed(adventureId, selectedRouteId, true);
-      setRouteVisited(adventureId, selectedRouteId, true);
+      setEncounterUsed(adventureId, routeId, true);
+      setRouteVisited(adventureId, routeId, true);
+      setQuickCatchRouteId(null);
     },
-    [adventureId, selectedRouteId, addCatch, setEncounterUsed, setRouteVisited]
+    [adventureId, selectedRouteId, quickCatchRouteId, addCatch, setEncounterUsed, setRouteVisited]
   );
 
   const handleClearTrainer = useCallback(() => setCalcTrainer(null), []);
@@ -322,6 +402,13 @@ export default function AdventurePage() {
     );
   }, [selectedRouteId, routeProgress, catches]);
 
+  // Encounters for the catch modal (use prefetched data or route detail)
+  const catchModalEncounters = useMemo(() => {
+    const routeId = quickCatchRouteId || selectedRouteId;
+    if (!routeId) return [];
+    return encountersByRoute[routeId] || routeDetail?.encounters || [];
+  }, [quickCatchRouteId, selectedRouteId, encountersByRoute, routeDetail]);
+
   if (!hydrated || loading) {
     return (
       <div className="flex flex-col h-[calc(100vh-4rem)]">
@@ -329,12 +416,7 @@ export default function AdventurePage() {
           <Skeleton className="h-full" />
         </div>
         <div className="flex flex-1">
-          <div className="w-64 border-r hidden md:block">
-            <Skeleton className="h-full" />
-          </div>
-          <div className="flex-1">
-            <Skeleton className="h-full" />
-          </div>
+          <Skeleton className="h-full w-full" />
         </div>
       </div>
     );
@@ -353,17 +435,33 @@ export default function AdventurePage() {
     );
   }
 
-  const sidebarContent = (
-    <RouteSidebar
-      routes={routes}
-      selectedRouteId={selectedRouteId}
-      onSelectRoute={(id) => {
-        setSelectedRouteId(id);
-        setActiveTab("routes");
-        setMobileSidebarOpen(false);
+  const sidebarProps = {
+    routes,
+    selectedRouteId,
+    onSelectRoute: handleOpenDetail,
+    visitedRoutes,
+    caughtPokemonByRoute,
+    encountersByRoute,
+    pokemonNames,
+    onQuickCatch: handleQuickCatch,
+    onQuickMiss: handleQuickMiss,
+    routeEncounterStates,
+  };
+
+  const routeDetailElement = (
+    <RouteDetail
+      routeDetail={routeDetail}
+      pokemonNames={pokemonNames}
+      encounterState={currentEncounterState}
+      routeId={selectedRouteId}
+      onEncounterCaught={handleEncounterCaught}
+      onEncounterMissed={handleEncounterMissed}
+      onPokemonClick={(dexId) => setPokemonDetailDexId(dexId)}
+      onTrainerDragStart={(e, trainer) => {
+        e.dataTransfer.setData("application/trainer-json", JSON.stringify(trainer));
+        e.dataTransfer.effectAllowed = "copy";
       }}
-      visitedRoutes={visitedRoutes}
-      caughtPokemonByRoute={caughtPokemonByRoute}
+      loading={detailLoading}
     />
   );
 
@@ -389,7 +487,13 @@ export default function AdventurePage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="w-72 p-0 pt-8">
-            {sidebarContent}
+            <RouteSidebar
+              {...sidebarProps}
+              onSelectRoute={(id) => {
+                handleOpenDetail(id);
+                setMobileSidebarOpen(false);
+              }}
+            />
           </SheetContent>
         </Sheet>
 
@@ -412,98 +516,136 @@ export default function AdventurePage() {
           <Calculator className="h-3.5 w-3.5 mr-1" />
           Calculator
         </Button>
+
+        {adventure && hasPokemonChanges(adventure.gameSlug) && (
+          <Button
+            variant={activeTab === "changes" ? "secondary" : "outline"}
+            size="sm"
+            className="text-xs whitespace-nowrap"
+            onClick={() => setActiveTab("changes")}
+          >
+            <BookOpen className="h-3.5 w-3.5 mr-1" />
+            Pokemon Changes
+          </Button>
+        )}
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        {/* Desktop sidebar */}
-        <aside className="hidden md:flex w-64 border-r flex-col overflow-hidden">
-          {sidebarContent}
-        </aside>
+      {/* Main content with tabs */}
+      <Tabs
+        value={activeTab}
+        onValueChange={setActiveTab}
+        className="flex-1 flex flex-col overflow-hidden"
+      >
+        {/* Desktop tab bar */}
+        <div className="hidden md:flex border-b px-4">
+          <TabsList variant="line" className="h-10">
+            <TabsTrigger value="routes" className="text-xs gap-1.5">
+              <Map className="h-3.5 w-3.5" />
+              Routes
+            </TabsTrigger>
+            <TabsTrigger value="pokemon" className="text-xs gap-1.5">
+              <Backpack className="h-3.5 w-3.5" />
+              My Pokemon ({catches.length})
+            </TabsTrigger>
+            <TabsTrigger
+              value="calculator"
+              className="text-xs gap-1.5"
+              onDragOver={(e) => { e.preventDefault(); setActiveTab("calculator"); }}
+              onDrop={(e) => {
+                e.preventDefault();
+                const trainerJson = e.dataTransfer.getData("application/trainer-json");
+                if (trainerJson) setCalcTrainer(JSON.parse(trainerJson));
+              }}
+            >
+              <Calculator className="h-3.5 w-3.5" />
+              Calculator
+            </TabsTrigger>
+            {adventure && hasPokemonChanges(adventure.gameSlug) && (
+              <TabsTrigger value="changes" className="text-xs gap-1.5">
+                <BookOpen className="h-3.5 w-3.5" />
+                Pokemon Changes
+              </TabsTrigger>
+            )}
+          </TabsList>
+        </div>
 
-        {/* Main content with tabs */}
-        <Tabs
-          value={activeTab}
-          onValueChange={setActiveTab}
-          className="flex-1 flex flex-col overflow-hidden"
-        >
-          {/* Desktop tab bar */}
-          <div className="hidden md:flex border-b px-4">
-            <TabsList variant="line" className="h-10">
-              <TabsTrigger value="routes" className="text-xs gap-1.5">
-                <Map className="h-3.5 w-3.5" />
-                Routes
-              </TabsTrigger>
-              <TabsTrigger value="pokemon" className="text-xs gap-1.5">
-                <Backpack className="h-3.5 w-3.5" />
-                My Pokemon ({catches.length})
-              </TabsTrigger>
-              <TabsTrigger
-                value="calculator"
-                className="text-xs gap-1.5"
-                onDragOver={(e) => { e.preventDefault(); setActiveTab("calculator"); }}
-                onDrop={(e) => {
-                  e.preventDefault();
-                  const trainerJson = e.dataTransfer.getData("application/trainer-json");
-                  if (trainerJson) setCalcTrainer(JSON.parse(trainerJson));
-                }}
-              >
-                <Calculator className="h-3.5 w-3.5" />
-                Calculator
-              </TabsTrigger>
-            </TabsList>
+        {/* Routes tab — Split-Pane on desktop, mobile back button + detail */}
+        <TabsContent value="routes" className="flex-1 overflow-hidden">
+          {/* Mobile: full-width with back navigation */}
+          <div className="md:hidden flex-1 h-full overflow-y-auto custom-scrollbar">
+            {selectedRouteId ? (
+              <div>
+                <div className="sticky top-0 z-10 px-3 py-2 border-b bg-background/95 backdrop-blur-sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-xs gap-1"
+                    onClick={() => setSelectedRouteId(null)}
+                  >
+                    <ChevronLeft className="h-3.5 w-3.5" />
+                    Back to Routes
+                  </Button>
+                </div>
+                {routeDetailElement}
+              </div>
+            ) : (
+              <RouteSidebar {...sidebarProps} />
+            )}
           </div>
 
-          <TabsContent value="routes" className="flex-1 overflow-y-auto custom-scrollbar">
-            <RouteDetail
-              routeDetail={routeDetail}
-              pokemonNames={pokemonNames}
-              encounterState={currentEncounterState}
-              routeId={selectedRouteId}
-              onEncounterCaught={handleEncounterCaught}
-              onEncounterMissed={handleEncounterMissed}
-              onPokemonClick={(dexId) => setPokemonDetailDexId(dexId)}
-              onTrainerDragStart={(e, trainer) => {
-                e.dataTransfer.setData("application/trainer-json", JSON.stringify(trainer));
-                e.dataTransfer.effectAllowed = "copy";
-              }}
-              loading={detailLoading}
+          {/* Desktop: Split-Pane */}
+          <div className="hidden md:flex flex-1 overflow-hidden">
+            <SplitPane
+              mode={detailPaneMode}
+              onModeChange={setDetailPaneMode}
+              leftPane={<RouteSidebar {...sidebarProps} />}
+              rightPane={routeDetailElement}
             />
-          </TabsContent>
+          </div>
+        </TabsContent>
 
-          <TabsContent value="pokemon" className="flex-1 overflow-y-auto custom-scrollbar">
-            <MyPokemonPanel
-              adventureId={adventureId}
-              catches={catches}
-              pokemonNames={pokemonNames}
-              routes={routes}
-              generation={adventure.gameGeneration ?? undefined}
-              onViewStats={(dexId) => setPokemonDetailDexId(dexId)}
-            />
-          </TabsContent>
+        <TabsContent value="pokemon" className="flex-1 overflow-y-auto custom-scrollbar">
+          <MyPokemonPanel
+            adventureId={adventureId}
+            catches={catches}
+            pokemonNames={pokemonNames}
+            routes={routes}
+            generation={adventure.gameGeneration ?? undefined}
+            onViewStats={(dexId) => setPokemonDetailDexId(dexId)}
+          />
+        </TabsContent>
 
-          <TabsContent value="calculator" className="flex-1 overflow-hidden">
-            <CalculatorTab
-              adventureId={adventureId}
-              gameId={adventure.gameId}
-              generation={adventure.gameGeneration ?? 3}
-              catches={catches}
-              pokemonNames={pokemonNames}
-              calcTrainer={calcTrainer}
-              onSetTrainer={setCalcTrainer}
-              onClearTrainer={handleClearTrainer}
-            />
+        <TabsContent value="calculator" className="flex-1 overflow-hidden">
+          <CalculatorTab
+            adventureId={adventureId}
+            gameId={adventure.gameId}
+            generation={adventure.gameGeneration ?? 3}
+            catches={catches}
+            pokemonNames={pokemonNames}
+            calcTrainer={calcTrainer}
+            onSetTrainer={setCalcTrainer}
+            onClearTrainer={handleClearTrainer}
+          />
+        </TabsContent>
+
+        {adventure && hasPokemonChanges(adventure.gameSlug) && (
+          <TabsContent value="changes" className="flex-1 overflow-hidden">
+            <PokemonChangesTab gameSlug={adventure.gameSlug} />
           </TabsContent>
-        </Tabs>
-      </div>
+        )}
+      </Tabs>
 
       {/* Catch modal */}
       <CatchModal
         open={catchModalOpen}
         onOpenChange={(open) => {
           setCatchModalOpen(open);
-          if (!open) setPreselectedDexId(null);
+          if (!open) {
+            setPreselectedDexId(null);
+            setQuickCatchRouteId(null);
+          }
         }}
-        encounters={routeDetail?.encounters || []}
+        encounters={catchModalEncounters}
         pokemonNames={pokemonNames}
         preselectedDexId={preselectedDexId}
         onCatch={handleCatch}
@@ -515,6 +657,7 @@ export default function AdventurePage() {
         onOpenChange={(open) => { if (!open) setPokemonDetailDexId(null); }}
         dexId={pokemonDetailDexId}
         generation={adventure.gameGeneration ?? undefined}
+        gameSlug={adventure.gameSlug}
       />
     </div>
   );

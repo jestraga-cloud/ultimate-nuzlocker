@@ -4,6 +4,7 @@ import type {
 } from "@/types/game";
 
 export type ColorTheme = "warm-adventure" | "classic-pokedex" | "neon-trainer" | "type-chromatic";
+export type DetailPaneMode = "collapsed" | "split" | "fullscreen";
 
 export interface LocalAdventure {
   id: string;
@@ -113,10 +114,12 @@ export interface UISlice {
   sidebarOpen: boolean;
   expandedSections: Record<string, boolean>;
   colorTheme: ColorTheme;
+  detailPaneMode: DetailPaneMode;
 
   setSelectedRoute: (routeId: string | null) => void;
   toggleSidebar: () => void;
   setSidebarOpen: (open: boolean) => void;
   toggleSection: (sectionId: string) => void;
   setColorTheme: (theme: ColorTheme) => void;
+  setDetailPaneMode: (mode: DetailPaneMode) => void;
 }
