@@ -11,7 +11,7 @@ interface PokemonCardProps {
   catchData: LocalCatch;
   pokemonNames: Record<number, { name: string; types: string[] }>;
   routeName?: string;
-  variant: "team" | "box" | "graveyard";
+  variant: "team" | "box" | "compact" | "graveyard";
   statsEntry?: PokemonStatsEntry;
   onSelect: () => void;
   onEdit?: () => void;
@@ -32,34 +32,133 @@ export function PokemonCard({
   const types = pData?.types || [];
   const primaryType = types[0] || "normal";
 
-  if (variant === "box") {
+  if (variant === "compact") {
+    const typeColor = TYPE_COLOR_MAP[primaryType] || "#A8A77A";
     return (
-      <button
-        onClick={onSelect}
-        className="pokemon-card flex items-center gap-3 px-3 py-2 rounded-lg border bg-card hover:bg-accent transition-all"
-        style={{ "--type-color": TYPE_COLOR_MAP[primaryType] || "#A8A77A" } as React.CSSProperties}
+      <div
+        className="pokemon-card group relative w-[160px] rounded-lg border bg-card overflow-hidden transition-all hover:shadow-md hover:shadow-[var(--type-color)]/10"
+        style={{ "--type-color": typeColor } as React.CSSProperties}
       >
-        <PokemonSprite dexId={dexId} size="sm" name={displayName} hoverable />
-        <div className="flex flex-col items-start min-w-0 flex-1">
-          <span className="text-xs font-medium truncate max-w-[100px]">{displayName}</span>
-          <div className="flex items-center gap-1 mt-0.5">
+        {/* Type accent bar */}
+        <div
+          className="h-1 w-full"
+          style={{
+            background: `linear-gradient(90deg, ${typeColor}, ${
+              types[1] ? TYPE_COLOR_MAP[types[1]] || "#A8A77A" : typeColor + "44"
+            })`,
+          }}
+        />
+
+        {/* Edit button */}
+        {onEdit && (
+          <button
+            onClick={(e) => { e.stopPropagation(); onEdit(); }}
+            className="absolute top-2.5 right-1.5 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-muted transition-all z-10"
+          >
+            <Pencil className="h-2.5 w-2.5 text-muted-foreground" />
+          </button>
+        )}
+
+        {/* Clickable content */}
+        <button onClick={onSelect} className="flex flex-col items-center w-full p-2 cursor-pointer gap-1">
+          <PokemonSprite dexId={dexId} size="lg" name={displayName} hoverable />
+
+          {/* Nickname */}
+          {catchData.nickname && (
+            <span className="text-[10px] font-bold truncate max-w-full leading-tight">{catchData.nickname}</span>
+          )}
+
+          {/* Species name */}
+          <span className={`text-[10px] truncate max-w-full leading-tight ${catchData.nickname ? "text-muted-foreground text-[8px]" : "font-medium"}`}>
+            {pData?.name || `#${dexId}`}
+          </span>
+
+          {/* Type dots */}
+          <div className="flex items-center gap-1">
+            {types.map((t) => (
+              <span
+                key={t}
+                className="w-2.5 h-2.5 rounded-full inline-block"
+                style={{ backgroundColor: TYPE_COLOR_MAP[t] || "#A8A77A" }}
+                title={t}
+              />
+            ))}
+          </div>
+
+          {/* Level + BST */}
+          <span className="text-[10px] text-muted-foreground font-mono tabular-nums">
+            {catchData.level ? `Lv.${catchData.level}` : ""}
+            {catchData.level && statsEntry ? " · " : ""}
+            {statsEntry ? `BST ${statsEntry.bst}` : ""}
+          </span>
+        </button>
+      </div>
+    );
+  }
+
+  if (variant === "box") {
+    const typeColor = TYPE_COLOR_MAP[primaryType] || "#A8A77A";
+    return (
+      <div
+        className="pokemon-card group relative flex flex-col items-center rounded-lg border bg-card overflow-hidden transition-all hover:shadow-md hover:shadow-[var(--type-color)]/10"
+        style={{ "--type-color": typeColor } as React.CSSProperties}
+      >
+        {/* Type accent bar */}
+        <div
+          className="h-1 w-full"
+          style={{
+            background: `linear-gradient(90deg, ${typeColor}, ${
+              types[1] ? TYPE_COLOR_MAP[types[1]] || "#A8A77A" : typeColor + "44"
+            })`,
+          }}
+        />
+
+        {/* Edit button */}
+        {onEdit && (
+          <button
+            onClick={(e) => { e.stopPropagation(); onEdit(); }}
+            className="absolute top-2.5 right-1.5 p-1 rounded opacity-0 group-hover:opacity-100 hover:bg-muted transition-all z-10"
+          >
+            <Pencil className="h-2.5 w-2.5 text-muted-foreground" />
+          </button>
+        )}
+
+        {/* Clickable content */}
+        <button onClick={onSelect} className="flex flex-col items-center w-full px-2 pt-2 pb-1.5 cursor-pointer">
+          {/* Hero sprite */}
+          <PokemonSprite dexId={dexId} size="md" name={displayName} hoverable />
+
+          {/* Name */}
+          <span className="text-[10px] font-bold truncate max-w-full mt-1 leading-tight">{displayName}</span>
+
+          {/* Species name if nicknamed */}
+          {catchData.nickname && pData?.name && (
+            <span className="text-[8px] text-muted-foreground leading-tight">{pData.name}</span>
+          )}
+
+          {/* Type badges */}
+          <div className="flex items-center gap-0.5 mt-1">
             {types.map((t) => (
               <TypeBadge key={t} type={t} />
             ))}
           </div>
-          {catchData.level && (
-            <span className="text-[9px] text-muted-foreground mt-0.5">Lv. {catchData.level}</span>
-          )}
-        </div>
+        </button>
+
+        {/* Stats footer */}
         {statsEntry && (
-          <div className="flex-shrink-0 text-right">
-            <span className="text-[9px] font-mono text-muted-foreground block">BST {statsEntry.bst}</span>
-            <span className="text-[8px] font-mono text-muted-foreground">
-              Spe {statsEntry.stats.speed}
-            </span>
+          <div className="w-full flex items-center justify-center gap-2 px-2 py-1 border-t bg-muted/30 text-[8px] font-mono text-muted-foreground">
+            <span>BST <span className="text-foreground font-semibold">{statsEntry.bst}</span></span>
+            <span className="text-border">|</span>
+            <span>Spe <span className="text-foreground font-semibold">{statsEntry.stats.speed}</span></span>
+            {catchData.level && (
+              <>
+                <span className="text-border">|</span>
+                <span>Lv.<span className="text-foreground font-semibold">{catchData.level}</span></span>
+              </>
+            )}
           </div>
         )}
-      </button>
+      </div>
     );
   }
 

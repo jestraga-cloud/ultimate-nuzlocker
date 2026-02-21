@@ -2,7 +2,7 @@
 
 import type { DetailPaneMode } from "@/lib/store/types";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, Maximize2 } from "lucide-react";
+import { ChevronLeft, Maximize2, X } from "lucide-react";
 
 interface SplitPaneProps {
   mode: DetailPaneMode;
@@ -29,11 +29,15 @@ export function SplitPane({ mode, leftPane, rightPane, onModeChange }: SplitPane
     >
       {/* Left pane (route list) */}
       <div
-        className={`overflow-hidden border-r transition-opacity duration-300 ${
+        className={`overflow-hidden transition-opacity duration-300 ${
           mode === "fullscreen" ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
+        } ${mode !== "collapsed" ? "border-r" : ""}`}
       >
-        <div className="h-full overflow-y-auto custom-scrollbar">
+        <div
+          className={`h-full overflow-y-auto custom-scrollbar ${
+            mode === "collapsed" ? "max-w-[600px] mx-auto" : ""
+          }`}
+        >
           {leftPane}
         </div>
       </div>
@@ -59,17 +63,28 @@ export function SplitPane({ mode, leftPane, rightPane, onModeChange }: SplitPane
           </div>
         )}
 
-        {/* Split: Maximize button */}
+        {/* Split: Close + Maximize buttons */}
         {mode === "split" && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-2 right-2 z-10 h-7 w-7"
-            onClick={() => onModeChange("fullscreen")}
-            title="Expand to full width"
-          >
-            <Maximize2 className="h-3.5 w-3.5" />
-          </Button>
+          <div className="absolute top-2 right-2 z-10 flex items-center gap-1">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
+              onClick={() => onModeChange("fullscreen")}
+              title="Expand to full width"
+            >
+              <Maximize2 className="h-3.5 w-3.5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
+              onClick={() => onModeChange("collapsed")}
+              title="Close detail panel"
+            >
+              <X className="h-3.5 w-3.5" />
+            </Button>
+          </div>
         )}
 
         <div className="h-full overflow-y-auto custom-scrollbar">

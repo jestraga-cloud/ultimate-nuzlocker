@@ -67,6 +67,39 @@ export default function AdventurePage() {
     pokemonNamesRef.current = pokemonNames;
   }, [pokemonNames]);
 
+  // Stable pokemon name fetcher — uses ref so it never causes re-render loops
+  const fetchPokemonNames = useCallback(async (dexIds: number[]) => {
+    const current = pokemonNamesRef.current;
+    const missing = dexIds.filter((id) => !current[id]);
+    if (missing.length === 0) return;
+
+    const results: Record<number, { name: string; types: string[] }> = {};
+
+    await Promise.all(
+      missing.map(async (id) => {
+        try {
+          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+          if (res.ok) {
+            const data = await res.json();
+            results[id] = {
+              name: data.name
+                .split("-")
+                .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+                .join(" "),
+              types: data.types.map(
+                (t: { type: { name: string } }) => t.type.name
+              ),
+            };
+          }
+        } catch {
+          results[id] = { name: `#${id}`, types: [] };
+        }
+      })
+    );
+
+    setPokemonNames((prev) => ({ ...prev, ...results }));
+  }, []);
+
   // Fetch routes and all encounters for the game
   useEffect(() => {
     if (!adventure?.gameId) return;
@@ -147,40 +180,7 @@ export default function AdventurePage() {
     };
 
     fetchRoutesAndEncounters();
-  }, [adventure?.gameId]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Stable pokemon name fetcher — uses ref so it never causes re-render loops
-  const fetchPokemonNames = useCallback(async (dexIds: number[]) => {
-    const current = pokemonNamesRef.current;
-    const missing = dexIds.filter((id) => !current[id]);
-    if (missing.length === 0) return;
-
-    const results: Record<number, { name: string; types: string[] }> = {};
-
-    await Promise.all(
-      missing.map(async (id) => {
-        try {
-          const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-          if (res.ok) {
-            const data = await res.json();
-            results[id] = {
-              name: data.name
-                .split("-")
-                .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-                .join(" "),
-              types: data.types.map(
-                (t: { type: { name: string } }) => t.type.name
-              ),
-            };
-          }
-        } catch {
-          results[id] = { name: `#${id}`, types: [] };
-        }
-      })
-    );
-
-    setPokemonNames((prev) => ({ ...prev, ...results }));
-  }, []);
+  }, [adventure?.gameId, fetchPokemonNames]);
 
   // Fetch route detail (items + trainers) when a route is selected
   // Encounters come from prefetched data, so we only fetch items + trainers
@@ -611,7 +611,7 @@ export default function AdventurePage() {
             pokemonNames={pokemonNames}
             routes={routes}
             generation={adventure.gameGeneration ?? undefined}
-            onViewStats={(dexId) => setPokemonDetailDexId(dexId)}
+            gameSlug={adventure.gameSlug}
           />
         </TabsContent>
 

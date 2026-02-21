@@ -5,10 +5,10 @@ import type { Route, Encounter } from "@/types/game";
 import { ROUTE_TYPE_COLORS } from "@/types/game";
 import type { RouteType } from "@/types/game";
 import type { EncounterState } from "./encounter-shared";
+import { TYPE_COLORS } from "./encounter-shared";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { PokemonSprite } from "@/components/pokemon/pokemon-sprite";
-import { TypeBadge } from "@/components/pokemon/type-badge";
 import {
   Popover,
   PopoverContent,
@@ -241,12 +241,17 @@ function QuickCatchPopover({
               onClick={() => onCatch(enc)}
               className="flex items-center gap-2 w-full px-2 py-1.5 rounded-md hover:bg-accent transition-colors text-left"
             >
-              <PokemonSprite dexId={enc.pokemonDexId} size="2xs" name={name} />
+              <PokemonSprite dexId={enc.pokemonDexId} size="xs" name={name} />
               <div className="flex-1 min-w-0">
                 <span className="text-[11px] font-medium truncate block">{name}</span>
-                <div className="flex gap-0.5 mt-0.5">
+                <div className="flex gap-1 mt-0.5">
                   {types.map((t) => (
-                    <TypeBadge key={t} type={t} size="sm" />
+                    <span
+                      key={t}
+                      className="w-2.5 h-2.5 rounded-full inline-block"
+                      style={{ backgroundColor: TYPE_COLORS[t] || "#A8A878" }}
+                      title={t}
+                    />
                   ))}
                 </div>
               </div>

@@ -5,6 +5,7 @@ import type { LocalCatch } from "@/lib/store/types";
 import type { Route } from "@/types/game";
 import { PokemonCard } from "@/components/pokemon/pokemon-card";
 import { PokemonEditSheet } from "@/components/pokemon/pokemon-edit-sheet";
+import { PokemonDetailModal } from "@/components/pokemon/pokemon-detail-modal";
 import { EvolutionPicker } from "@/components/pokemon/evolution-picker";
 import { PokemonSprite } from "@/components/pokemon/pokemon-sprite";
 import { useStore } from "@/lib/store";
@@ -30,7 +31,7 @@ interface MyPokemonPanelProps {
   pokemonNames: Record<number, { name: string; types: string[] }>;
   routes: Route[];
   generation?: number;
-  onViewStats: (dexId: number) => void;
+  gameSlug?: string;
 }
 
 export function MyPokemonPanel({
@@ -39,12 +40,13 @@ export function MyPokemonPanel({
   pokemonNames,
   routes,
   generation,
-  onViewStats,
+  gameSlug,
 }: MyPokemonPanelProps) {
   const evolvePokemon = useStore((s) => s.evolvePokemon);
 
   const [editingCatch, setEditingCatch] = useState<LocalCatch | null>(null);
   const [evolvingCatch, setEvolvingCatch] = useState<LocalCatch | null>(null);
+  const [viewingCatch, setViewingCatch] = useState<LocalCatch | null>(null);
   const [boxSearch, setBoxSearch] = useState("");
   const [sortBy, setSortBy] = useState<SortKey>("none");
   const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
@@ -78,10 +80,10 @@ export function MyPokemonPanel({
   }, [routes]);
 
   const alive = useMemo(
-    () => sortPokemon(catches.filter((c) => c.status === "alive" || c.status === "in_team")),
+    () => sortPokemon(catches.filter((c) => c.status === "in_team")),
     [catches, sortPokemon]
   );
-  const boxed = useMemo(() => catches.filter((c) => c.status === "boxed"), [catches]);
+  const boxed = useMemo(() => catches.filter((c) => c.status === "alive" || c.status === "boxed"), [catches]);
   const dead = useMemo(() => catches.filter((c) => c.status === "dead"), [catches]);
 
   const filteredBoxed = useMemo(() => {
@@ -98,12 +100,21 @@ export function MyPokemonPanel({
     return sortPokemon(result);
   }, [boxed, boxSearch, pokemonNames, sortPokemon]);
 
+  const [pokemonDetailDexId, setPokemonDetailDexId] = useState<number | null>(null);
+
   const handleEvolve = (dexId: number) => {
     if (evolvingCatch) {
       evolvePokemon(adventureId, evolvingCatch.id, dexId);
       setEvolvingCatch(null);
     }
   };
+
+  const handleDetailEvolve = useCallback((targetDexId: number) => {
+    if (viewingCatch && viewingCatch.status !== "dead") {
+      evolvePokemon(adventureId, viewingCatch.id, targetDexId);
+      setPokemonDetailDexId(targetDexId);
+    }
+  }, [viewingCatch, adventureId, evolvePokemon]);
 
   return (
     <div className="p-4 md:p-6 space-y-8">
@@ -180,7 +191,10 @@ export function MyPokemonPanel({
                 routeName={routeNameMap[pokemon.routeId]}
                 variant="team"
                 statsEntry={statsMap[dexId]}
-                onSelect={() => onViewStats(dexId)}
+                onSelect={() => {
+                    setViewingCatch(pokemon);
+                    setPokemonDetailDexId(dexId);
+                  }}
                 onEdit={() => setEditingCatch(pokemon)}
               />
             );
@@ -189,31 +203,31 @@ export function MyPokemonPanel({
       </section>
 
       {/* PC Box */}
-      {boxed.length > 0 && (
-        <section>
-          <div className="pixel-section-header flex items-center gap-2 mb-4">
-            <Box className="h-4 w-4 text-blue-500" />
-            <h3
-              className="text-xs text-blue-500"
-              style={{ fontFamily: "'Press Start 2P', monospace" }}
-            >
-              PC Box ({boxed.length})
-            </h3>
+      <section>
+        <div className="pixel-section-header flex items-center gap-2 mb-4">
+          <Box className="h-4 w-4 text-blue-500" />
+          <h3
+            className="text-xs text-blue-500"
+            style={{ fontFamily: "'Press Start 2P', monospace" }}
+          >
+            PC Box ({boxed.length})
+          </h3>
+        </div>
+
+        {boxed.length > 6 && (
+          <div className="relative mb-3">
+            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+            <Input
+              placeholder="Search box..."
+              value={boxSearch}
+              onChange={(e) => setBoxSearch(e.target.value)}
+              className="h-8 text-sm pl-8"
+            />
           </div>
+        )}
 
-          {boxed.length > 6 && (
-            <div className="relative mb-3">
-              <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-              <Input
-                placeholder="Search box..."
-                value={boxSearch}
-                onChange={(e) => setBoxSearch(e.target.value)}
-                className="h-8 text-sm pl-8"
-              />
-            </div>
-          )}
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        {boxed.length > 0 ? (
+          <div className="flex flex-wrap gap-2">
             {filteredBoxed.map((pokemon) => {
               const dexId = pokemon.currentEvolutionDexId || pokemon.pokemonDexId;
               return (
@@ -222,16 +236,24 @@ export function MyPokemonPanel({
                   catchData={pokemon}
                   pokemonNames={pokemonNames}
                   routeName={routeNameMap[pokemon.routeId]}
-                  variant="box"
+                  variant="compact"
                   statsEntry={statsMap[dexId]}
-                  onSelect={() => onViewStats(dexId)}
+                  onSelect={() => {
+                    setViewingCatch(pokemon);
+                    setPokemonDetailDexId(dexId);
+                  }}
                   onEdit={() => setEditingCatch(pokemon)}
                 />
               );
             })}
           </div>
-        </section>
-      )}
+        ) : (
+          <div className="flex flex-col items-center justify-center py-8 border border-dashed border-border/50 rounded-lg bg-muted/10">
+            <Box className="h-8 w-8 text-muted-foreground/20 mb-2" />
+            <p className="text-xs text-muted-foreground/50">Box is empty</p>
+          </div>
+        )}
+      </section>
 
       {/* Graveyard */}
       {dead.length > 0 && (
@@ -256,7 +278,8 @@ export function MyPokemonPanel({
                 variant="graveyard"
                 onSelect={() => {
                   const dexId = pokemon.currentEvolutionDexId || pokemon.pokemonDexId;
-                  onViewStats(dexId);
+                  setViewingCatch(pokemon);
+                  setPokemonDetailDexId(dexId);
                 }}
               />
             ))}
@@ -297,6 +320,21 @@ export function MyPokemonPanel({
         onOpenChange={(open) => { if (!open) setEvolvingCatch(null); }}
         currentDexId={evolvingCatch ? (evolvingCatch.currentEvolutionDexId || evolvingCatch.pokemonDexId) : 0}
         onSelectEvolution={handleEvolve}
+      />
+
+      {/* Pokemon detail modal — with evolve support */}
+      <PokemonDetailModal
+        open={pokemonDetailDexId !== null}
+        onOpenChange={(open) => {
+          if (!open) {
+            setPokemonDetailDexId(null);
+            setViewingCatch(null);
+          }
+        }}
+        dexId={pokemonDetailDexId}
+        generation={generation}
+        gameSlug={gameSlug}
+        onEvolve={viewingCatch && viewingCatch.status !== "dead" ? handleDetailEvolve : undefined}
       />
     </div>
   );

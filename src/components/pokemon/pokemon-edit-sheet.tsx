@@ -97,7 +97,7 @@ export function PokemonEditSheet({
     onOpenChange(false);
   };
 
-  const handleStatusChange = (newStatus: "alive" | "boxed") => {
+  const handleStatusChange = (newStatus: "in_team" | "alive") => {
     updateCatch(adventureId, catchData.id, { status: newStatus });
   };
 
@@ -135,24 +135,24 @@ export function PokemonEditSheet({
               <Button
                 type="button"
                 size="sm"
-                variant={catchData.status === "alive" || catchData.status === "in_team" ? "default" : "outline"}
+                variant={catchData.status === "in_team" ? "default" : "outline"}
                 className="flex-1 text-xs"
-                onClick={() => handleStatusChange("alive")}
+                onClick={() => handleStatusChange("in_team")}
                 disabled={catchData.status === "dead"}
               >
                 <Heart className="h-3 w-3 mr-1" />
-                Active
+                In Team
               </Button>
               <Button
                 type="button"
                 size="sm"
-                variant={catchData.status === "boxed" ? "default" : "outline"}
+                variant={catchData.status === "alive" || catchData.status === "boxed" ? "default" : "outline"}
                 className="flex-1 text-xs"
-                onClick={() => handleStatusChange("boxed")}
+                onClick={() => handleStatusChange("alive")}
                 disabled={catchData.status === "dead"}
               >
                 <Box className="h-3 w-3 mr-1" />
-                Boxed
+                PC Box
               </Button>
             </div>
           </div>
